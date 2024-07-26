@@ -21,7 +21,6 @@ import java.util.List;
 @Getter
 @Setter
 public class ArenaRepository {
-
     private List<Arena> arenas = new ArrayList<>();
 
     /**
