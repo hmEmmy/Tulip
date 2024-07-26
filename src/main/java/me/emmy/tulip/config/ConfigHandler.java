@@ -31,7 +31,7 @@ public class ConfigHandler {
     private final FileConfiguration kitsConfig;
 
     private final String[] configFileNames = {
-            "settings.yml", "locale.yml", "storage/arenas.yml"
+            "settings.yml", "locale.yml", "storage/arenas.yml", "storage/kits.yml"
     };
 
     public ConfigHandler() {
