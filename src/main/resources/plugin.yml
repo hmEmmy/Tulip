@@ -1,5 +1,5 @@
 name: Tulip
 version: '${project.version}'
 main: me.emmy.tulip.Tulip
-authors: [Emmy]
+author: Emmy
 description: A custom Free For All plugin
