@@ -3,6 +3,7 @@ package me.emmy.tulip;
 import lombok.Getter;
 import lombok.Setter;
 import me.emmy.tulip.arena.ArenaRepository;
+import me.emmy.tulip.utils.command.CommandFramework;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -14,6 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 @Setter
 public class Tulip extends JavaPlugin {
 
+    private CommandFramework commandFramework;
     private ArenaRepository arenaRepository;
 
     @Getter
@@ -23,6 +25,7 @@ public class Tulip extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
+        commandFramework = new CommandFramework();
         arenaRepository = new ArenaRepository();
 
     }
