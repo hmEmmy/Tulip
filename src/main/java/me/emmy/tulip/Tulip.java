@@ -16,12 +16,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 @Setter
 public class Tulip extends JavaPlugin {
 
+    @Getter
+    private static Tulip instance;
+
     private CommandFramework commandFramework;
     private ArenaRepository arenaRepository;
     private KitRepository kitRepository;
-
-    @Getter
-    private static Tulip instance;
 
     @Override
     public void onEnable() {
