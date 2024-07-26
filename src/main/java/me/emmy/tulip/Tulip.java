@@ -26,6 +26,8 @@ public class Tulip extends JavaPlugin {
         instance = this;
 
         commandFramework = new CommandFramework();
+        commandFramework.registerCommandsInPackage("me.emmy.tulip");
+
         arenaRepository = new ArenaRepository();
 
     }
