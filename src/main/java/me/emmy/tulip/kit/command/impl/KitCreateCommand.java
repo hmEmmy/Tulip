@@ -41,5 +41,6 @@ public class KitCreateCommand extends BaseCommand {
         Tulip.getInstance().getKitRepository().saveKit(name);
 
         player.sendMessage(CC.translate("&aKit &b" + name + " &ahas been created."));
+        player.sendMessage(CC.translate(" &7TIP: Your current inventory will be set as the kit's inventory content. You can change it by using &b/kit setinv " + name + "&7&o."));
     }
 }
