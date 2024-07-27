@@ -63,6 +63,8 @@ public class Tulip extends JavaPlugin {
         profileRepository = new ProfileRepository();
         profileRepository.initializeEveryProfile();
 
+        ServerUtils.registerListenersInPackage("me.emmy.tulip");
+
         loadScoreboard();
         sendStartupMessage();
     }

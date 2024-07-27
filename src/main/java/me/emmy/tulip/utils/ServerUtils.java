@@ -3,7 +3,12 @@ package me.emmy.tulip.utils;
 import lombok.experimental.UtilityClass;
 import me.emmy.tulip.Tulip;
 import org.bukkit.Bukkit;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
+import org.reflections.Reflections;
+
+import java.util.Set;
+import java.util.logging.Level;
 
 /**
  * @author Emmy
@@ -43,7 +48,7 @@ public class ServerUtils {
         if (Bukkit.getScheduler().getActiveWorkers().isEmpty()) {
             return;
         }
-        
+
         Bukkit.getConsoleSender().sendMessage(CC.translate("&cStopping tasks..."));
         Bukkit.getScheduler().cancelTasks(Tulip.getInstance());
     }
@@ -62,5 +67,37 @@ public class ServerUtils {
 
         Bukkit.getConsoleSender().sendMessage(CC.translate("&cDisabling " + plugin.getName() + "..."));
         Bukkit.getPluginManager().disablePlugin(plugin);
+    }
+
+    /**
+     * Register listeners in a specific package.
+     *
+     * @param packageName the package name
+     */
+    public void registerListenersInPackage(String packageName) {
+        Reflections reflections = new Reflections(packageName);
+        Set<Class<? extends Listener>> classes = reflections.getSubTypesOf(Listener.class);
+        String[] excludedPackages = { "me.emmy.tulip.utils", "me.emmy.tulip.visual.assemble" };
+
+        for (Class<? extends Listener> clazz : classes) {
+            boolean isExcluded = false;
+            for (String excludedPackage : excludedPackages) {
+                if (clazz.getName().startsWith(excludedPackage)) {
+                    isExcluded = true;
+                    break;
+                }
+            }
+
+            if (!isExcluded) {
+                try {
+                    Listener listener = clazz.getDeclaredConstructor().newInstance();
+                    Bukkit.getPluginManager().registerEvents(listener, Tulip.getInstance());
+                    Bukkit.getConsoleSender().sendMessage(CC.translate("&cRegistered listener: &f" + clazz.getSimpleName()));
+                } catch (Exception e) {
+                    //e.printStackTrace();
+                    Bukkit.getLogger().log(Level.SEVERE, "Failed to register listener: " + clazz.getSimpleName(), e);
+                }
+            }
+        }
     }
 }
