@@ -2,6 +2,8 @@ package me.emmy.tulip.kit;
 
 import lombok.Getter;
 import me.emmy.tulip.config.ConfigHandler;
+import me.emmy.tulip.utils.CC;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -9,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -37,6 +40,16 @@ public class KitRepository {
             ItemStack[] armor = config.getList(key + ".armor").toArray(new ItemStack[0]);
             Material icon = Material.matchMaterial(config.getString(key + ".icon"));
             int iconData = config.getInt(key + ".icondata");
+
+            List<String> debugMessage = Arrays.asList(
+                "",
+                "&aLoading kit: &e" + name,
+                "&aDescription: &e" + config.getString(key + ".description"),
+                "&aIcon: &e" + icon.name(),
+                "&aIcon Data: &e" + iconData,
+                ""
+            );
+            debugMessage.forEach(msg -> Bukkit.getConsoleSender().sendMessage(CC.translate(msg)));
 
             Kit kit = new Kit(
                     name,
@@ -70,6 +83,8 @@ public class KitRepository {
 
         File file = ConfigHandler.getInstance().getConfigFile("storage/kits.yml");
         ConfigHandler.getInstance().saveConfig(file, config);
+
+        Bukkit.getConsoleSender().sendMessage(CC.translate("&aSaved: &e" + kits.size() + " kits"));
     }
 
     /**
@@ -90,6 +105,19 @@ public class KitRepository {
 
         File file = ConfigHandler.getInstance().getConfigFile("storage/kits.yml");
         ConfigHandler.getInstance().saveConfig(file, config);
+    }
+
+    /**
+     * Save a kit by its name to the kits.yml file
+     *
+     * @param kitName The name of the kit to save
+     */
+    public void saveKit(String kitName) {
+        Kit kit = getKit(kitName);
+        if (kit == null) {
+            return;
+        }
+        saveKit(kit);
     }
 
     /**

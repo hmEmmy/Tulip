@@ -25,7 +25,7 @@ public class KitCommand extends BaseCommand {
         player.sendMessage(CC.translate("&7- &e/kit list"));
         player.sendMessage(CC.translate("&7- &e/kit setinv &7<name>"));
         player.sendMessage(CC.translate("&7- &e/kit getinv &7<name>"));
-        player.sendMessage(CC.translate("&7- &e/kit save"));
+        player.sendMessage(CC.translate("&7- &e/kit seticon &7<name>"));
         player.sendMessage(CC.translate("&7- &e/kit toggle &7<name>"));
         player.sendMessage("");
     }
