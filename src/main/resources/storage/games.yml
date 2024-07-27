@@ -1,0 +1,5 @@
+games:
+  test:
+    arena: test
+    kit: Classic
+    allowMultipleKits: false

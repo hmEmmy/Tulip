@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import me.emmy.tulip.arena.ArenaRepository;
 import me.emmy.tulip.config.ConfigHandler;
+import me.emmy.tulip.game.GameRepository;
 import me.emmy.tulip.kit.KitRepository;
 import me.emmy.tulip.utils.command.CommandFramework;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -24,6 +25,7 @@ public class Tulip extends JavaPlugin {
     private CommandFramework commandFramework;
     private ArenaRepository arenaRepository;
     private KitRepository kitRepository;
+    private GameRepository gameRepository;
 
     @Override
     public void onEnable() {
@@ -39,6 +41,8 @@ public class Tulip extends JavaPlugin {
 
         kitRepository = new KitRepository();
         kitRepository.loadKits();
+
+        gameRepository = new GameRepository();
     }
 
     @Override
