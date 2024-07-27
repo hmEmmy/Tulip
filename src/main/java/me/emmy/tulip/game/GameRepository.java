@@ -65,19 +65,23 @@ public class GameRepository {
 
         ConfigHandler.getInstance().saveConfig(ConfigHandler.getInstance().getConfigFile("storage/games.yml"), config);
     }
-    
+
     public void saveGame(Game game) {
         FileConfiguration config = ConfigHandler.getInstance().getGamesConfig();
-        
+
         String gameName = game.getName();
-        String arenaName = game.getArena().getName();
-        String kitName = game.getKit().getName();
+        if (gameName == null) {
+            throw new IllegalArgumentException("Game name cannot be null");
+        }
+
+        String arenaName = (game.getArena() != null) ? game.getArena().getName() : "undefined";
+        String kitName = (game.getKit() != null) ? game.getKit().getName() : "none";
         boolean allowMultipleKits = game.isAllowMultipleKits();
-        
+
         config.set("games." + gameName + ".arena", arenaName);
         config.set("games." + gameName + ".kit", kitName);
         config.set("games." + gameName + ".allowMultipleKits", allowMultipleKits);
-        
+
         ConfigHandler.getInstance().saveConfig(ConfigHandler.getInstance().getConfigFile("storage/games.yml"), config);
     }
 

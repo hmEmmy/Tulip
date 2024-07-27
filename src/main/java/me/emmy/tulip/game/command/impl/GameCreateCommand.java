@@ -21,37 +21,29 @@ public class GameCreateCommand extends BaseCommand {
         Player player = command.getPlayer();
         String[] args = command.getArgs();
 
-        if (args.length < 4) {
-            player.sendMessage(CC.translate("&cUsage: /game create (name) (kit) (arena) (allowMultipleKits)"));
+        if (args.length < 3) {
+            player.sendMessage(CC.translate("&cUsage: /game create (name) (arena) (allowMultipleKits)"));
             return;
         }
 
         String name = args[0];
-        String kitName = args[1];
-        String arenaName = args[2];
+        String arenaName = args[1];
         boolean allowMultipleKits;
 
         try {
-            allowMultipleKits = Boolean.parseBoolean(args[3]);
+            allowMultipleKits = Boolean.parseBoolean(args[2]);
         } catch (Exception e) {
             player.sendMessage(CC.translate("&cInvalid value for allowMultipleKits. Must be true or false."));
             return;
         }
 
-        Kit kit = Tulip.getInstance().getKitRepository().getKit(kitName);
         Arena arena = Tulip.getInstance().getArenaRepository().getArena(arenaName);
-
-        if (kit == null) {
-            player.sendMessage(CC.translate("&cKit not found."));
-            return;
-        }
-
         if (arena == null) {
             player.sendMessage(CC.translate("&cArena not found."));
             return;
         }
 
-        Tulip.getInstance().getGameRepository().createGame(name, arena, kit, allowMultipleKits);
+        Tulip.getInstance().getGameRepository().createGame(name, arena, null, allowMultipleKits);
         player.sendMessage(CC.translate("&aGame created successfully!"));
     }
 }

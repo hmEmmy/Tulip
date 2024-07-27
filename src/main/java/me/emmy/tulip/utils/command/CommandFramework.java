@@ -30,12 +30,18 @@ import java.lang.reflect.Method;
 import java.util.*;
 import java.util.Map.Entry;
 
+/**
+ * @author minnymin3
+ */
 public class CommandFramework implements CommandExecutor {
 
     private final Map<String, Entry<Method, Object>> commandMap = new HashMap<String, Entry<Method, Object>>();
     private final Tulip plugin = Tulip.getInstance();
     private CommandMap map;
 
+    /**
+     * Constructor for the CommandFramework
+     */
     public CommandFramework() {
         if (plugin.getServer().getPluginManager() instanceof SimplePluginManager) {
             SimplePluginManager manager = (SimplePluginManager) plugin.getServer().getPluginManager();
@@ -54,6 +60,15 @@ public class CommandFramework implements CommandExecutor {
         return handleCommand(sender, cmd, label, args);
     }
 
+    /**
+     * Handles a command
+     *
+     * @param sender the sender of the command
+     * @param cmd    the command
+     * @param label  the label of the command
+     * @param args   the arguments of the command
+     * @return whether the command was handled successfully
+     */
     public boolean handleCommand(CommandSender sender, org.bukkit.command.Command cmd, String label, String[] args) {
         for (int i = args.length; i >= 0; i--) {
             StringBuffer buffer = new StringBuffer();
@@ -93,6 +108,11 @@ public class CommandFramework implements CommandExecutor {
         return true;
     }
 
+    /**
+     * Registers all commands in an object
+     *
+     * @param obj the object to register commands from
+     */
     public void registerCommands(Object obj) {
         for (Method m : obj.getClass().getMethods()) {
             if (m.getAnnotation(Command.class) != null) {
@@ -125,6 +145,9 @@ public class CommandFramework implements CommandExecutor {
         }
     }
 
+    /**
+     * Registers the help topic
+     */
     public void registerHelp() {
         Set<HelpTopic> help = new TreeSet<HelpTopic>(HelpTopicComparator.helpTopicComparatorInstance());
         for (String s : commandMap.keySet()) {
@@ -139,6 +162,11 @@ public class CommandFramework implements CommandExecutor {
         Bukkit.getServer().getHelpMap().addTopic(topic);
     }
 
+    /**
+     * Unregisters all commands for an object
+     *
+     * @param obj the object to unregister commands for
+     */
     public void unregisterCommands(Object obj) {
         for (Method m : obj.getClass().getMethods()) {
             if (m.getAnnotation(Command.class) != null) {
@@ -150,6 +178,14 @@ public class CommandFramework implements CommandExecutor {
         }
     }
 
+    /**
+     * Registers a command
+     *
+     * @param command the command to register
+     * @param label   the label of the command
+     * @param m       the method to register
+     * @param obj     the object to register
+     */
     public void registerCommand(Command command, String label, Method m, Object obj) {
         commandMap.put(label.toLowerCase(), new AbstractMap.SimpleEntry<Method, Object>(m, obj));
         commandMap.put(this.plugin.getName() + ':' + label.toLowerCase(),
@@ -167,6 +203,13 @@ public class CommandFramework implements CommandExecutor {
         }
     }
 
+    /**
+     * Registers a tab completer for a command
+     *
+     * @param label the command to register the completer for
+     * @param m     the method to register
+     * @param obj   the object to register
+     */
     public void registerCompleter(String label, Method m, Object obj) {
         String cmdLabel = label.replace(".", ",").split(",")[0].toLowerCase();
         if (map.getCommand(cmdLabel) == null) {
@@ -201,8 +244,13 @@ public class CommandFramework implements CommandExecutor {
         }
     }
 
+    /**
+     * Method addition by Emmy
+     * Handles the default command
+     *
+     * @param args the command arguments
+     */
     private void defaultCommand(CommandArgs args) {
-
         String label = args.getLabel();
         String[] parts = label.split(":");
 
@@ -229,6 +277,13 @@ public class CommandFramework implements CommandExecutor {
         }
     }
 
+    /**
+     * Method addition by Remi
+     * Registers all commands in a package
+     *
+     * @param packageName the package to register commands in
+     * @return a set of all registered commands
+     */
     public Set<Class<? extends BaseCommand>> registerCommandsInPackage(String packageName) {
         ConfigurationBuilder config = new ConfigurationBuilder()
                 .setUrls(ClasspathHelper.forPackage(packageName))

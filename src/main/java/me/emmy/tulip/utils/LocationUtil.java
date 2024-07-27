@@ -11,7 +11,12 @@ import org.bukkit.World;
  */
 @UtilityClass
 public class LocationUtil {
-
+	/**
+	 * Get the faces of a location
+	 *
+	 * @param start the location to get the faces of
+	 * @return the faces of the location
+	 */
 	public Location[] getFaces(Location start) {
 		Location[] faces = new Location[4];
 		faces[0] = new Location(start.getWorld(), start.getX() + 1, start.getY(), start.getZ());
@@ -21,6 +26,12 @@ public class LocationUtil {
 		return faces;
 	}
 
+	/**
+	 * Serialize a location to a string
+	 *
+	 * @param location the location to serialize
+	 * @return the serialized location
+	 */
 	public String serialize(Location location) {
 		if (location == null) {
 			return "null";
@@ -30,6 +41,12 @@ public class LocationUtil {
 		       ":" + location.getYaw() + ":" + location.getPitch();
 	}
 
+	/**
+	 * Deserialize a location from a string
+	 *
+	 * @param source the string to deserialize
+	 * @return the deserialized location
+	 */
 	public Location deserialize(String source) {
 		if (source == null || source.equalsIgnoreCase("null")) {
 			return null;

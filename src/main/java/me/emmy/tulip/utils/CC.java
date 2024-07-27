@@ -10,7 +10,6 @@ import org.bukkit.ChatColor;
  */
 @UtilityClass
 public class CC {
-
     public String prefix = translate("&8[&dTulip&8] &7");
     public String errorPrefix = translate("&4[&cError&4] &7");
 

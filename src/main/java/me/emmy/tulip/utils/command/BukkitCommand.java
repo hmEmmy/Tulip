@@ -9,6 +9,9 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.List;
 
+/**
+ * @author minnymin3
+ */
 public class BukkitCommand extends org.bukkit.command.Command {
 
     private final Plugin owningPlugin;
