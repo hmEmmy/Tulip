@@ -3,6 +3,7 @@ package me.emmy.tulip.profile.listener;
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.profile.ProfileRepository;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -21,7 +22,6 @@ public class ProfileListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     private void onLogin(PlayerLoginEvent event) {
         Player player = event.getPlayer();
-
         if (event.getResult() != PlayerLoginEvent.Result.ALLOWED) {
             return;
         }
