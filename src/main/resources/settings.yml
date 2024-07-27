@@ -1,3 +1,17 @@
 mongo:
   databaseName: Tulip
   connectionString: mongodb://localhost:27017
+
+scoreboard:
+  title: "&e&lTulip &7- &f&lFFA"
+  lines:
+    - "{sidebar}"
+    - " &7» &fOnline &e{online}&7/&e{max-online}"
+    - " &7» &fRank &e{rank}"
+    - ""
+    - " &7» &fKills &e{kills}"
+    - " &7» &fDeaths &e{deaths}"
+    - " &7» &fKillstreak &e{ks}"
+    - ""
+    - "&eplay.tulipmc.net"
+    - "{sidebar}"

@@ -4,6 +4,8 @@ When I get bored, I will commit. The purpose of this is to learn and improve my 
 ### To-do List:
 - [x] **Kit System**
 - [x] **Arena System**
-- [ ] **Scoreboard**
-- [ ] **MongoDB Storage**
+- [x] **MongoDB Storage**
+- [ ] **Profiles**
+- [ ] **Leaderboards/Statistics**
+- [x] **Scoreboard**
 - [ ] **Hotbar Items**

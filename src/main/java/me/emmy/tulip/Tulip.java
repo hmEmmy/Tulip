@@ -10,6 +10,9 @@ import me.emmy.tulip.kit.KitRepository;
 import me.emmy.tulip.utils.CC;
 import me.emmy.tulip.utils.ServerUtils;
 import me.emmy.tulip.utils.command.CommandFramework;
+import me.emmy.tulip.visual.ScoreboardVisualizer;
+import me.emmy.tulip.visual.assemble.Assemble;
+import me.emmy.tulip.visual.assemble.AssembleStyle;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -57,6 +60,7 @@ public class Tulip extends JavaPlugin {
         mongoService = new MongoService();
         mongoService.startMongo();
 
+        loadScoreboard();
         sendStartupMessage();
     }
 
@@ -71,6 +75,12 @@ public class Tulip extends JavaPlugin {
         ServerUtils.stopTasks();
 
         sendShutdownMessage();
+    }
+
+    private void loadScoreboard() {
+        Assemble assemble = new Assemble(this, new ScoreboardVisualizer());
+        assemble.setTicks(2);
+        assemble.setAssembleStyle(AssembleStyle.MODERN);
     }
 
     private void sendStartupMessage() {
