@@ -9,6 +9,7 @@ import lombok.Getter;
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.utils.CC;
+import me.emmy.tulip.utils.ServerUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -26,20 +27,25 @@ public class MongoService {
     private MongoClient mongoClient;
 
     public void startMongo() {
-        FileConfiguration config = ConfigHandler.getInstance().getSettingsConfig();
+        try {
+            FileConfiguration config = ConfigHandler.getInstance().getSettingsConfig();
 
-        String databaseName = config.getString("mongo.databaseName");
-        Bukkit.getConsoleSender().sendMessage(CC.translate("&bConnecting to the MongoDB database..."));
+            String databaseName = config.getString("mongo.databaseName");
+            Bukkit.getConsoleSender().sendMessage(CC.translate("&6Connecting to the MongoDB database..."));
 
-        ConnectionString connectionString = new ConnectionString(Objects.requireNonNull(config.getString("mongo.connectionString")));
-        MongoClientSettings.Builder settings = MongoClientSettings.builder();
-        settings.applyConnectionString(connectionString);
-        settings.applyToConnectionPoolSettings(builder -> builder.maxConnectionIdleTime(30, TimeUnit.SECONDS));
-        settings.retryWrites(true);
+            ConnectionString connectionString = new ConnectionString(Objects.requireNonNull(config.getString("mongo.connectionString")));
+            MongoClientSettings.Builder settings = MongoClientSettings.builder();
+            settings.applyConnectionString(connectionString);
+            settings.applyToConnectionPoolSettings(builder -> builder.maxConnectionIdleTime(30, TimeUnit.SECONDS));
+            settings.retryWrites(true);
 
-        this.mongoClient = MongoClients.create(settings.build());
-        this.mongoDatabase = mongoClient.getDatabase(databaseName);
+            this.mongoClient = MongoClients.create(settings.build());
+            this.mongoDatabase = mongoClient.getDatabase(databaseName);
 
-        Bukkit.getConsoleSender().sendMessage(CC.translate("&eSuccessfully connected to the MongoDB database."));
+            Bukkit.getConsoleSender().sendMessage(CC.translate("&aSuccessfully connected to the MongoDB database."));
+        } catch (Exception exception) {
+            Bukkit.getConsoleSender().sendMessage(CC.translate("&cFailed to connect to the MongoDB database."));
+            ServerUtils.disablePlugin();
+        }
     }
 }

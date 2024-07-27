@@ -52,15 +52,11 @@ public class Tulip extends JavaPlugin {
         kitRepository.loadKits();
 
         gameRepository = new GameRepository();
+        gameRepository.loadGames();
 
         mongoService = new MongoService();
+        mongoService.startMongo();
 
-        try {
-            mongoService.startMongo();
-        } catch (Exception e) {
-            Bukkit.getConsoleSender().sendMessage(CC.translate("&cFailed to connect to the MongoDB database."));
-            ServerUtils.disablePlugin();
-        }
         sendStartupMessage();
     }
 
