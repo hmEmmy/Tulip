@@ -1,1 +1,128 @@
-kits: {}
+kits:
+  test:
+    description: '&7Description of the &btest &7Kit!'
+    items:
+      - ==: org.bukkit.inventory.ItemStack
+        type: COOKIE
+        amount: 64
+      - ==: org.bukkit.inventory.ItemStack
+        type: CARROT_ITEM
+        amount: 64
+      - ==: org.bukkit.inventory.ItemStack
+        type: BAKED_POTATO
+        amount: 64
+      - ==: org.bukkit.inventory.ItemStack
+        type: CARROT_ITEM
+        amount: 64
+      - ==: org.bukkit.inventory.ItemStack
+        type: BAKED_POTATO
+        amount: 64
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+    armor:
+      - ==: org.bukkit.inventory.ItemStack
+        type: AIR
+        damage: -1
+        amount: 0
+      - ==: org.bukkit.inventory.ItemStack
+        type: AIR
+        damage: -1
+        amount: 0
+      - ==: org.bukkit.inventory.ItemStack
+        type: AIR
+        damage: -1
+        amount: 0
+      - ==: org.bukkit.inventory.ItemStack
+        type: AIR
+        damage: -1
+        amount: 0
+    icon: GOLD_SPADE
+    icondata: 0
+    enabled: true
+  Classic:
+    description: '&7Description of the &bClassic &7kit'
+    items:
+      - ==: org.bukkit.inventory.ItemStack
+        type: DIAMOND_SWORD
+      - ==: org.bukkit.inventory.ItemStack
+        type: FISHING_ROD
+      - ==: org.bukkit.inventory.ItemStack
+        type: BOW
+      - ==: org.bukkit.inventory.ItemStack
+        type: GOLDEN_APPLE
+        amount: 8
+      - null
+      - null
+      - null
+      - null
+      - ==: org.bukkit.inventory.ItemStack
+        type: ARROW
+        amount: 16
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+    armor:
+      - ==: org.bukkit.inventory.ItemStack
+        type: DIAMOND_BOOTS
+      - ==: org.bukkit.inventory.ItemStack
+        type: DIAMOND_LEGGINGS
+      - ==: org.bukkit.inventory.ItemStack
+        type: DIAMOND_CHESTPLATE
+      - ==: org.bukkit.inventory.ItemStack
+        type: DIAMOND_HELMET
+    icon: DIAMOND_AXE
+    icondata: 0
+    enabled: true

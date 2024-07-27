@@ -31,11 +31,8 @@ public class KitGetInvCommand extends BaseCommand {
             return;
         }
 
-        player.getInventory().clear();
         player.getInventory().setContents(Tulip.getInstance().getKitRepository().getKit(name).getItems());
         player.getInventory().setArmorContents(Tulip.getInstance().getKitRepository().getKit(name).getArmor());
-        player.updateInventory();
-
         player.sendMessage(CC.translate("&aKit " + name + " inventory has been given."));
     }
 }

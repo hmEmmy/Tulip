@@ -147,7 +147,6 @@ public class KitRepository {
     public void createKit(String name, String description, ItemStack[] items, ItemStack[] armor, Material icon, int iconData, boolean enabled) {
         Kit kit = new Kit(name, description, items, armor, icon, iconData, enabled);
         kits.add(kit);
-        saveKit(kit);
     }
 
     /**
