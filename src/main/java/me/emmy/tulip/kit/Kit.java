@@ -13,7 +13,6 @@ import org.bukkit.inventory.ItemStack;
 @Getter
 @Setter
 public class Kit {
-
     private String name;
     private String description;
 

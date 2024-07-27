@@ -44,6 +44,8 @@ public class ArenaRepository {
                     "&aMin Players: &e" + config.getInt(key + ".minPlayers"),
                     "&aSpawn: &e" + config.getString(key + ".spawn"),
                     "&aCenter: &e" + config.getString(key + ".center"),
+                    "&aSafe Pos 1: &e" + config.getString(key + ".safePos1"),
+                    "&aSafe Pos 2: &e" + config.getString(key + ".safePos2"),
                     ""
             );
 
@@ -54,7 +56,9 @@ public class ArenaRepository {
                     config.getInt(key + ".maxPlayers"),
                     config.getInt(key + ".minPlayers"),
                     LocationUtil.deserialize(config.getString(key + ".spawn")),
-                    LocationUtil.deserialize(config.getString(key + ".center"))
+                    LocationUtil.deserialize(config.getString(key + ".center")),
+                    LocationUtil.deserialize(config.getString(key + ".safePos1")),
+                    LocationUtil.deserialize(config.getString(key + ".safePos2"))
             );
             Bukkit.getConsoleSender().sendMessage(CC.translate("&aLoaded arena &e" + arena.getName()));
             arenas.add(arena);
@@ -73,6 +77,8 @@ public class ArenaRepository {
             config.set(key + ".minPlayers", arena.getMinPlayers());
             config.set(key + ".spawn", LocationUtil.serialize(arena.getSpawn()));
             config.set(key + ".center", LocationUtil.serialize(arena.getCenter()));
+            config.set(key + ".safePos1", LocationUtil.serialize(arena.getSafePos1()));
+            config.set(key + ".safePos2", LocationUtil.serialize(arena.getSafePos2()));
         }
 
         Bukkit.getConsoleSender().sendMessage(CC.translate("&aSaved: &e" + arenas.size() + " arenas"));
@@ -93,6 +99,8 @@ public class ArenaRepository {
         config.set(key + ".minPlayers", arena.getMinPlayers());
         config.set(key + ".spawn", LocationUtil.serialize(arena.getSpawn()));
         config.set(key + ".center", LocationUtil.serialize(arena.getCenter()));
+        config.set(key + ".safePos1", LocationUtil.serialize(arena.getSafePos1()));
+        config.set(key + ".safePos2", LocationUtil.serialize(arena.getSafePos2()));
 
         ConfigHandler.getInstance().saveConfig(ConfigHandler.getInstance().getConfigFile("storage/arenas.yml"), config);
     }
@@ -104,8 +112,8 @@ public class ArenaRepository {
                 orElse(null);
     }
 
-    public void createArena(String name, int maxPlayers, int minPlayers, String spawn, String center) {
-        Arena arena = new Arena(name, maxPlayers, minPlayers, LocationUtil.deserialize(spawn), LocationUtil.deserialize(center));
+    public void createArena(String name, int maxPlayers, int minPlayers, String spawn, String center, String safePos1, String safePos2) {
+        Arena arena = new Arena(name, maxPlayers, minPlayers, LocationUtil.deserialize(spawn), LocationUtil.deserialize(center), LocationUtil.deserialize(safePos1), LocationUtil.deserialize(safePos2));
         arenas.add(arena);
         saveArena(arena);
     }
