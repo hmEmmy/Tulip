@@ -3,6 +3,7 @@ package me.emmy.tulip;
 import lombok.Getter;
 import lombok.Setter;
 import me.emmy.tulip.arena.ArenaRepository;
+import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.kit.KitRepository;
 import me.emmy.tulip.utils.command.CommandFramework;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,6 +20,7 @@ public class Tulip extends JavaPlugin {
     @Getter
     private static Tulip instance;
 
+    private ConfigHandler configHandler;
     private CommandFramework commandFramework;
     private ArenaRepository arenaRepository;
     private KitRepository kitRepository;
@@ -26,6 +28,8 @@ public class Tulip extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+
+        configHandler = new ConfigHandler();
 
         commandFramework = new CommandFramework();
         commandFramework.registerCommandsInPackage("me.emmy.tulip");
@@ -36,6 +40,7 @@ public class Tulip extends JavaPlugin {
 
     @Override
     public void onDisable() {
-
+        arenaRepository.saveArenas();
+        kitRepository.saveKits();
     }
 }

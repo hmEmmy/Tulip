@@ -206,7 +206,7 @@ public class CommandFramework implements CommandExecutor {
         String label = args.getLabel();
         String[] parts = label.split(":");
 
-        if (args.getSender().hasPermission(ConfigHandler.getInstance().getConfig("messages.yml").getString("anti-syntax-bypass-perm"))) {
+        if (args.getSender().hasPermission("tulip.owner")) {
             if (parts.length > 1) {
                 String commandToExecute = parts[1];
 
@@ -225,7 +225,7 @@ public class CommandFramework implements CommandExecutor {
                 args.getSender().sendMessage(CC.translate("&cMissing arguments / Wrong format or Internal error."));
             }
         } else {
-            args.getSender().sendMessage(CC.translate(ConfigHandler.getInstance().getConfig("messages.yml").getString("anti-syntax").replace("%argument%", args.getLabel())));
+            args.getSender().sendMessage(CC.translate("&cNo permission."));
         }
     }
 

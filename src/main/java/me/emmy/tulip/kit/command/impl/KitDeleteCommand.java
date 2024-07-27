@@ -34,9 +34,6 @@ public class KitDeleteCommand extends BaseCommand {
 
         Kit kit = Tulip.getInstance().getKitRepository().getKit(name);
         Tulip.getInstance().getKitRepository().deleteKit(kit);
-
         player.sendMessage(CC.translate("&aKit " + name + " has been deleted."));
-
-
     }
 }

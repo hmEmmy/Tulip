@@ -25,6 +25,7 @@ public class KitRepository {
      */
     public void loadKits() {
         FileConfiguration config = ConfigHandler.getInstance().getKitsConfig();
+
         ConfigurationSection kitsSection = config.getConfigurationSection("kits");
         if (kitsSection == null) {
             return;
@@ -78,6 +79,7 @@ public class KitRepository {
      */
     public void saveKit(Kit kit) {
         FileConfiguration config = ConfigHandler.getInstance().getKitsConfig();
+
         String key = "kits." + kit.getName();
         config.set(key + ".description", kit.getDescription());
         config.set(key + ".items", kit.getItems());
@@ -85,21 +87,6 @@ public class KitRepository {
         config.set(key + ".icon", kit.getIcon().name());
         config.set(key + ".icondata", kit.getIconData());
         config.set(key + ".enabled", kit.isEnabled());
-
-        File file = ConfigHandler.getInstance().getConfigFile("storage/kits.yml");
-        ConfigHandler.getInstance().saveConfig(file, config);
-    }
-
-    /**
-     * Delete a kit from the kits.yml file
-     *
-     * @param kit The kit to delete
-     */
-    public void deleteKit(Kit kit) {
-        FileConfiguration config = ConfigHandler.getInstance().getConfig("storage/kits.yml");
-
-        kits.remove(kit);
-        config.set("kits." + kit.getName(), null);
 
         File file = ConfigHandler.getInstance().getConfigFile("storage/kits.yml");
         ConfigHandler.getInstance().saveConfig(file, config);
@@ -116,5 +103,37 @@ public class KitRepository {
                 .filter(kit -> kit.getName().equalsIgnoreCase(name))
                 .findFirst()
                 .orElse(null);
+    }
+
+    /**
+     * Create a kit and save it to the kits.yml file
+     *
+     * @param name The name of the kit
+     * @param description The description of the kit
+     * @param items The items in the kit
+     * @param armor The armor in the kit
+     * @param icon The icon of the kit
+     * @param iconData The icon data of the kit
+     * @param enabled Whether the kit is enabled
+     */
+    public void createKit(String name, String description, ItemStack[] items, ItemStack[] armor, Material icon, int iconData, boolean enabled) {
+        Kit kit = new Kit(name, description, items, armor, icon, iconData, enabled);
+        kits.add(kit);
+        saveKit(kit);
+    }
+
+    /**
+     * Delete a kit from the kits.yml file
+     *
+     * @param kit The kit to delete
+     */
+    public void deleteKit(Kit kit) {
+        FileConfiguration config = ConfigHandler.getInstance().getConfig("storage/kits.yml");
+
+        kits.remove(kit);
+        config.set("kits." + kit.getName(), null);
+
+        File file = ConfigHandler.getInstance().getConfigFile("storage/kits.yml");
+        ConfigHandler.getInstance().saveConfig(file, config);
     }
 }

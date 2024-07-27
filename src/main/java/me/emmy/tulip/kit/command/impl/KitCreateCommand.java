@@ -37,8 +37,7 @@ public class KitCreateCommand extends BaseCommand {
         ItemStack[] items = player.getInventory().getContents();
         ItemStack[] armor = player.getInventory().getArmorContents();
 
-        Kit kit = new Kit(name, "A kit", items, armor, Material.DIAMOND_AXE, 0, true);
-        Tulip.getInstance().getKitRepository().getKits().add(kit);
+        Tulip.getInstance().getKitRepository().createKit(name, "Description", items, armor, Material.DIAMOND_AXE, 0, true);
         player.sendMessage(CC.translate("&aKit " + name + " has been created."));
     }
 }
