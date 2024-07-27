@@ -4,10 +4,18 @@ import lombok.Getter;
 import lombok.Setter;
 import me.emmy.tulip.arena.ArenaRepository;
 import me.emmy.tulip.config.ConfigHandler;
+import me.emmy.tulip.database.MongoService;
 import me.emmy.tulip.game.GameRepository;
 import me.emmy.tulip.kit.KitRepository;
+import me.emmy.tulip.utils.CC;
+import me.emmy.tulip.utils.ServerUtils;
 import me.emmy.tulip.utils.command.CommandFramework;
+import org.bukkit.Bukkit;
+import org.bukkit.Server;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author Emmy
@@ -26,6 +34,7 @@ public class Tulip extends JavaPlugin {
     private ArenaRepository arenaRepository;
     private KitRepository kitRepository;
     private GameRepository gameRepository;
+    private MongoService mongoService;
 
     @Override
     public void onEnable() {
@@ -43,11 +52,52 @@ public class Tulip extends JavaPlugin {
         kitRepository.loadKits();
 
         gameRepository = new GameRepository();
+
+        mongoService = new MongoService();
+
+        try {
+            mongoService.startMongo();
+        } catch (Exception e) {
+            Bukkit.getConsoleSender().sendMessage(CC.translate("&cFailed to connect to the MongoDB database."));
+            ServerUtils.disablePlugin();
+        }
+        sendStartupMessage();
     }
 
     @Override
     public void onDisable() {
+        ServerUtils.disconnectPlayers();
+
         arenaRepository.saveArenas();
         kitRepository.saveKits();
+        gameRepository.saveGames();
+
+        ServerUtils.stopTasks();
+
+        sendShutdownMessage();
+    }
+
+    private void sendStartupMessage() {
+        List<String> message = Arrays.asList(
+                "",
+                "&7&m-----------------------------------------------------",
+                "&e&lTulip &7- &f" + getDescription().getDescription(),
+                "&e-> Version: &f" + getDescription().getVersion(),
+                "&e-> Author: &f" + getDescription().getAuthors().get(0),
+                "&7&m-----------------------------------------------------",
+                ""
+        );
+        message.forEach(line -> getServer().getConsoleSender().sendMessage(CC.translate(line)));
+    }
+
+    private void sendShutdownMessage() {
+        List<String> message = Arrays.asList(
+                "",
+                "&7&m-----------------------------------------------------",
+                "&c&lDisabled Tulip...",
+                "&7&m-----------------------------------------------------",
+                ""
+        );
+        message.forEach(line -> getServer().getConsoleSender().sendMessage(CC.translate(line)));
     }
 }
