@@ -5,7 +5,7 @@ When I get bored, I will commit. The purpose of this is to learn and improve my 
 - [x] **Kit System**
 - [x] **Arena System**
 - [x] **MongoDB Storage**
-- [ ] **Profiles**
+- [x] **Profiles**
 - [ ] **Leaderboards/Statistics**
 - [x] **Scoreboard**
 - [ ] **Hotbar Items**
