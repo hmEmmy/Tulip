@@ -7,14 +7,13 @@ import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.database.MongoService;
 import me.emmy.tulip.game.GameRepository;
 import me.emmy.tulip.kit.KitRepository;
+import me.emmy.tulip.profile.ProfileRepository;
 import me.emmy.tulip.utils.CC;
 import me.emmy.tulip.utils.ServerUtils;
 import me.emmy.tulip.utils.command.CommandFramework;
 import me.emmy.tulip.visual.ScoreboardVisualizer;
 import me.emmy.tulip.visual.assemble.Assemble;
 import me.emmy.tulip.visual.assemble.AssembleStyle;
-import org.bukkit.Bukkit;
-import org.bukkit.Server;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
@@ -38,6 +37,7 @@ public class Tulip extends JavaPlugin {
     private KitRepository kitRepository;
     private GameRepository gameRepository;
     private MongoService mongoService;
+    private ProfileRepository profileRepository;
 
     @Override
     public void onEnable() {
@@ -59,6 +59,9 @@ public class Tulip extends JavaPlugin {
 
         mongoService = new MongoService();
         mongoService.startMongo();
+
+        profileRepository = new ProfileRepository();
+        profileRepository.initializeEveryProfile();
 
         loadScoreboard();
         sendStartupMessage();
