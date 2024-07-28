@@ -9,3 +9,7 @@ When I get bored, I will commit. The purpose of this is to learn and improve my 
 - [ ] **Leaderboards/Statistics**
 - [x] **Scoreboard**
 - [ ] **Hotbar Items**
+
+### Credits:
+- [**@ThatKawaiiSam**](https://github.com/ThatKawaiiSam/Assemble) - *Scoreboard API.*
+- [**@minnymin3**](https://github.com/mcardy/CommandFramework) - *Command API.*
