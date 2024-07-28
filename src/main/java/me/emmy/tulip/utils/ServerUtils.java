@@ -3,6 +3,8 @@ package me.emmy.tulip.utils;
 import lombok.experimental.UtilityClass;
 import me.emmy.tulip.Tulip;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
+import org.bukkit.World;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.reflections.Reflections;
@@ -98,6 +100,28 @@ public class ServerUtils {
                     Bukkit.getLogger().log(Level.SEVERE, "Failed to register listener: " + clazz.getSimpleName(), e);
                 }
             }
+        }
+    }
+
+    /**
+     * Set up the world, clear entities, and set the time to day and disable weather.
+     */
+    public void setupWorld() {
+        for (World world : Bukkit.getWorlds()) {
+            if (world.isThundering() || world.hasStorm()) {
+                world.setThundering(false);
+                world.setStorm(false);
+            }
+
+            world.setTime(6000L);
+            world.setGameRuleValue("doDaylightCycle", "false");
+            world.setGameRuleValue("doWeatherCycle", "false");
+
+            world.getEntities().forEach(entity -> {
+                if (entity.getType().name().equals("DROPPED_ITEM")) {
+                    entity.remove();
+                }
+            });
         }
     }
 }

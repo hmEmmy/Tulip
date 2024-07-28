@@ -1,6 +1,7 @@
 package me.emmy.tulip.profile.listener;
 
 import me.emmy.tulip.Tulip;
+import me.emmy.tulip.hotbar.HotbarUtility;
 import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.profile.ProfileRepository;
 import org.bukkit.Sound;
@@ -40,6 +41,10 @@ public class ProfileListener implements Listener {
         Profile profile = profileRepository.getProfile(player.getUniqueId());
         profile.setName(player.getName());
         profile.setOnline(true);
+
+        player.getInventory().clear();
+        player.getInventory().setHeldItemSlot(4);
+        HotbarUtility.applyHotbarItems(player);
 
         event.setJoinMessage(null);
     }
