@@ -1,6 +1,5 @@
-package me.emmy.tulip.essential;
+package me.emmy.tulip.essential.command.admin;
 
-import me.emmy.tulip.Tulip;
 import me.emmy.tulip.utils.CC;
 import me.emmy.tulip.utils.command.CommandArgs;
 import me.emmy.tulip.utils.command.annotation.Command;

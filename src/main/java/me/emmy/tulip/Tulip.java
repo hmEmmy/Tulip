@@ -5,7 +5,7 @@ import lombok.Setter;
 import me.emmy.tulip.arena.ArenaRepository;
 import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.database.MongoService;
-import me.emmy.tulip.essential.GamemodeCommand;
+import me.emmy.tulip.essential.command.admin.GamemodeCommand;
 import me.emmy.tulip.game.GameRepository;
 import me.emmy.tulip.kit.KitRepository;
 import me.emmy.tulip.profile.ProfileRepository;

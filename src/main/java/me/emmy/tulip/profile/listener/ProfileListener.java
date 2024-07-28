@@ -1,9 +1,11 @@
 package me.emmy.tulip.profile.listener;
 
 import me.emmy.tulip.Tulip;
+import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.hotbar.HotbarUtility;
 import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.profile.ProfileRepository;
+import me.emmy.tulip.utils.CC;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -12,6 +14,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+
+import java.util.List;
 
 /**
  * @author Emmy
@@ -46,6 +50,8 @@ public class ProfileListener implements Listener {
         player.getInventory().setHeldItemSlot(4);
         HotbarUtility.applyHotbarItems(player);
 
+        sendWelcomeMessage(player);
+
         event.setJoinMessage(null);
     }
 
@@ -57,5 +63,17 @@ public class ProfileListener implements Listener {
         profile.setOnline(false);
         profile.saveProfile();
         event.setQuitMessage(null);
+    }
+
+    /**
+     * Send the welcome message to the player.
+     *
+     * @param player the player
+     */
+    private void sendWelcomeMessage(Player player) {
+        List<String> messages = ConfigHandler.getInstance().getLocaleConfig().getStringList("welcome-message");
+        for (String message : messages) {
+            player.sendMessage(CC.translate(message).replace("{player}", player.getName()));
+        }
     }
 }

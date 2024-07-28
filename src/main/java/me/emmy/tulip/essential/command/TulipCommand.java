@@ -1,4 +1,4 @@
-package me.emmy.tulip.essential;
+package me.emmy.tulip.essential.command;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.utils.CC;
@@ -21,7 +21,7 @@ public class TulipCommand extends BaseCommand {
         sender.sendMessage("");
         sender.sendMessage(CC.translate("&e&lTulip &7- &fFFA Core made by &e" + Tulip.getInstance().getDescription().getAuthors() + "&f.").replace("[", "").replace("]", ""));
         sender.sendMessage(CC.translate(" &fVersion: &e" + Tulip.getInstance().getDescription().getVersion()));
-        sender.sendMessage(CC.translate(" &fGithub: &ehttps://github.com/Emmiesa/Tulip"));
+        sender.sendMessage(CC.translate(" &fGithub: &ehttps://github.com/hmEmmy/Tulip"));
         sender.sendMessage(CC.translate(" &fDiscord: &ehttps://dsc.gg/dulcy"));
         sender.sendMessage("");
     }
