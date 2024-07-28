@@ -8,7 +8,11 @@ When I get bored, I will commit. The purpose of this is to learn and improve my 
 - [x] **Profiles**
 - [ ] **Leaderboards/Statistics**
 - [x] **Scoreboard**
-- [ ] **Hotbar Items**
+- [x] **Hotbar Items**
+- [ ] **Game System**
+- [ ] **Events (maybe)**
+- [ ] **Cosmetics**
+- [ ] **Shop**
 
 ### Credits:
 - [**@ThatKawaiiSam**](https://github.com/ThatKawaiiSam/Assemble) - *Scoreboard API.*
