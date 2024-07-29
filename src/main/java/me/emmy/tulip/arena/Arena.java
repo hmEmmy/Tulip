@@ -16,9 +16,6 @@ import org.bukkit.Location;
 public class Arena {
     private String name;
 
-    private int maxPlayers;
-    private int minPlayers;
-
     private Location spawn;
     private Location center;
     private Location safePos1;

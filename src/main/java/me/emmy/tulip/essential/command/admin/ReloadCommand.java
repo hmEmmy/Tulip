@@ -2,9 +2,9 @@ package me.emmy.tulip.essential.command.admin;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.utils.CC;
-import me.emmy.tulip.utils.command.BaseCommand;
-import me.emmy.tulip.utils.command.CommandArgs;
-import me.emmy.tulip.utils.command.annotation.Command;
+import me.emmy.tulip.api.command.BaseCommand;
+import me.emmy.tulip.api.command.CommandArgs;
+import me.emmy.tulip.api.command.annotation.Command;
 import org.bukkit.command.CommandSender;
 
 /**

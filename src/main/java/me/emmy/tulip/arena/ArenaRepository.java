@@ -53,8 +53,6 @@ public class ArenaRepository {
 
             Arena arena = new Arena(
                     name,
-                    config.getInt(key + ".maxPlayers"),
-                    config.getInt(key + ".minPlayers"),
                     LocationUtil.deserialize(config.getString(key + ".spawn")),
                     LocationUtil.deserialize(config.getString(key + ".center")),
                     LocationUtil.deserialize(config.getString(key + ".safePos1")),
@@ -73,8 +71,6 @@ public class ArenaRepository {
 
         for (Arena arena : arenas) {
             String key = "arenas." + arena.getName();
-            config.set(key + ".maxPlayers", arena.getMaxPlayers());
-            config.set(key + ".minPlayers", arena.getMinPlayers());
             config.set(key + ".spawn", LocationUtil.serialize(arena.getSpawn()));
             config.set(key + ".center", LocationUtil.serialize(arena.getCenter()));
             config.set(key + ".safePos1", LocationUtil.serialize(arena.getSafePos1()));
@@ -95,8 +91,6 @@ public class ArenaRepository {
 
         String key = "arenas." + arena.getName();
         //config.set(key + ".name", arena.etName());
-        config.set(key + ".maxPlayers", arena.getMaxPlayers());
-        config.set(key + ".minPlayers", arena.getMinPlayers());
         config.set(key + ".spawn", LocationUtil.serialize(arena.getSpawn()));
         config.set(key + ".center", LocationUtil.serialize(arena.getCenter()));
         config.set(key + ".safePos1", LocationUtil.serialize(arena.getSafePos1()));
@@ -112,8 +106,8 @@ public class ArenaRepository {
                 orElse(null);
     }
 
-    public void createArena(String name, int maxPlayers, int minPlayers, String spawn, String center, String safePos1, String safePos2) {
-        Arena arena = new Arena(name, maxPlayers, minPlayers, LocationUtil.deserialize(spawn), LocationUtil.deserialize(center), LocationUtil.deserialize(safePos1), LocationUtil.deserialize(safePos2));
+    public void createArena(String name, String spawn, String center, String safePos1, String safePos2) {
+        Arena arena = new Arena(name, LocationUtil.deserialize(spawn), LocationUtil.deserialize(center), LocationUtil.deserialize(safePos1), LocationUtil.deserialize(safePos2));
         arenas.add(arena);
         saveArena(arena);
     }

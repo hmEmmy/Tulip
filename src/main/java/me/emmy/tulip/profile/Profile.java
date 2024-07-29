@@ -4,13 +4,15 @@ import com.mongodb.client.MongoCollection;
 import lombok.Getter;
 import lombok.Setter;
 import me.emmy.tulip.Tulip;
+import me.emmy.tulip.ffa.AbstractFFAMatch;
+import me.emmy.tulip.profile.enums.EnumProfileState;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 
 import java.util.UUID;
 
 /**
- * @author Remi
+ * @author Emmy
  * @project Tulip
  * @date 27/07/2024 - 18:26
  */
@@ -22,6 +24,8 @@ public class Profile {
     private String name;
     private UUID uuid;
     private boolean online;
+    private AbstractFFAMatch ffaMatch;
+    private EnumProfileState state;
 
     /**
      * Constructor for the Profile class
@@ -31,6 +35,7 @@ public class Profile {
     public Profile(UUID uuid) {
         this.uuid = uuid;
         this.name = Bukkit.getOfflinePlayer(this.uuid).getName();
+        this.online = false;
     }
 
     public void loadProfile() {

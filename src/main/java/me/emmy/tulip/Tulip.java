@@ -4,14 +4,18 @@ import lombok.Getter;
 import lombok.Setter;
 import me.emmy.tulip.arena.ArenaRepository;
 import me.emmy.tulip.config.ConfigHandler;
+import me.emmy.tulip.cooldown.CooldownRepository;
 import me.emmy.tulip.database.MongoService;
 import me.emmy.tulip.essential.command.admin.GamemodeCommand;
-import me.emmy.tulip.game.GameRepository;
+import me.emmy.tulip.ffa.FFARepository;
+import me.emmy.tulip.ffa.safezone.FFASpawnHandler;
+import me.emmy.tulip.ffa.safezone.task.FFASpawnTask;
 import me.emmy.tulip.kit.KitRepository;
 import me.emmy.tulip.profile.ProfileRepository;
+import me.emmy.tulip.spawn.SpawnHandler;
 import me.emmy.tulip.utils.CC;
 import me.emmy.tulip.utils.ServerUtils;
-import me.emmy.tulip.utils.command.CommandFramework;
+import me.emmy.tulip.api.command.CommandFramework;
 import me.emmy.tulip.visual.ScoreboardVisualizer;
 import me.emmy.tulip.visual.assemble.Assemble;
 import me.emmy.tulip.visual.assemble.AssembleStyle;
@@ -34,11 +38,14 @@ public class Tulip extends JavaPlugin {
 
     private ConfigHandler configHandler;
     private CommandFramework commandFramework;
+    private SpawnHandler spawnHandler;
     private ArenaRepository arenaRepository;
     private KitRepository kitRepository;
-    private GameRepository gameRepository;
     private MongoService mongoService;
     private ProfileRepository profileRepository;
+    private CooldownRepository cooldownRepository;
+    private FFARepository ffaRepository;
+    private FFASpawnHandler ffaSpawnHandler;
 
     @Override
     public void onEnable() {
@@ -50,14 +57,14 @@ public class Tulip extends JavaPlugin {
         commandFramework.registerCommandsInPackage("me.emmy.tulip");
         commandFramework.registerCommands(new GamemodeCommand());
 
+        spawnHandler = new SpawnHandler();
+        spawnHandler.loadSpawn();
+
         arenaRepository = new ArenaRepository();
         arenaRepository.loadArenas();
 
         kitRepository = new KitRepository();
         kitRepository.loadKits();
-
-        gameRepository = new GameRepository();
-        gameRepository.loadGames();
 
         mongoService = new MongoService();
         mongoService.startMongo();
@@ -65,24 +72,35 @@ public class Tulip extends JavaPlugin {
         profileRepository = new ProfileRepository();
         profileRepository.initializeEveryProfile();
 
+        cooldownRepository = new CooldownRepository();
+
+        ffaRepository = new FFARepository();
+        ffaRepository.loadFFAMatches();
+
+        ffaSpawnHandler = new FFASpawnHandler();
+        ffaSpawnHandler.loadFFASpawn();
+
         ServerUtils.registerListenersInPackage("me.emmy.tulip");
         ServerUtils.setupWorld();
 
+        runTasks();
         loadScoreboard();
-        sendStartupMessage();
+        CC.sendStartupMessage();
     }
 
     @Override
     public void onDisable() {
+        profileRepository.getProfiles().forEach((uuid, profile) -> profile.saveProfile());
+
         ServerUtils.disconnectPlayers();
 
         arenaRepository.saveArenas();
         kitRepository.saveKits();
-        gameRepository.saveGames();
+        ffaRepository.saveFFAMatches();
 
         ServerUtils.stopTasks();
 
-        sendShutdownMessage();
+        CC.sendShutdownMessage();
     }
 
     private void loadScoreboard() {
@@ -91,27 +109,7 @@ public class Tulip extends JavaPlugin {
         assemble.setAssembleStyle(AssembleStyle.MODERN);
     }
 
-    private void sendStartupMessage() {
-        List<String> message = Arrays.asList(
-                "",
-                "&7&m-----------------------------------------------------",
-                "&e&lTulip &7- &f" + getDescription().getDescription(),
-                "&e-> Version: &f" + getDescription().getVersion(),
-                "&e-> Author: &f" + getDescription().getAuthors().get(0),
-                "&7&m-----------------------------------------------------",
-                ""
-        );
-        message.forEach(line -> getServer().getConsoleSender().sendMessage(CC.translate(line)));
-    }
-
-    private void sendShutdownMessage() {
-        List<String> message = Arrays.asList(
-                "",
-                "&7&m-----------------------------------------------------",
-                "&c&lDisabled Tulip...",
-                "&7&m-----------------------------------------------------",
-                ""
-        );
-        message.forEach(line -> getServer().getConsoleSender().sendMessage(CC.translate(line)));
+    private void runTasks() {
+        new FFASpawnTask(this.ffaSpawnHandler.getCuboid(), this).runTaskTimer(this, 0, 20);
     }
 }

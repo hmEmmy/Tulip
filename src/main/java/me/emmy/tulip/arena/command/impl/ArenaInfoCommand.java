@@ -4,9 +4,9 @@ import me.emmy.tulip.Tulip;
 import me.emmy.tulip.arena.Arena;
 import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.utils.CC;
-import me.emmy.tulip.utils.command.BaseCommand;
-import me.emmy.tulip.utils.command.CommandArgs;
-import me.emmy.tulip.utils.command.annotation.Command;
+import me.emmy.tulip.api.command.BaseCommand;
+import me.emmy.tulip.api.command.CommandArgs;
+import me.emmy.tulip.api.command.annotation.Command;
 import org.bukkit.entity.Player;
 
 /**
@@ -38,8 +38,6 @@ public class ArenaInfoCommand extends BaseCommand {
         player.sendMessage("");
         player.sendMessage(CC.translate("&e&lArena Information"));
         player.sendMessage(CC.translate(" &7- &eArena Name: &7"+ arena.getName()));
-        player.sendMessage(CC.translate(" &7- &eMax players: &7"+ arena.getMaxPlayers()));
-        player.sendMessage(CC.translate(" &7- &eMin players: &7"+ arena.getMinPlayers()));
         if (arena.getCenter() == null) {
             player.sendMessage(CC.translate(" &7- &eCenter: &cNot set"));
         } else {

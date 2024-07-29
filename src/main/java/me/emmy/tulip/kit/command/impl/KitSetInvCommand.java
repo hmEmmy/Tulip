@@ -4,9 +4,9 @@ import me.clip.placeholderapi.libs.kyori.adventure.platform.viaversion.ViaFacet;
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.kit.KitRepository;
 import me.emmy.tulip.utils.CC;
-import me.emmy.tulip.utils.command.BaseCommand;
-import me.emmy.tulip.utils.command.CommandArgs;
-import me.emmy.tulip.utils.command.annotation.Command;
+import me.emmy.tulip.api.command.BaseCommand;
+import me.emmy.tulip.api.command.CommandArgs;
+import me.emmy.tulip.api.command.annotation.Command;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 

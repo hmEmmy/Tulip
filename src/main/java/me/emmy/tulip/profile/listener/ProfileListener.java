@@ -47,6 +47,7 @@ public class ProfileListener implements Listener {
         profile.setOnline(true);
 
         player.getInventory().clear();
+        Tulip.getInstance().getSpawnHandler().teleportToSpawn(player);
         player.getInventory().setHeldItemSlot(4);
         HotbarUtility.applyHotbarItems(player);
 

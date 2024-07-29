@@ -2,6 +2,14 @@ mongo:
   databaseName: Tulip
   connectionString: mongodb://localhost:27017
 
+spawn:
+  world: world
+  x: -4.5
+  y: 66.0
+  z: 0.5
+  yaw: 0.0
+  pitch: 0.0
+
 scoreboard:
   title: "&e&lTulip &7- &f&lFFA"
   lines:

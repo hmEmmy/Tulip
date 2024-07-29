@@ -2,9 +2,9 @@ package me.emmy.tulip.hotbar.command;
 
 import me.emmy.tulip.hotbar.HotbarUtility;
 import me.emmy.tulip.utils.CC;
-import me.emmy.tulip.utils.command.BaseCommand;
-import me.emmy.tulip.utils.command.CommandArgs;
-import me.emmy.tulip.utils.command.annotation.Command;
+import me.emmy.tulip.api.command.BaseCommand;
+import me.emmy.tulip.api.command.CommandArgs;
+import me.emmy.tulip.api.command.annotation.Command;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 

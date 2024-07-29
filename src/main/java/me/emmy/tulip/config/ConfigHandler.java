@@ -29,10 +29,10 @@ public class ConfigHandler {
     private final FileConfiguration localeConfig;
     private final FileConfiguration arenasConfig;
     private final FileConfiguration kitsConfig;
-    private final FileConfiguration gamesConfig;
+    private final FileConfiguration ffaConfig;
 
     private final String[] configFileNames = {
-            "settings.yml", "locale.yml", "storage/arenas.yml", "storage/kits.yml", "storage/games.yml"
+            "settings.yml", "locale.yml", "storage/arenas.yml", "storage/kits.yml", "storage/ffa.yml"
     };
 
     public ConfigHandler() {
@@ -46,7 +46,7 @@ public class ConfigHandler {
         localeConfig = getConfig("locale.yml");
         arenasConfig = getConfig("storage/arenas.yml");
         kitsConfig = getConfig("storage/kits.yml");
-        gamesConfig = getConfig("storage/games.yml");
+        ffaConfig = getConfig("storage/ffa.yml");
     }
 
     private void loadConfig(String fileName) {
