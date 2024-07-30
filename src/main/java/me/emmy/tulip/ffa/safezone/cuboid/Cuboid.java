@@ -38,14 +38,35 @@ public class Cuboid {
         this.world = point1.getWorld();
     }
 
+    /**
+     * Check if a location is inside the cuboid
+     *
+     * @param world The world
+     * @param x The x coordinate
+     * @param y The y coordinate
+     * @param z The z coordinate
+     * @return true if the location is inside the cuboid, false otherwise
+     */
     private boolean contains(World world, int x, int y, int z) {
         return world.getName().equals(this.world.getName()) && x >= xMin && x <= xMax && y >= yMin && y <= yMax && z >= zMin && z <= zMax;
     }
 
+    /**
+     * Check if a location is inside the cuboid
+     *
+     * @param loc The location
+     * @return true if the location is inside the cuboid, false otherwise
+     */
     private boolean contains(Location loc) {
         return this.contains(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ());
     }
 
+    /**
+     * Check if a player is inside the cuboid
+     *
+     * @param player The player
+     * @return true if the player is inside the cuboid, false otherwise
+     */
     public boolean isIn(final Player player) {
         return this.contains(player.getLocation());
     }

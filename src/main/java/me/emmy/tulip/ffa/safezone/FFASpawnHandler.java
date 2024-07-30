@@ -30,6 +30,9 @@ public class FFASpawnHandler {
 
     private Cuboid cuboid;
 
+    /**
+     * Load the FFA spawn location.
+     */
     public void loadFFASpawn() {
         FileConfiguration config = ConfigHandler.getInstance().getArenasConfig();
         Arena arena = Tulip.getInstance().getArenaRepository().getArenas().stream()

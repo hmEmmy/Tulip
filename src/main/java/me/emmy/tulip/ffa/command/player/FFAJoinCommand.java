@@ -6,6 +6,9 @@ import me.emmy.tulip.kit.Kit;
 import me.emmy.tulip.api.command.BaseCommand;
 import me.emmy.tulip.api.command.CommandArgs;
 import me.emmy.tulip.api.command.annotation.Command;
+import me.emmy.tulip.profile.Profile;
+import me.emmy.tulip.profile.enums.EnumProfileState;
+import me.emmy.tulip.utils.CC;
 import org.bukkit.entity.Player;
 
 /**
@@ -30,6 +33,12 @@ public class FFAJoinCommand extends BaseCommand {
 
         if (kit == null) {
             player.sendMessage("Kit not found.");
+            return;
+        }
+
+        Profile profile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
+        if (profile.getState() == EnumProfileState.FFA) {
+            player.sendMessage(CC.translate("&cYou are already in a match."));
             return;
         }
 

@@ -25,6 +25,12 @@ public class FFASpawnTask extends BukkitRunnable {
     private final Tulip plugin;
     private final Map<UUID, EnumFFAState> playerStates;
 
+    /**
+     * Constructor for the FFASpawnTask class.
+     *
+     * @param cuboid The cuboid of the safezone.
+     * @param plugin The main class instance.
+     */
     public FFASpawnTask(Cuboid cuboid, Tulip plugin) {
         this.cuboid = cuboid;
         this.plugin = plugin;
@@ -35,11 +41,9 @@ public class FFASpawnTask extends BukkitRunnable {
     public void run() {
         for (Player player : Bukkit.getOnlinePlayers()) {
             Profile profile = plugin.getProfileRepository().getProfile(player.getUniqueId());
-
             if (profile != null && profile.getState() == EnumProfileState.FFA) {
                 EnumFFAState currentState = playerStates.getOrDefault(player.getUniqueId(), EnumFFAState.FIGHTING);
                 boolean isInSpawn = cuboid.isIn(player);
-
                 if (isInSpawn && currentState != EnumFFAState.SPAWN) {
                     profile.getFfaMatch().setState(EnumFFAState.SPAWN);
                     playerStates.put(player.getUniqueId(), EnumFFAState.SPAWN);
