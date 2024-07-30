@@ -43,10 +43,10 @@ public class KitRepository {
 
             List<String> debugMessage = Arrays.asList(
                 "",
-                "&aLoading kit: &e" + name,
-                "&aDescription: &e" + config.getString(key + ".description"),
-                "&aIcon: &e" + icon.name(),
-                "&aIcon Data: &e" + iconData,
+                "&aLoading kit: &d" + name,
+                "&aDescription: &d" + config.getString(key + ".description"),
+                "&aIcon: &d" + icon.name(),
+                "&aIcon Data: &d" + iconData,
                 ""
             );
             debugMessage.forEach(msg -> Bukkit.getConsoleSender().sendMessage(CC.translate(msg)));
@@ -84,7 +84,7 @@ public class KitRepository {
         File file = ConfigHandler.getInstance().getConfigFile("storage/kits.yml");
         ConfigHandler.getInstance().saveConfig(file, config);
 
-        Bukkit.getConsoleSender().sendMessage(CC.translate("&aSaved: &e" + kits.size() + " kits"));
+        Bukkit.getConsoleSender().sendMessage(CC.translate("&aSaved: &d" + kits.size() + " kits"));
     }
 
     /**

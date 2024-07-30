@@ -32,7 +32,7 @@ public class HotbarItemsCommand extends BaseCommand {
         }
 
         HotbarUtility.applyHotbarItems(targetPlayer);
-        player.sendMessage("&aYou have added all hotbar items to &e" + targetPlayer.getName() + "'s &ainventory.");
+        player.sendMessage("&aYou have added all hotbar items to &d" + targetPlayer.getName() + "'s &ainventory.");
         targetPlayer.sendMessage("&aYour hotbar items have been added to your inventory.");
     }
 }

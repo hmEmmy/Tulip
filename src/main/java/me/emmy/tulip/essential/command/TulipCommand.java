@@ -19,10 +19,10 @@ public class TulipCommand extends BaseCommand {
         CommandSender sender = command.getSender();
 
         sender.sendMessage("");
-        sender.sendMessage(CC.translate("&e&lTulip &7- &fFFA Core made by &e" + Tulip.getInstance().getDescription().getAuthors() + "&f.").replace("[", "").replace("]", ""));
-        sender.sendMessage(CC.translate(" &fVersion: &e" + Tulip.getInstance().getDescription().getVersion()));
-        sender.sendMessage(CC.translate(" &fGithub: &ehttps://github.com/hmEmmy/Tulip"));
-        sender.sendMessage(CC.translate(" &fDiscord: &ehttps://dsc.gg/dulcy"));
+        sender.sendMessage(CC.translate("&d&lTulip &7- &fFFA Core made by &d" + Tulip.getInstance().getDescription().getAuthors() + "&f.").replace("[", "").replace("]", ""));
+        sender.sendMessage(CC.translate(" &fVersion: &d" + Tulip.getInstance().getDescription().getVersion()));
+        sender.sendMessage(CC.translate(" &fGithub: &dhttps://github.com/hmEmmy/Tulip"));
+        sender.sendMessage(CC.translate(" &fDiscord: &dhttps://dsc.gg/dulcy"));
         sender.sendMessage("");
     }
 }

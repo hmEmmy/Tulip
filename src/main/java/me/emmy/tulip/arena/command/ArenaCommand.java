@@ -18,16 +18,16 @@ public class ArenaCommand extends BaseCommand {
         Player player = command.getPlayer();
 
         player.sendMessage("");
-        player.sendMessage(CC.translate("&eArena Creation Help"));
-        player.sendMessage(CC.translate("&7- &e/arena create &7<name>"));
-        player.sendMessage(CC.translate("&7- &e/arena delete &7<name>"));
-        player.sendMessage(CC.translate("&7- &e/arena info &7<name>"));
-        player.sendMessage(CC.translate("&7- &e/arena list"));
-        player.sendMessage(CC.translate("&7- &e/arena setcenter &7<name>"));
-        player.sendMessage(CC.translate("&7- &e/arena setmaxplayers &7<name> <maxPlayers>"));
-        player.sendMessage(CC.translate("&7- &e/arena setminplayers &7<name> <minPlayers>"));
-        player.sendMessage(CC.translate("&7- &e/arena setspawn &7<name>"));
-        player.sendMessage(CC.translate("&7- &e/arena teleport &7<name>"));
+        player.sendMessage(CC.translate("&dArena Creation Help"));
+        player.sendMessage(CC.translate("&7- &d/arena create &7<name>"));
+        player.sendMessage(CC.translate("&7- &d/arena delete &7<name>"));
+        player.sendMessage(CC.translate("&7- &d/arena info &7<name>"));
+        player.sendMessage(CC.translate("&7- &d/arena list"));
+        player.sendMessage(CC.translate("&7- &d/arena setcenter &7<name>"));
+        player.sendMessage(CC.translate("&7- &d/arena setmaxplayers &7<name> <maxPlayers>"));
+        player.sendMessage(CC.translate("&7- &d/arena setminplayers &7<name> <minPlayers>"));
+        player.sendMessage(CC.translate("&7- &d/arena setspawn &7<name>"));
+        player.sendMessage(CC.translate("&7- &d/arena teleport &7<name>"));
         player.sendMessage("");
     }
 }

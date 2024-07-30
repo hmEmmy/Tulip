@@ -39,13 +39,13 @@ public class ArenaRepository {
 
             List<String> debugMessage = Arrays.asList(
                     "",
-                    "&aLoading arena: &e" + name,
-                    "&aMax Players: &e" + config.getInt(key + ".maxPlayers"),
-                    "&aMin Players: &e" + config.getInt(key + ".minPlayers"),
-                    "&aSpawn: &e" + config.getString(key + ".spawn"),
-                    "&aCenter: &e" + config.getString(key + ".center"),
-                    "&aSafe Pos 1: &e" + config.getString(key + ".safePos1"),
-                    "&aSafe Pos 2: &e" + config.getString(key + ".safePos2"),
+                    "&aLoading arena: &d" + name,
+                    "&aMax Players: &d" + config.getInt(key + ".maxPlayers"),
+                    "&aMin Players: &d" + config.getInt(key + ".minPlayers"),
+                    "&aSpawn: &d" + config.getString(key + ".spawn"),
+                    "&aCenter: &d" + config.getString(key + ".center"),
+                    "&aSafe Pos 1: &d" + config.getString(key + ".safePos1"),
+                    "&aSafe Pos 2: &d" + config.getString(key + ".safePos2"),
                     ""
             );
 
@@ -58,7 +58,7 @@ public class ArenaRepository {
                     LocationUtil.deserialize(config.getString(key + ".safePos1")),
                     LocationUtil.deserialize(config.getString(key + ".safePos2"))
             );
-            Bukkit.getConsoleSender().sendMessage(CC.translate("&aLoaded arena &e" + arena.getName()));
+            Bukkit.getConsoleSender().sendMessage(CC.translate("&aLoaded arena &d" + arena.getName()));
             arenas.add(arena);
         }
     }
@@ -77,7 +77,7 @@ public class ArenaRepository {
             config.set(key + ".safePos2", LocationUtil.serialize(arena.getSafePos2()));
         }
 
-        Bukkit.getConsoleSender().sendMessage(CC.translate("&aSaved: &e" + arenas.size() + " arenas"));
+        Bukkit.getConsoleSender().sendMessage(CC.translate("&aSaved: &d" + arenas.size() + " arenas"));
         ConfigHandler.getInstance().saveConfig(ConfigHandler.getInstance().getConfigFile("storage/arenas.yml"), config);
     }
 

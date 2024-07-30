@@ -19,7 +19,7 @@ public class KitListCommand extends BaseCommand {
         CommandSender sender = command.getSender();
 
         sender.sendMessage("");
-        sender.sendMessage(CC.translate("&eKit List &7(&e" + Tulip.getInstance().getKitRepository().getKits().size() + "&7)"));
+        sender.sendMessage(CC.translate("&dKit List &7(&d" + Tulip.getInstance().getKitRepository().getKits().size() + "&7)"));
         if (Tulip.getInstance().getKitRepository().getKits().isEmpty()) {
             sender.sendMessage(CC.translate("&7There are no kits available."));
         }

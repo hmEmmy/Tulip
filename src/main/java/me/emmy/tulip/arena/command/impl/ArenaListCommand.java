@@ -19,7 +19,7 @@ public class ArenaListCommand extends BaseCommand {
         CommandSender sender = command.getSender();
 
         sender.sendMessage("");
-        sender.sendMessage(CC.translate("&eArena List &7(&e" + Tulip.getInstance().getArenaRepository().getArenas().size() + "&7)"));
+        sender.sendMessage(CC.translate("&dArena List &7(&d" + Tulip.getInstance().getArenaRepository().getArenas().size() + "&7)"));
         if (Tulip.getInstance().getArenaRepository().getArenas().isEmpty()) {
             sender.sendMessage(CC.translate("&7There are no arenas available."));
         }

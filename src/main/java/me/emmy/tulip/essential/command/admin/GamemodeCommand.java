@@ -25,7 +25,7 @@ public class GamemodeCommand {
 
         if (args.length < 1) {
             player.setGameMode(GameMode.CREATIVE);
-            player.sendMessage(CC.translate("&aYour gamemode has been updated to Creative."));
+            player.sendMessage(CC.translate("&eYour gamemode has been updated to Creative."));
             return;
         }
 
@@ -36,8 +36,8 @@ public class GamemodeCommand {
         }
 
         targetPlayer.setGameMode(GameMode.CREATIVE);
-        player.sendMessage(CC.translate("&aYou have updated &e" + targetPlayer.getName() + "'s &agamemode to Creative."));
-        targetPlayer.sendMessage(CC.translate("&aYour gamemode has been updated to Creative."));
+        player.sendMessage(CC.translate("&eYou have updated &d" + targetPlayer.getName() + "'s &egamemode to Creative."));
+        targetPlayer.sendMessage(CC.translate("&eYour gamemode has been updated to Creative."));
     }
 
     @Command(name = "gms", aliases = {"gm.s", "gamemode.s", "gm.0", "gm0", "gamemode.0", "gamemode.survival"}, permission = "tulip.command.gms")
@@ -47,7 +47,7 @@ public class GamemodeCommand {
 
         if (args.length < 1) {
             player.setGameMode(GameMode.SURVIVAL);
-            player.sendMessage(CC.translate("&aYour gamemode has been updated to Survival."));
+            player.sendMessage(CC.translate("&eYour gamemode has been updated to Survival."));
             return;
         }
 
@@ -58,8 +58,8 @@ public class GamemodeCommand {
         }
 
         targetPlayer.setGameMode(GameMode.SURVIVAL);
-        player.sendMessage(CC.translate("&aYou have updated &e" + targetPlayer.getName() + "'s &agamemode to Survival."));
-        targetPlayer.sendMessage(CC.translate("&aYour gamemode has been updated to Survival."));
+        player.sendMessage(CC.translate("&eYou have updated &d" + targetPlayer.getName() + "'s &egamemode to Survival."));
+        targetPlayer.sendMessage(CC.translate("&eYour gamemode has been updated to Survival."));
     }
 
     @Command(name = "gma", aliases = {"gm.a", "gamemode.a", "gm.2", "gm2", "gamemode.2", "gamemode.adventure"}, permission = "tulip.command.gma")
@@ -69,7 +69,7 @@ public class GamemodeCommand {
 
         if (args.length < 1) {
             player.setGameMode(GameMode.ADVENTURE);
-            player.sendMessage(CC.translate("&aYour gamemode has been updated to Adventure."));
+            player.sendMessage(CC.translate("&eYour gamemode has been updated to Adventure."));
             return;
         }
 
@@ -80,8 +80,8 @@ public class GamemodeCommand {
         }
 
         targetPlayer.setGameMode(GameMode.ADVENTURE);
-        player.sendMessage(CC.translate("&aYou have updated &e" + targetPlayer.getName() + "'s &agamemode to Adventure."));
-        targetPlayer.sendMessage(CC.translate("&aYour gamemode has been updated to Adventure."));
+        player.sendMessage(CC.translate("&eYou have updated &d" + targetPlayer.getName() + "'s &egamemode to Adventure."));
+        targetPlayer.sendMessage(CC.translate("&eYour gamemode has been updated to Adventure."));
     }
 
     @Command(name = "gmsp", aliases = {"gm.sp", "gamemode.sp", "gm.3", "gm3", "gamemode.3", "gamemode.spectator"}, permission = "tulip.command.gmsp")
@@ -91,7 +91,7 @@ public class GamemodeCommand {
 
         if (args.length < 1) {
             player.setGameMode(GameMode.SPECTATOR);
-            player.sendMessage(CC.translate("&aYour gamemode has been updated to Spectator."));
+            player.sendMessage(CC.translate("&eYour gamemode has been updated to Spectator."));
             return;
         }
 
@@ -102,7 +102,7 @@ public class GamemodeCommand {
         }
 
         targetPlayer.setGameMode(GameMode.SPECTATOR);
-        player.sendMessage(CC.translate("&aYou have updated &e" + targetPlayer.getName() + "'s &agamemode to Spectator."));
-        targetPlayer.sendMessage(CC.translate("&aYour gamemode has been updated to Spectator."));
+        player.sendMessage(CC.translate("&eYou have updated &d" + targetPlayer.getName() + "'s &egamemode to Spectator."));
+        targetPlayer.sendMessage(CC.translate("&eYour gamemode has been updated to Spectator."));
     }
 }

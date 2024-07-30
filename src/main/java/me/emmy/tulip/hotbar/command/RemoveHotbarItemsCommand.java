@@ -33,7 +33,7 @@ public class RemoveHotbarItemsCommand extends BaseCommand {
         }
 
         HotbarUtility.removeHotbarItems(player);
-        player.sendMessage(CC.translate("&aYou have removed all hotbar items from &e" + targetPlayer.getName() + "'s &ainventory."));
+        player.sendMessage(CC.translate("&aYou have removed all hotbar items from &d" + targetPlayer.getName() + "'s &ainventory."));
         targetPlayer.sendMessage(CC.translate("&aYour hotbar items have been removed from your inventory."));
     }
 }

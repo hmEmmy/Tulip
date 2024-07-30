@@ -34,9 +34,9 @@ public class CC {
         List<String> message = Arrays.asList(
                 "",
                 "&7&m-----------------------------------------------------",
-                "&e&lTulip &7- &f" + Tulip.getInstance().getDescription().getDescription(),
-                "&e-> Version: &f" + Tulip.getInstance().getDescription().getVersion(),
-                "&e-> Author: &f" + Tulip.getInstance().getDescription().getAuthors().get(0),
+                "&d&lTulip &7- &f" + Tulip.getInstance().getDescription().getDescription(),
+                "&d-> Version: &f" + Tulip.getInstance().getDescription().getVersion(),
+                "&d-> Author: &f" + Tulip.getInstance().getDescription().getAuthors().get(0),
                 "&7&m-----------------------------------------------------",
                 ""
         );

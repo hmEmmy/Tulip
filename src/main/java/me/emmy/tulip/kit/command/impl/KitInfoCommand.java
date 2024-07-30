@@ -42,28 +42,28 @@ public class KitInfoCommand extends BaseCommand {
         ItemStack[] armor = kit.getArmor();
 
         player.sendMessage("");
-        player.sendMessage(CC.translate("&e&lKit Information"));
-        player.sendMessage(CC.translate(" &7- &eKit Name: &f" + kit.getName()));
-        player.sendMessage(CC.translate(" &7- &eKit Description: &f" + kit.getDescription()));
-        player.sendMessage(CC.translate(" &7- &eKit Icon: &f" + kit.getIcon().name() + "&7:&f" + kit.getIconData()));
-        player.sendMessage(CC.translate(" &7- &eStatus: &f" + (kit.isEnabled() ? "&aEnabled" : "&cDisabled")));
+        player.sendMessage(CC.translate("&d&lKit Information"));
+        player.sendMessage(CC.translate(" &7- &dKit Name: &f" + kit.getName()));
+        player.sendMessage(CC.translate(" &7- &dKit Description: &f" + kit.getDescription()));
+        player.sendMessage(CC.translate(" &7- &dKit Icon: &f" + kit.getIcon().name() + "&7:&f" + kit.getIconData()));
+        player.sendMessage(CC.translate(" &7- &dStatus: &f" + (kit.isEnabled() ? "&aEnabled" : "&cDisabled")));
         player.sendMessage("");
-        player.sendMessage(CC.translate("&e&lKit Items"));
+        player.sendMessage(CC.translate("&d&lKit Items"));
         for (ItemStack item : items) {
             if (item == null || item.getType() == Material.AIR) {
                 continue;
             }
 
-            player.sendMessage(CC.translate(" &7- &e" + item.getType().name() + " &7x &f" + item.getAmount()));
+            player.sendMessage(CC.translate(" &7- &d" + item.getType().name() + " &7x &f" + item.getAmount()));
         }
 
-        player.sendMessage(CC.translate("&e&lKit Armor"));
+        player.sendMessage(CC.translate("&d&lKit Armor"));
         for (ItemStack item : armor) {
             if (item == null || item.getType() == Material.AIR) {
                 continue;
             }
 
-            player.sendMessage(CC.translate(" &7- &e" + item.getType().name() + " &7x &f" + item.getAmount()));
+            player.sendMessage(CC.translate(" &7- &d" + item.getType().name() + " &7x &f" + item.getAmount()));
         }
 
         player.sendMessage("");

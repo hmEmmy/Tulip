@@ -36,31 +36,31 @@ public class ArenaInfoCommand extends BaseCommand {
         }
 
         player.sendMessage("");
-        player.sendMessage(CC.translate("&e&lArena Information"));
-        player.sendMessage(CC.translate(" &7- &eArena Name: &7"+ arena.getName()));
+        player.sendMessage(CC.translate("&d&lArena Information"));
+        player.sendMessage(CC.translate(" &7- &dArena Name: &7"+ arena.getName()));
         if (arena.getCenter() == null) {
-            player.sendMessage(CC.translate(" &7- &eCenter: &cNot set"));
+            player.sendMessage(CC.translate(" &7- &dCenter: &cNot set"));
         } else {
-            player.sendMessage(CC.translate(" &7- &eCenter: &7" + arena.getCenter().getWorld().getName() + "&e:"));
-            player.sendMessage(CC.translate("   &7* &eX: &7" + arena.getCenter().getBlockX()));
-            player.sendMessage(CC.translate("   &7* &eY: &7" + arena.getCenter().getBlockY()));
-            player.sendMessage(CC.translate("   &7* &eZ: &7" + arena.getCenter().getBlockZ()));
+            player.sendMessage(CC.translate(" &7- &dCenter: &7" + arena.getCenter().getWorld().getName() + "&d:"));
+            player.sendMessage(CC.translate("   &7* &dX: &7" + arena.getCenter().getBlockX()));
+            player.sendMessage(CC.translate("   &7* &dY: &7" + arena.getCenter().getBlockY()));
+            player.sendMessage(CC.translate("   &7* &dZ: &7" + arena.getCenter().getBlockZ()));
             if (ConfigHandler.getInstance().getSettingsConfig().getBoolean("arena.extend-info-command")) {
-                player.sendMessage(CC.translate("   &7* &ePitch: &7" + arena.getCenter().getPitch()));
-                player.sendMessage(CC.translate("   &7* &eYaw: &7" + arena.getCenter().getYaw()));
+                player.sendMessage(CC.translate("   &7* &dPitch: &7" + arena.getCenter().getPitch()));
+                player.sendMessage(CC.translate("   &7* &dYaw: &7" + arena.getCenter().getYaw()));
             }
         }
 
         if (arena.getSpawn() == null) {
-            player.sendMessage(CC.translate(" &7- &eSpawn: &cNot set"));
+            player.sendMessage(CC.translate(" &7- &dSpawn: &cNot set"));
         } else {
-            player.sendMessage(CC.translate(" &7- &eSpawn: &7" + arena.getSpawn().getWorld().getName() + "&e:"));
-            player.sendMessage(CC.translate("   &7* &eX: &7" + arena.getSpawn().getBlockX()));
-            player.sendMessage(CC.translate("   &7* &eY: &7" + arena.getSpawn().getBlockY()));
-            player.sendMessage(CC.translate("   &7* &eZ: &7" + arena.getSpawn().getBlockZ()));
+            player.sendMessage(CC.translate(" &7- &dSpawn: &7" + arena.getSpawn().getWorld().getName() + "&d:"));
+            player.sendMessage(CC.translate("   &7* &dX: &7" + arena.getSpawn().getBlockX()));
+            player.sendMessage(CC.translate("   &7* &dY: &7" + arena.getSpawn().getBlockY()));
+            player.sendMessage(CC.translate("   &7* &dZ: &7" + arena.getSpawn().getBlockZ()));
             if (ConfigHandler.getInstance().getSettingsConfig().getBoolean("arena.extend-info-command")) {
-                player.sendMessage(CC.translate("   &7* &ePitch: &7" + arena.getSpawn().getPitch()));
-                player.sendMessage(CC.translate("   &7* &eYaw: &7" + arena.getSpawn().getYaw()));
+                player.sendMessage(CC.translate("   &7* &dPitch: &7" + arena.getSpawn().getPitch()));
+                player.sendMessage(CC.translate("   &7* &dYaw: &7" + arena.getSpawn().getYaw()));
             }
         }
         player.sendMessage("");
