@@ -60,7 +60,7 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
         player.sendMessage(CC.translate("&aYou have left the FFA match."));
 
         Profile profile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
-        profile.setState(EnumProfileState.LOBBY);
+        profile.setState(EnumProfileState.SPAWN);
         profile.setFfaMatch(null);
 
         PlayerUtil.reset(player);

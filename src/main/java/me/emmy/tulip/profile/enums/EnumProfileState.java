@@ -9,6 +9,6 @@ import lombok.Getter;
  */
 @Getter
 public enum EnumProfileState {
-    LOBBY,
+    SPAWN,
     FFA
 }

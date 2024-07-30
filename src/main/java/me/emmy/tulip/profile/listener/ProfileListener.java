@@ -5,8 +5,8 @@ import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.hotbar.HotbarUtility;
 import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.profile.ProfileRepository;
+import me.emmy.tulip.profile.enums.EnumProfileState;
 import me.emmy.tulip.utils.CC;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -45,6 +45,7 @@ public class ProfileListener implements Listener {
         Profile profile = profileRepository.getProfile(player.getUniqueId());
         profile.setName(player.getName());
         profile.setOnline(true);
+        profile.setState(EnumProfileState.SPAWN);
 
         player.getInventory().clear();
         Tulip.getInstance().getSpawnHandler().teleportToSpawn(player);
