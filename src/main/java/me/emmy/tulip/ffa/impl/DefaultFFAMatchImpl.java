@@ -7,6 +7,7 @@ import me.emmy.tulip.hotbar.HotbarUtility;
 import me.emmy.tulip.kit.Kit;
 import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.profile.enums.EnumProfileState;
+import me.emmy.tulip.ffa.killstreak.KillstreakData;
 import me.emmy.tulip.utils.CC;
 import me.emmy.tulip.utils.PlayerUtil;
 import org.bukkit.Bukkit;
@@ -62,6 +63,8 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
         Profile profile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
         profile.setState(EnumProfileState.SPAWN);
         profile.setFfaMatch(null);
+
+        KillstreakData.resetKillstreak(player);
 
         PlayerUtil.reset(player);
         Tulip.getInstance().getSpawnHandler().teleportToSpawn(player);
@@ -127,15 +130,27 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
             return;
         }
 
-        Profile killerProfile = Tulip.getInstance().getProfileRepository().getProfile(killer.getUniqueId());
-        //if (killerProfile.getProfileData().getFfaData().get(getKit().getName()) != null) {
-        //    killerProfile.getProfileData().getFfaData().get(getKit().getName()).incrementKills();
-        //}
+        if (KillstreakData.getCurrentStreak(player) != 0) {
+            KillstreakData.resetKillstreak(player);
+        }
 
-        Profile profile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
-        //profile.getProfileData().getFfaData().get(getKit().getName()).incrementDeaths();
+        KillstreakData.incrementKillstreak(killer.getName());
+        alertEveryFiveKills(killer);
 
         getPlayers().forEach(online -> online.sendMessage(CC.translate("&c" + player.getName() + " has been killed by " + killer.getName() + ".")));
         handleRespawn(player);
+    }
+
+    /**
+     * Alert every five kills
+     *
+     * @param killer The killer
+     */
+    private void alertEveryFiveKills(Player killer) {
+        if (KillstreakData.getCurrentStreak(killer) % 5 == 0) {
+            getPlayers().forEach(players -> players.sendMessage(""));
+            getPlayers().forEach(players -> players.sendMessage(CC.translate("&a" + killer.getName() + " has reached a killstreak of " + KillstreakData.getCurrentStreak(killer) + ".")));
+            getPlayers().forEach(players -> players.sendMessage(""));
+        }
     }
 }
