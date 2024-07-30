@@ -48,6 +48,7 @@ public class ProfileListener implements Listener {
         profile.setState(EnumProfileState.SPAWN);
 
         player.getInventory().clear();
+        player.getInventory().setArmorContents(null);
         Tulip.getInstance().getSpawnHandler().teleportToSpawn(player);
         player.getInventory().setHeldItemSlot(4);
         HotbarUtility.applyHotbarItems(player);
