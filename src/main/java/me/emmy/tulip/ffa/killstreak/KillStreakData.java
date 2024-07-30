@@ -2,11 +2,6 @@ package me.emmy.tulip.ffa.killstreak;
 
 import lombok.Getter;
 import lombok.experimental.UtilityClass;
-import me.emmy.tulip.Tulip;
-import me.emmy.tulip.ffa.AbstractFFAMatch;
-import me.emmy.tulip.ffa.FFARepository;
-import me.emmy.tulip.utils.CC;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -19,7 +14,7 @@ import java.util.Map;
  */
 @Getter
 @UtilityClass
-public class KillstreakData {
+public class KillStreakData {
 
     private Map<String, Integer> killstreaks = new HashMap<>();
 

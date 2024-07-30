@@ -2,7 +2,7 @@ package me.emmy.tulip.visual;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.config.ConfigHandler;
-import me.emmy.tulip.ffa.killstreak.KillstreakData;
+import me.emmy.tulip.ffa.killstreak.KillStreakData;
 import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.profile.enums.EnumProfileState;
 import me.emmy.tulip.utils.BukkitReflection;
@@ -38,7 +38,7 @@ public class ScoreboardVisualizer implements AssembleAdapter {
                         .replace("{kit}", String.valueOf(Tulip.getInstance().getFfaRepository().getFFAMatch(player).getKit().getName()))
                         .replace("{ping}", String.valueOf(BukkitReflection.getPing(player)))
                         .replace("{players}", String.valueOf(profile.getFfaMatch().getPlayers().size()))
-                        .replace("{ks}", String.valueOf(KillstreakData.getCurrentStreak(player)))
+                        .replace("{ks}", String.valueOf(KillStreakData.getCurrentStreak(player)))
                         .replace("{max-online}", String.valueOf(Bukkit.getMaxPlayers()))
                 );
             }

@@ -7,7 +7,7 @@ import me.emmy.tulip.hotbar.HotbarUtility;
 import me.emmy.tulip.kit.Kit;
 import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.profile.enums.EnumProfileState;
-import me.emmy.tulip.ffa.killstreak.KillstreakData;
+import me.emmy.tulip.ffa.killstreak.KillStreakData;
 import me.emmy.tulip.utils.CC;
 import me.emmy.tulip.utils.PlayerUtil;
 import org.bukkit.Bukkit;
@@ -64,7 +64,7 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
         profile.setState(EnumProfileState.SPAWN);
         profile.setFfaMatch(null);
 
-        KillstreakData.resetKillstreak(player);
+        KillStreakData.resetKillstreak(player);
 
         PlayerUtil.reset(player);
         Tulip.getInstance().getSpawnHandler().teleportToSpawn(player);
@@ -130,11 +130,11 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
             return;
         }
 
-        if (KillstreakData.getCurrentStreak(player) != 0) {
-            KillstreakData.resetKillstreak(player);
+        if (KillStreakData.getCurrentStreak(player) != 0) {
+            KillStreakData.resetKillstreak(player);
         }
 
-        KillstreakData.incrementKillstreak(killer.getName());
+        KillStreakData.incrementKillstreak(killer.getName());
         alertEveryFiveKills(killer);
 
         getPlayers().forEach(online -> online.sendMessage(CC.translate("&c" + player.getName() + " has been killed by " + killer.getName() + ".")));
@@ -147,9 +147,9 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
      * @param killer The killer
      */
     private void alertEveryFiveKills(Player killer) {
-        if (KillstreakData.getCurrentStreak(killer) % 5 == 0) {
+        if (KillStreakData.getCurrentStreak(killer) % 5 == 0) {
             getPlayers().forEach(players -> players.sendMessage(""));
-            getPlayers().forEach(players -> players.sendMessage(CC.translate("&a" + killer.getName() + " has reached a killstreak of " + KillstreakData.getCurrentStreak(killer) + ".")));
+            getPlayers().forEach(players -> players.sendMessage(CC.translate("&a" + killer.getName() + " has reached a killstreak of " + KillStreakData.getCurrentStreak(killer) + ".")));
             getPlayers().forEach(players -> players.sendMessage(""));
         }
     }
