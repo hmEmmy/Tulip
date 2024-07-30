@@ -83,6 +83,7 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
         profile.setFfaMatch(this);
 
         Arena arena = getArena();
+        player.getInventory().setHeldItemSlot(0);
         player.teleport(arena.getSpawn());
 
         Kit kit = getKit();
