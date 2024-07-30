@@ -26,6 +26,8 @@ public class Profile {
     private boolean online;
     private AbstractFFAMatch ffaMatch;
     private EnumProfileState state;
+    private int kills = 0;
+    private int deaths = 0;
 
     /**
      * Constructor for the Profile class
@@ -38,11 +40,31 @@ public class Profile {
         this.online = false;
     }
 
+    /**
+     * Load all the profile data
+     */
     public void loadProfile() {
         Tulip.getInstance().getProfileRepository().getProfile().loadProfile(this);
     }
 
+    /**
+     * Save all the profile data
+     */
     public void saveProfile() {
         Tulip.getInstance().getProfileRepository().getProfile().saveProfile(this);
+    }
+
+    /**
+     * Increment the kills of the profile
+     */
+    public void incrementKills() {
+        this.kills++;
+    }
+
+    /**
+     * Increment the deaths of the profile
+     */
+    public void incrementDeaths() {
+        this.deaths++;
     }
 }

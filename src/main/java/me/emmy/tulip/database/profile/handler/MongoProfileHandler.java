@@ -25,7 +25,12 @@ public class MongoProfileHandler implements IProfile {
             return;
         }
 
+        Document statsDocument = (Document) document.get("stats");
+
         profile.setName(document.getString("name"));
+        profile.setOnline(document.getBoolean("online"));
+        profile.setKills(statsDocument.getInteger("kills"));
+        profile.setDeaths(statsDocument.getInteger("deaths"));
     }
 
     /**
@@ -37,6 +42,12 @@ public class MongoProfileHandler implements IProfile {
         Document document = new Document();
         document.put("uuid", profile.getUuid().toString());
         document.put("name", profile.getName());
+        document.put("online", profile.isOnline());
+
+        Document statsDocument = new Document();
+        statsDocument.append("kills", profile.getKills());
+        statsDocument.append("deaths", profile.getDeaths());
+        document.put("stats", statsDocument);
 
         Tulip.getInstance().getProfileRepository().getCollection().replaceOne(Filters.eq("uuid", profile.getUuid().toString()), document, new ReplaceOptions().upsert(true));
     }

@@ -90,6 +90,7 @@ public class Tulip extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        profileRepository.getProfiles().forEach((uuid, profile) -> profile.setOnline(false));
         profileRepository.getProfiles().forEach((uuid, profile) -> profile.saveProfile());
 
         ServerUtils.disconnectPlayers();

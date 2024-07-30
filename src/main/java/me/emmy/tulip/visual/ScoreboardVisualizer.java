@@ -39,6 +39,8 @@ public class ScoreboardVisualizer implements AssembleAdapter {
                         .replace("{ping}", String.valueOf(BukkitReflection.getPing(player)))
                         .replace("{players}", String.valueOf(profile.getFfaMatch().getPlayers().size()))
                         .replace("{ks}", String.valueOf(KillStreakData.getCurrentStreak(player)))
+                        .replace("{kills}", String.valueOf(profile.getKills()))
+                        .replace("{deaths}", String.valueOf(profile.getDeaths()))
                         .replace("{max-online}", String.valueOf(Bukkit.getMaxPlayers()))
                 );
             }
