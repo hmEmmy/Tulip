@@ -16,8 +16,8 @@ scoreboard:
     spawn:
       - "{sidebar}"
       - "&f&lStats"
-      - " &f&l● &rKills &d{kills}"
-      - " &f&l● &rDeaths &d{deaths}"
+      - " &f&l● &rKills: &d{kills}"
+      - " &f&l● &rDeaths: &d{deaths}"
       - ""
       - "&f&lServer"
       - " &f&l● &rOnline &d{online}"

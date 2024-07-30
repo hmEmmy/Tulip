@@ -3,6 +3,7 @@ package me.emmy.tulip.spawn.command;
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.ffa.AbstractFFAMatch;
 import me.emmy.tulip.ffa.FFARepository;
+import me.emmy.tulip.hotbar.HotbarUtility;
 import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.profile.enums.EnumProfileState;
 import me.emmy.tulip.utils.PlayerUtil;
@@ -33,5 +34,6 @@ public class SpawnCommand extends BaseCommand {
 
         Tulip.getInstance().getSpawnHandler().teleportToSpawn(player);
         PlayerUtil.reset(player);
+        HotbarUtility.applyHotbarItems(player);
     }
 }
