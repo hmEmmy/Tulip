@@ -70,7 +70,6 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
     @Override
     public void leave(Player player) {
         getPlayers().remove(player);
-        //getPlayers().forEach(online -> online.sendMessage(CC.translate("&c" + player.getName() + " has left the FFA match.")));
 
         player.sendMessage(CC.translate("&cYou've left the FFA arena."));
 
@@ -155,8 +154,6 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
 
         KillStreakData.incrementKillstreak(killer.getName());
         alertEveryFiveKills(killer);
-        if (KillStreakData.getCurrentStreak(killer) % 5 == 0) {
-        }
 
         getPlayers().forEach(online -> online.sendMessage(CC.translate("&d" + player.getName() + " &ewas killed by &d" + killer.getName() + "&e.")));
         handleRespawn(player);
@@ -174,10 +171,6 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
                     "&d&l" + killer.getName() + " &e&lis on a &d&l" + KillStreakData.getCurrentStreak(killer) + " Kill Streak&e&l!",
                     ""
             ).forEach(message -> getPlayers().forEach(players -> players.sendMessage(CC.translate(message))));
-
-            /*getPlayers().forEach(players -> players.sendMessage(""));
-            getPlayers().forEach(players -> players.sendMessage(CC.translate("&d&l" + killer.getName() + " &e&lis on a &d&l" + KillStreakData.getCurrentStreak(killer) + " Kill Streak&e&l!")));
-            getPlayers().forEach(players -> players.sendMessage(""));*/
         }
     }
 }

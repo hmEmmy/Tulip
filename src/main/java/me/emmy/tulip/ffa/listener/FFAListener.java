@@ -46,18 +46,6 @@ public class FFAListener implements Listener {
     }
 
     @EventHandler
-    private void onPickupItem(PlayerPickupItemEvent event) {
-        Player player = event.getPlayer();
-        Profile profile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
-
-        if (profile.getState() == EnumProfileState.FFA) {
-            if (event.getItem().equals(Material.ARROW)) {
-                event.setCancelled(true);
-            }
-        }
-    }
-
-    @EventHandler
     private void onPlayerDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
         Profile profile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
@@ -85,10 +73,6 @@ public class FFAListener implements Listener {
             }.runTaskLater(Tulip.getInstance(), 100L);
 
             Player killer = PlayerUtil.getLastAttacker(player);
-            if (killer != null) {
-                player.sendMessage(CC.translate("&cYou have been killed by &4" + killer.getName() + "&c."));
-                killer.sendMessage(CC.translate("&aYou have killed &2" + player.getName() + "&a."));
-            }
 
             Tulip.getInstance().getServer().getScheduler().runTaskLater(Tulip.getInstance(), () -> player.spigot().respawn(), 1L);
 
@@ -216,6 +200,12 @@ public class FFAListener implements Listener {
         Profile profile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
         ItemStack item = event.getItem();
 
+        if (player.getItemInHand().getType() == Material.MUSHROOM_SOUP && player.getHealth() < 19.5) {
+            player.setHealth(Math.min(player.getHealth() + 7.0, 20.0));
+            player.getItemInHand().setType(Material.BOWL);
+            player.updateInventory();
+        }
+
         if (profile.getState() == EnumProfileState.FFA && item != null && item.getType() == Material.ENDER_PEARL) {
             if (event.getAction().name().contains("RIGHT_CLICK")) {
                 if (Tulip.getInstance().getFfaSpawnHandler().getCuboid().isIn(player)) {
@@ -245,5 +235,4 @@ public class FFAListener implements Listener {
             }
         }
     }
-
 }

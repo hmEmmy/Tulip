@@ -1,4 +1,10 @@
 ffa:
+  NoDebuff:
+    arena: test
+    maxPlayers: 50
   Classic:
+    arena: test
+    maxPlayers: 50
+  Soup:
     arena: test
     maxPlayers: 50
