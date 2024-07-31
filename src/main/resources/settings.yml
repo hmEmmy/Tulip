@@ -18,6 +18,7 @@ scoreboard:
       - "&f&lStats"
       - " &f&l● &rKills: &d{kills}"
       - " &f&l● &rDeaths: &d{deaths}"
+      - " &f&l● &rKDR: &d{KDR}"
       - ""
       - "&f&lServer"
       - " &f&l● &rOnline &d{online}"
