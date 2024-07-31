@@ -1,9 +1,10 @@
-package me.emmy.tulip.ffa.command.admin.stats;
+package me.emmy.tulip.profile.stats.command;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.api.command.BaseCommand;
 import me.emmy.tulip.api.command.CommandArgs;
 import me.emmy.tulip.api.command.annotation.Command;
+import me.emmy.tulip.kit.Kit;
 import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.utils.CC;
 import org.bukkit.Bukkit;
@@ -22,8 +23,8 @@ public class SetKillsCommand extends BaseCommand {
         CommandSender sender = command.getSender();
         String[] args = command.getArgs();
 
-        if (args.length < 2) {
-            sender.sendMessage(CC.translate("&cUsage: /setkills (player) (kills)"));
+        if (args.length < 3) {
+            sender.sendMessage(CC.translate("&cUsage: /setkills (player) (value) (kit)"));
             return;
         }
 
@@ -33,6 +34,14 @@ public class SetKillsCommand extends BaseCommand {
             sender.sendMessage(CC.translate("&cPlayer not found."));
             return;
         }
+
+        String kitName = args[2];
+        Kit kit = Tulip.getInstance().getKitRepository().getKit(kitName);
+        if (kit == null) {
+            sender.sendMessage(CC.translate("&cKit not found."));
+            return;
+        }
+
         int kills;
 
         try {
@@ -42,8 +51,13 @@ public class SetKillsCommand extends BaseCommand {
             return;
         }
 
+        if (!Tulip.getInstance().getFfaRepository().getMatches().stream().anyMatch(match -> match.getKit().equals(kit))) {
+            sender.sendMessage(CC.translate("&cKit is not a part of any FFA match."));
+            return;
+        }
+
         Profile profile = Tulip.getInstance().getProfileRepository().getProfile(target.getUniqueId());
-        profile.setKills(kills);
+        profile.getStats().setKitKills(kit, kills);
         sender.sendMessage(CC.translate("&aYou have set the kills of " + target.getName() + " to " + kills + "."));
     }
 }

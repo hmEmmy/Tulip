@@ -124,7 +124,7 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
     public void handleDeath(Player player, Player killer) {
         if (killer == null) {
             Profile playerProfile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
-            playerProfile.incrementDeaths();
+            playerProfile.getStats().incrementKitDeaths(getKit());
 
             getPlayers().forEach(online -> online.sendMessage(CC.translate("&c" + player.getName() + " has died.")));
             handleRespawn(player);
@@ -132,7 +132,7 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
         }
 
         Profile killerProfile = Tulip.getInstance().getProfileRepository().getProfile(killer.getUniqueId());
-        killerProfile.incrementKills();
+        killerProfile.getStats().incrementKitKills(getKit());
 
         if (KillStreakData.getCurrentStreak(player) != 0) {
             KillStreakData.resetKillstreak(player);

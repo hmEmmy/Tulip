@@ -39,8 +39,8 @@ public class ScoreboardVisualizer implements AssembleAdapter {
                         .replace("{ping}", String.valueOf(BukkitReflection.getPing(player)))
                         .replace("{players}", String.valueOf(profile.getFfaMatch().getPlayers().size()))
                         .replace("{ks}", String.valueOf(KillStreakData.getCurrentStreak(player)))
-                        .replace("{kills}", String.valueOf(profile.getKills()))
-                        .replace("{deaths}", String.valueOf(profile.getDeaths()))
+                        .replace("{kills}", String.valueOf(profile.getStats().getKitKills(profile.getFfaMatch().getKit())))
+                        .replace("{deaths}", String.valueOf(profile.getStats().getKitDeaths(profile.getFfaMatch().getKit())))
                         .replace("{max-online}", String.valueOf(Bukkit.getMaxPlayers()))
                 );
             }
@@ -49,8 +49,8 @@ public class ScoreboardVisualizer implements AssembleAdapter {
                 list.add(CC.translate(line)
                         .replace("{sidebar}", "&7&m------------------")
                         .replace("{online}", String.valueOf(Bukkit.getOnlinePlayers().size()))
-                        .replace("{kills}", String.valueOf(profile.getKills()))
-                        .replace("{deaths}", String.valueOf(profile.getDeaths()))
+                        .replace("{kills}", String.valueOf(profile.getStats().getTotalKills()))
+                        .replace("{deaths}", String.valueOf(profile.getStats().getTotalDeaths()))
                         .replace("{max-online}", String.valueOf(Bukkit.getMaxPlayers()))
                 );
             }

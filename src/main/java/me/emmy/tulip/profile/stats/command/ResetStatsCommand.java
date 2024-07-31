@@ -1,4 +1,4 @@
-package me.emmy.tulip.ffa.command.admin.stats;
+package me.emmy.tulip.profile.stats.command;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.api.command.BaseCommand;
@@ -36,8 +36,7 @@ public class ResetStatsCommand extends BaseCommand {
         }
 
         Profile profile = Tulip.getInstance().getProfileRepository().getProfile(target.getUniqueId());
-        profile.setKills(0);
-        profile.setDeaths(0);
-        sender.sendMessage(CC.translate("&aYou have reset the stats of " + target.getName() + "."));
+        profile.getStats().resetStats();
+        sender.sendMessage(CC.translate("&aYou have reset the command of " + target.getName() + "."));
     }
 }

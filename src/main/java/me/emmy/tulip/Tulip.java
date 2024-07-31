@@ -66,6 +66,12 @@ public class Tulip extends JavaPlugin {
         kitRepository = new KitRepository();
         kitRepository.loadKits();
 
+        ffaRepository = new FFARepository();
+        ffaRepository.loadFFAMatches();
+
+        ffaSpawnHandler = new FFASpawnHandler();
+        ffaSpawnHandler.loadFFASpawn();
+
         mongoService = new MongoService();
         mongoService.startMongo();
 
@@ -73,12 +79,6 @@ public class Tulip extends JavaPlugin {
         profileRepository.initializeEveryProfile();
 
         cooldownRepository = new CooldownRepository();
-
-        ffaRepository = new FFARepository();
-        ffaRepository.loadFFAMatches();
-
-        ffaSpawnHandler = new FFASpawnHandler();
-        ffaSpawnHandler.loadFFASpawn();
 
         ServerUtils.registerListenersInPackage("me.emmy.tulip");
         ServerUtils.setupWorld();

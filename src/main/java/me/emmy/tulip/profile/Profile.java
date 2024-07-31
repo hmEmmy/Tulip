@@ -6,6 +6,7 @@ import lombok.Setter;
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.ffa.AbstractFFAMatch;
 import me.emmy.tulip.profile.enums.EnumProfileState;
+import me.emmy.tulip.profile.stats.ProfileStats;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 
@@ -26,8 +27,7 @@ public class Profile {
     private boolean online;
     private AbstractFFAMatch ffaMatch;
     private EnumProfileState state;
-    private int kills = 0;
-    private int deaths = 0;
+    private ProfileStats stats;
 
     /**
      * Constructor for the Profile class
@@ -38,6 +38,7 @@ public class Profile {
         this.uuid = uuid;
         this.name = Bukkit.getOfflinePlayer(this.uuid).getName();
         this.online = false;
+        this.stats = new ProfileStats();
     }
 
     /**
@@ -52,19 +53,5 @@ public class Profile {
      */
     public void saveProfile() {
         Tulip.getInstance().getProfileRepository().getProfile().saveProfile(this);
-    }
-
-    /**
-     * Increment the kills of the profile
-     */
-    public void incrementKills() {
-        this.kills++;
-    }
-
-    /**
-     * Increment the deaths of the profile
-     */
-    public void incrementDeaths() {
-        this.deaths++;
     }
 }
