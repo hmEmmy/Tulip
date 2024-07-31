@@ -20,7 +20,7 @@ scoreboard:
       - " &f&l● &rDeaths: &d{deaths}"
       - " &f&l● &rKDR: &d{KDR}"
       - ""
-      - "&f&lServer"
+      - "&f&lServer:"
       - " &f&l● &rOnline &d{online}"
       - ""
       - "&dtulip.club"

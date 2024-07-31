@@ -37,6 +37,6 @@ public class ResetStatsCommand extends BaseCommand {
 
         Profile profile = Tulip.getInstance().getProfileRepository().getProfile(target.getUniqueId());
         profile.getStats().resetStats();
-        sender.sendMessage(CC.translate("&aYou have reset the command of " + target.getName() + "."));
+        sender.sendMessage(CC.translate("&aYou have reset the stats of " + target.getName() + "."));
     }
 }
