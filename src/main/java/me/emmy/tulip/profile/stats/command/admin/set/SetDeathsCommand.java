@@ -1,4 +1,4 @@
-package me.emmy.tulip.profile.stats.command;
+package me.emmy.tulip.profile.stats.command.admin.set;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.api.command.BaseCommand;
@@ -14,17 +14,17 @@ import org.bukkit.entity.Player;
 /**
  * @author Emmy
  * @project Tulip
- * @date 30/07/2024 - 22:50
+ * @date 30/07/2024 - 22:52
  */
-public class SetKillsCommand extends BaseCommand {
+public class SetDeathsCommand extends BaseCommand {
     @Override
-    @Command(name = "setkills", permission = "tulip.command.setkills", inGameOnly = false)
+    @Command(name = "setdeaths", permission = "tulip.command.setdeaths", inGameOnly = false)
     public void onCommand(CommandArgs command) {
         CommandSender sender = command.getSender();
         String[] args = command.getArgs();
 
         if (args.length < 3) {
-            sender.sendMessage(CC.translate("&cUsage: /setkills (player) (value) (kit)"));
+            sender.sendMessage(CC.translate("&cUsage: /setdeaths (player) (value) (kit)"));
             return;
         }
 
@@ -42,10 +42,10 @@ public class SetKillsCommand extends BaseCommand {
             return;
         }
 
-        int kills;
+        int deaths;
 
         try {
-            kills = Integer.parseInt(args[1]);
+            deaths = Integer.parseInt(args[1]);
         } catch (NumberFormatException e) {
             sender.sendMessage(CC.translate("&cInvalid number."));
             return;
@@ -57,7 +57,7 @@ public class SetKillsCommand extends BaseCommand {
         }
 
         Profile profile = Tulip.getInstance().getProfileRepository().getProfile(target.getUniqueId());
-        profile.getStats().setKitKills(kit, kills);
-        sender.sendMessage(CC.translate("&aYou have set the kills of " + target.getName() + " to " + kills + "."));
+        profile.getStats().setKitDeaths(kit, deaths);
+        sender.sendMessage(CC.translate("&aYou have set the deaths of " + target.getName() + " to " + deaths + "."));
     }
 }

@@ -1,4 +1,4 @@
-package me.emmy.tulip.profile.stats.command;
+package me.emmy.tulip.profile.stats.command.admin.add;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.api.command.BaseCommand;
@@ -14,22 +14,23 @@ import org.bukkit.entity.Player;
 /**
  * @author Emmy
  * @project Tulip
- * @date 30/07/2024 - 22:52
+ * @date 31/07/2024 - 15:31
  */
-public class SetDeathsCommand extends BaseCommand {
+public class AddDeathsCommand extends BaseCommand {
     @Override
-    @Command(name = "setdeaths", permission = "tulip.command.setdeaths", inGameOnly = false)
+    @Command(name = "adddeaths", permission = "tulip.command.adddeaths", inGameOnly = false)
     public void onCommand(CommandArgs command) {
         CommandSender sender = command.getSender();
         String[] args = command.getArgs();
 
         if (args.length < 3) {
-            sender.sendMessage(CC.translate("&cUsage: /setdeaths (player) (value) (kit)"));
+            sender.sendMessage(CC.translate("&cUsage: /adddeaths (player) (value) (kit)"));
             return;
         }
 
         String playerName = args[0];
         Player target = Bukkit.getPlayer(playerName);
+
         if (target == null) {
             sender.sendMessage(CC.translate("&cPlayer not found."));
             return;
@@ -37,6 +38,7 @@ public class SetDeathsCommand extends BaseCommand {
 
         String kitName = args[2];
         Kit kit = Tulip.getInstance().getKitRepository().getKit(kitName);
+
         if (kit == null) {
             sender.sendMessage(CC.translate("&cKit not found."));
             return;
@@ -57,7 +59,7 @@ public class SetDeathsCommand extends BaseCommand {
         }
 
         Profile profile = Tulip.getInstance().getProfileRepository().getProfile(target.getUniqueId());
-        profile.getStats().setKitDeaths(kit, deaths);
-        sender.sendMessage(CC.translate("&aYou have set the deaths of " + target.getName() + " to " + deaths + "."));
+        profile.getStats().addKitDeaths(kit, deaths);
+        sender.sendMessage(CC.translate("&aYou have added " + deaths + " deaths to " + target.getName() + "."));
     }
 }

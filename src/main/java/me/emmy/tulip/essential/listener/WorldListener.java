@@ -1,5 +1,7 @@
 package me.emmy.tulip.essential.listener;
 
+import me.emmy.tulip.Tulip;
+import me.emmy.tulip.profile.enums.EnumProfileState;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -36,7 +38,9 @@ public class WorldListener implements Listener {
 
     @EventHandler
     private void onHunger(FoodLevelChangeEvent event) {
-        if (event.getEntity() instanceof Player) {
+        Player player = (Player) event.getEntity();
+
+        if (Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId()).getState() == EnumProfileState.SPAWN) {
             event.setCancelled(true);
         }
     }
@@ -44,14 +48,16 @@ public class WorldListener implements Listener {
     @EventHandler
     private void onMoveItem(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
-        if (event.getWhoClicked() instanceof Player) {
-            if (player.getGameMode() == GameMode.SURVIVAL) {
-                if (event.getClickedInventory() != null && event.getClickedInventory().equals(player.getInventory())) {
-                    event.setCancelled(true);
-                }
+        if (Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId()).getState() == EnumProfileState.SPAWN) {
+            if (event.getWhoClicked() instanceof Player) {
+                if (player.getGameMode() == GameMode.SURVIVAL) {
+                    if (event.getClickedInventory() != null && event.getClickedInventory().equals(player.getInventory())) {
+                        event.setCancelled(true);
+                    }
 
-                if (event.getSlotType() == InventoryType.SlotType.CRAFTING || event.isShiftClick() || event.getClick().isKeyboardClick()) {
-                    event.setCancelled(true);
+                    if (event.getSlotType() == InventoryType.SlotType.CRAFTING || event.isShiftClick() || event.getClick().isKeyboardClick()) {
+                        event.setCancelled(true);
+                    }
                 }
             }
         }
@@ -61,8 +67,10 @@ public class WorldListener implements Listener {
     private void onBlockPlace(BlockPlaceEvent event) {
         Player player = event.getPlayer();
 
-        if (player.getGameMode() == GameMode.SURVIVAL) {
-            event.setCancelled(true);
+        if (Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId()).getState() == EnumProfileState.SPAWN) {
+            if (player.getGameMode() == GameMode.SURVIVAL) {
+                event.setCancelled(true);
+            }
         }
     }
 
@@ -70,8 +78,10 @@ public class WorldListener implements Listener {
     private void onItemDrop(PlayerDropItemEvent event) {
         Player player = event.getPlayer();
 
-        if (player.getGameMode() == GameMode.SURVIVAL) {
-            event.setCancelled(true);
+        if (Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId()).getState() == EnumProfileState.SPAWN) {
+            if (player.getGameMode() == GameMode.SURVIVAL) {
+                event.setCancelled(true);
+            }
         }
     }
 
@@ -79,8 +89,10 @@ public class WorldListener implements Listener {
     private void onItemPickUp(PlayerPickupItemEvent event) {
         Player player = event.getPlayer();
 
-        if (player.getGameMode() == GameMode.SURVIVAL) {
-            event.setCancelled(true);
+        if (Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId()).getState() == EnumProfileState.SPAWN) {
+            if (player.getGameMode() == GameMode.SURVIVAL) {
+                event.setCancelled(true);
+            }
         }
     }
 }

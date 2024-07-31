@@ -71,4 +71,12 @@ public class ProfileStats {
     public void setKitKills(Kit kit, int kills) {
         this.kitKills.put(kit, kills);
     }
+
+    public void addKitDeaths(Kit kit, int deaths) {
+        this.kitDeaths.put(kit, this.kitDeaths.getOrDefault(kit, 0) + deaths);
+    }
+
+    public void addKitKills(Kit kit, int kills) {
+        this.kitKills.put(kit, this.kitKills.getOrDefault(kit, 0) + kills);
+    }
 }

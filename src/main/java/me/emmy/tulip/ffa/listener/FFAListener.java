@@ -10,6 +10,7 @@ import me.emmy.tulip.utils.CC;
 import me.emmy.tulip.utils.PlayerUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,10 +20,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerKickEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -44,6 +42,18 @@ public class FFAListener implements Listener {
 
         if (profile.getState() == EnumProfileState.FFA) {
             event.getItemDrop().remove();
+        }
+    }
+
+    @EventHandler
+    private void onPickupItem(PlayerPickupItemEvent event) {
+        Player player = event.getPlayer();
+        Profile profile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
+
+        if (profile.getState() == EnumProfileState.FFA) {
+            if (event.getItem().equals(Material.ARROW)) {
+                event.setCancelled(true);
+            }
         }
     }
 
@@ -137,21 +147,23 @@ public class FFAListener implements Listener {
 
         Player victim = (Player) event.getEntity();
         Player attacker = (Player) event.getDamager();
-        FFASpawnHandler ffaSpawnHandler = Tulip.getInstance().getFfaSpawnHandler();
-        if (ffaSpawnHandler.getCuboid().isIn((victim)) && ffaSpawnHandler.getCuboid().isIn((attacker)) ||
-                !ffaSpawnHandler.getCuboid().isIn(victim) && ffaSpawnHandler.getCuboid().isIn(attacker) ||
-                ffaSpawnHandler.getCuboid().isIn(victim) && !ffaSpawnHandler.getCuboid().isIn(attacker)) {
 
+        FFASpawnHandler ffaSpawnHandler = Tulip.getInstance().getFfaSpawnHandler();
+        if (ffaSpawnHandler.getCuboid().isIn((victim)) && ffaSpawnHandler.getCuboid().isIn((attacker)) || !ffaSpawnHandler.getCuboid().isIn(victim) && ffaSpawnHandler.getCuboid().isIn(attacker) || ffaSpawnHandler.getCuboid().isIn(victim) && !ffaSpawnHandler.getCuboid().isIn(attacker)) {
             event.setCancelled(true);
+            attacker.sendMessage(CC.translate("&cYou cannot fight at spawn."));
         }
 
-        /*CombatManager combatManager = Tulip.getInstance().getCombatManager();
-
-        Bukkit.getPluginManager().callEvent(new CombatTagEvent(victim, attacker));
-        combatManager.setCombatTime(victim, 16);
-        combatManager.setCombatTime(attacker, 16);
-        combatManager.setCombatSet(victim, true);
-        combatManager.setCombatSet(attacker, true);*/
+        if (event.getDamager() instanceof Arrow) {
+            Arrow arrow = (Arrow) event.getDamager();
+            if (arrow.getShooter() instanceof Player) {
+                Player shooter = (Player) arrow.getShooter();
+                double health = Math.ceil(victim.getHealth() - event.getFinalDamage()) / 2.0D;
+                if (health > 0.0D && !victim.getName().equals(shooter.getName())) {
+                    shooter.sendMessage(CC.translate("&d" + victim.getName() + "&e is now at &d" + health + "&4❤&e."));
+                }
+            }
+        }
     }
 
     /**

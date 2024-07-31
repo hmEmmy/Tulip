@@ -47,11 +47,11 @@ public class FFASpawnTask extends BukkitRunnable {
                 if (isInSpawn && currentState != EnumFFAState.SPAWN) {
                     profile.getFfaMatch().setState(EnumFFAState.SPAWN);
                     playerStates.put(player.getUniqueId(), EnumFFAState.SPAWN);
-                    player.sendMessage(CC.translate("&aYou have entered the FFA spawn area."));
+                    player.sendMessage(CC.translate("&aYou have entered the FFA spawn."));
                 } else if (!isInSpawn && currentState != EnumFFAState.FIGHTING) {
                     profile.getFfaMatch().setState(EnumFFAState.FIGHTING);
                     playerStates.put(player.getUniqueId(), EnumFFAState.FIGHTING);
-                    player.sendMessage(CC.translate("&cYou have left the FFA spawn area."));
+                    player.sendMessage(CC.translate("&cYou have exited the FFA spawn."));
                 }
             }
         }

@@ -48,4 +48,8 @@ public class KillStreakData {
     public int getCurrentStreak(Player player) {
         return killstreaks.getOrDefault(player.getName(), 0);
     }
+
+    public void setKillStreak(Player player, int value) {
+        killstreaks.put(player.getName(), value);
+    }
 }

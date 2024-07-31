@@ -51,6 +51,7 @@ public class ScoreboardVisualizer implements AssembleAdapter {
                         .replace("{online}", String.valueOf(Bukkit.getOnlinePlayers().size()))
                         .replace("{kills}", String.valueOf(profile.getStats().getTotalKills()))
                         .replace("{deaths}", String.valueOf(profile.getStats().getTotalDeaths()))
+                        .replace("{KDR}", String.valueOf(profile.getStats().getKDR()))
                         .replace("{max-online}", String.valueOf(Bukkit.getMaxPlayers()))
                 );
             }

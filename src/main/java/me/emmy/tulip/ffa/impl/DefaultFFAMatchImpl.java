@@ -13,6 +13,10 @@ import me.emmy.tulip.utils.PlayerUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * @author Emmy
  * @project Tulip
@@ -38,13 +42,23 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
      */
     @Override
     public void join(Player player) {
+        List<String> welcomer = new ArrayList<>();
+        welcomer.add("");
+        welcomer.add("&e&lPlaying FFA");
+        welcomer.add(" &e&l● &eKit: &d" + getKit().getName());
+        welcomer.add(" &e&l● &eArena: &d" + getArena().getName());
+        welcomer.add(" &e&l● &eTo leave, do /leaveffa.");
+        welcomer.add("");
+
+        welcomer.forEach(message -> player.sendMessage(CC.translate(message)));
+
         if (getPlayers().size() >= getMaxPlayers()) {
             player.sendMessage(CC.translate("&cThis FFA match is full. " + getMaxPlayers() + " players are already in the match."));
             return;
         }
 
+        //getPlayers().forEach(online -> online.sendMessage(CC.translate("&a" + player.getName() + " has joined the FFA match.")));
         getPlayers().add(player);
-        getPlayers().forEach(online -> online.sendMessage(CC.translate("&a" + player.getName() + " has joined the FFA match.")));
         setupPlayer(player);
     }
 
@@ -56,9 +70,9 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
     @Override
     public void leave(Player player) {
         getPlayers().remove(player);
-        getPlayers().forEach(online -> online.sendMessage(CC.translate("&c" + player.getName() + " has left the FFA match.")));
+        //getPlayers().forEach(online -> online.sendMessage(CC.translate("&c" + player.getName() + " has left the FFA match.")));
 
-        player.sendMessage(CC.translate("&aYou have left the FFA match."));
+        player.sendMessage(CC.translate("&cYou've left the FFA arena."));
 
         Profile profile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
         profile.setState(EnumProfileState.SPAWN);
@@ -69,6 +83,7 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
         PlayerUtil.reset(player);
         Tulip.getInstance().getSpawnHandler().teleportToSpawn(player);
         HotbarUtility.applyHotbarItems(player);
+        player.getInventory().setHeldItemSlot(0);
     }
 
     /**
@@ -126,7 +141,7 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
             Profile playerProfile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
             playerProfile.getStats().incrementKitDeaths(getKit());
 
-            getPlayers().forEach(online -> online.sendMessage(CC.translate("&c" + player.getName() + " has died.")));
+            getPlayers().forEach(online -> online.sendMessage(CC.translate("&d" + player.getName() + " &ewas killed.")));
             handleRespawn(player);
             return;
         }
@@ -140,8 +155,10 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
 
         KillStreakData.incrementKillstreak(killer.getName());
         alertEveryFiveKills(killer);
+        if (KillStreakData.getCurrentStreak(killer) % 5 == 0) {
+        }
 
-        getPlayers().forEach(online -> online.sendMessage(CC.translate("&c" + player.getName() + " has been killed by " + killer.getName() + ".")));
+        getPlayers().forEach(online -> online.sendMessage(CC.translate("&d" + player.getName() + " &ewas killed by &d" + killer.getName() + "&e.")));
         handleRespawn(player);
     }
 
@@ -152,9 +169,15 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
      */
     private void alertEveryFiveKills(Player killer) {
         if (KillStreakData.getCurrentStreak(killer) % 5 == 0) {
-            getPlayers().forEach(players -> players.sendMessage(""));
-            getPlayers().forEach(players -> players.sendMessage(CC.translate("&a" + killer.getName() + " has reached a killstreak of " + KillStreakData.getCurrentStreak(killer) + ".")));
-            getPlayers().forEach(players -> players.sendMessage(""));
+            Arrays.asList(
+                    "",
+                    "&d&l" + killer.getName() + " &e&lis on a &d&l" + KillStreakData.getCurrentStreak(killer) + " Kill Streak&e&l!",
+                    ""
+            ).forEach(message -> getPlayers().forEach(players -> players.sendMessage(CC.translate(message))));
+
+            /*getPlayers().forEach(players -> players.sendMessage(""));
+            getPlayers().forEach(players -> players.sendMessage(CC.translate("&d&l" + killer.getName() + " &e&lis on a &d&l" + KillStreakData.getCurrentStreak(killer) + " Kill Streak&e&l!")));
+            getPlayers().forEach(players -> players.sendMessage(""));*/
         }
     }
 }

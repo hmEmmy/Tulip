@@ -46,7 +46,17 @@ public class ProfileRepository {
     }
 
     /**
-     * Get a profile by its UUID
+     * Get a profile by its UUID without adding it to the map if it doesn't exist
+     *
+     * @param uuid the UUID of the profile
+     * @return the profile
+     */
+    public Profile getProfileWithNoAdding(UUID uuid) {
+        return profiles.get(uuid);
+    }
+
+    /**
+     * Get a profile by its UUID and add it to the map if it doesn't exist
      *
      * @param uuid the UUID of the profile
      * @return the profile

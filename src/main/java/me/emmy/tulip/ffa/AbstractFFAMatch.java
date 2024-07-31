@@ -48,4 +48,13 @@ public abstract class AbstractFFAMatch {
     public abstract void handleDeath(Player player, Player killer);
     public abstract void handleRespawn(Player player);
     public abstract void leave(Player player);
+
+    /**
+     * Broadcast a message to all players in the match
+     *
+     * @param message The message
+     */
+    public void broadcatMessage(String message) {
+        players.forEach(player -> player.sendMessage(message));
+    }
 }

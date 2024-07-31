@@ -1,4 +1,4 @@
-package me.emmy.tulip.profile.stats.command;
+package me.emmy.tulip.profile.stats.command.admin;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.api.command.BaseCommand;

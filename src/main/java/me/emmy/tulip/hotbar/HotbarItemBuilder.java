@@ -13,9 +13,10 @@ import org.bukkit.inventory.ItemStack;
 @Getter
 public enum HotbarItemBuilder {
 
-    SHOP(Material.DIAMOND, 0, 0, "&dShop &7(Right Click)", "shop"),
-    GAME_MENU(Material.DIAMOND_SWORD, 4, 0, "&dGame Menu &7(Right Click)", "play"),
-    STATS(Material.NETHER_STAR, 7, 0, "&dStats &7(Right Click)", "command"),
+    GAME_MENU(Material.DIAMOND_SWORD, 0, 0, "&dGame Menu &7(Right Click)", "play"),
+    KIT_LAYOUT(Material.CHEST, 1, 0, "&dEdit Kit Layout &7(Right Click)", "kitlayout"),
+    SHOP(Material.DIAMOND, 4, 0, "&dShop &7(Right Click)", "shop"),
+    STATS(Material.NETHER_STAR, 7, 0, "&dStats &7(Right Click)", "stats"),
     SETTINGS(Material.COMPASS, 8, 0, "&dSettings &7(Left Click)", "settings")
 
     ;

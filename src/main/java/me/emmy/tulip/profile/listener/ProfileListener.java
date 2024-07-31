@@ -50,7 +50,7 @@ public class ProfileListener implements Listener {
         player.getInventory().clear();
         player.getInventory().setArmorContents(null);
         Tulip.getInstance().getSpawnHandler().teleportToSpawn(player);
-        player.getInventory().setHeldItemSlot(4);
+        player.getInventory().setHeldItemSlot(0);
         HotbarUtility.applyHotbarItems(player);
 
         sendWelcomeMessage(player);
