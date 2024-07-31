@@ -141,26 +141,37 @@ public class FFAListener implements Listener {
      */
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-        if (!(event.getDamager() instanceof Player) || !(event.getEntity() instanceof Player)) {
+        if (!(event.getEntity() instanceof Player)) {
             return;
         }
 
         Player victim = (Player) event.getEntity();
-        Player attacker = (Player) event.getDamager();
-
         FFASpawnHandler ffaSpawnHandler = Tulip.getInstance().getFfaSpawnHandler();
-        if (ffaSpawnHandler.getCuboid().isIn((victim)) && ffaSpawnHandler.getCuboid().isIn((attacker)) || !ffaSpawnHandler.getCuboid().isIn(victim) && ffaSpawnHandler.getCuboid().isIn(attacker) || ffaSpawnHandler.getCuboid().isIn(victim) && !ffaSpawnHandler.getCuboid().isIn(attacker)) {
-            event.setCancelled(true);
-            attacker.sendMessage(CC.translate("&cYou cannot fight at spawn."));
+
+        if (event.getDamager() instanceof Player) {
+            Player attacker = (Player) event.getDamager();
+
+            if (ffaSpawnHandler.getCuboid().isIn(victim) || ffaSpawnHandler.getCuboid().isIn(attacker)) {
+                event.setCancelled(true);
+                attacker.sendMessage(CC.translate("&cYou cannot fight at spawn."));
+                return;
+            }
         }
 
         if (event.getDamager() instanceof Arrow) {
             Arrow arrow = (Arrow) event.getDamager();
             if (arrow.getShooter() instanceof Player) {
                 Player shooter = (Player) arrow.getShooter();
-                double health = Math.ceil(victim.getHealth() - event.getFinalDamage()) / 2.0D;
+
+                if (ffaSpawnHandler.getCuboid().isIn(victim) || ffaSpawnHandler.getCuboid().isIn(shooter)) {
+                    event.setCancelled(true);
+                    shooter.sendMessage(CC.translate("&cYou cannot fight at spawn."));
+                    return;
+                }
+
+                double health = Math.ceil((victim.getHealth() - event.getFinalDamage()) / 2.0D);
                 if (health > 0.0D && !victim.getName().equals(shooter.getName())) {
-                    shooter.sendMessage(CC.translate("&d" + victim.getName() + "&e is now at &d" + health + "&4❤&e."));
+                    shooter.sendMessage(CC.translate("&d" + victim.getName() + "&e is now at &d" + health + "❤&e."));
                 }
             }
         }
