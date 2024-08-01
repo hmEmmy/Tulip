@@ -6,6 +6,7 @@ import lombok.Setter;
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.ffa.AbstractFFAMatch;
 import me.emmy.tulip.profile.enums.EnumProfileState;
+import me.emmy.tulip.profile.settings.ProfileSettings;
 import me.emmy.tulip.profile.stats.ProfileStats;
 import org.bson.Document;
 import org.bukkit.Bukkit;
@@ -28,6 +29,7 @@ public class Profile {
     private AbstractFFAMatch ffaMatch;
     private EnumProfileState state;
     private ProfileStats stats;
+    private ProfileSettings settings;
 
     /**
      * Constructor for the Profile class
@@ -39,6 +41,7 @@ public class Profile {
         this.name = Bukkit.getOfflinePlayer(this.uuid).getName();
         this.online = false;
         this.stats = new ProfileStats();
+        this.settings = new ProfileSettings();
     }
 
     /**

@@ -30,30 +30,32 @@ public class ScoreboardVisualizer implements AssembleAdapter {
         List<String> list = new ArrayList<>();
         Profile profile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
 
-        if (profile.getState() == EnumProfileState.FFA) {
-            for (String line : ConfigHandler.getInstance().getSettingsConfig().getStringList("scoreboard.lines.in-game")) {
-                list.add(CC.translate(line)
-                        .replace("{sidebar}", "&7&m------------------")
-                        .replace("{online}", String.valueOf(Bukkit.getOnlinePlayers().size()))
-                        .replace("{kit}", String.valueOf(Tulip.getInstance().getFfaRepository().getFFAMatch(player).getKit().getName()))
-                        .replace("{ping}", String.valueOf(BukkitReflection.getPing(player)))
-                        .replace("{players}", String.valueOf(profile.getFfaMatch().getPlayers().size()))
-                        .replace("{ks}", String.valueOf(KillStreakData.getCurrentStreak(player)))
-                        .replace("{kills}", String.valueOf(profile.getStats().getKitKills(profile.getFfaMatch().getKit())))
-                        .replace("{deaths}", String.valueOf(profile.getStats().getKitDeaths(profile.getFfaMatch().getKit())))
-                        .replace("{max-online}", String.valueOf(Bukkit.getMaxPlayers()))
-                );
-            }
-        } else {
-            for (String line : ConfigHandler.getInstance().getSettingsConfig().getStringList("scoreboard.lines.spawn")) {
-                list.add(CC.translate(line)
-                        .replace("{sidebar}", "&7&m------------------")
-                        .replace("{online}", String.valueOf(Bukkit.getOnlinePlayers().size()))
-                        .replace("{kills}", String.valueOf(profile.getStats().getTotalKills()))
-                        .replace("{deaths}", String.valueOf(profile.getStats().getTotalDeaths()))
-                        .replace("{KDR}", String.valueOf(profile.getStats().getKDR()))
-                        .replace("{max-online}", String.valueOf(Bukkit.getMaxPlayers()))
-                );
+        if (profile.getSettings().isShowScoreboard()) {
+            if (profile.getState() == EnumProfileState.FFA) {
+                for (String line : ConfigHandler.getInstance().getSettingsConfig().getStringList("scoreboard.lines.in-game")) {
+                    list.add(CC.translate(line)
+                            .replace("{sidebar}", "&7&m------------------")
+                            .replace("{online}", String.valueOf(Bukkit.getOnlinePlayers().size()))
+                            .replace("{kit}", String.valueOf(Tulip.getInstance().getFfaRepository().getFFAMatch(player).getKit().getName()))
+                            .replace("{ping}", String.valueOf(BukkitReflection.getPing(player)))
+                            .replace("{players}", String.valueOf(profile.getFfaMatch().getPlayers().size()))
+                            .replace("{ks}", String.valueOf(KillStreakData.getCurrentStreak(player)))
+                            .replace("{kills}", String.valueOf(profile.getStats().getKitKills(profile.getFfaMatch().getKit())))
+                            .replace("{deaths}", String.valueOf(profile.getStats().getKitDeaths(profile.getFfaMatch().getKit())))
+                            .replace("{max-online}", String.valueOf(Bukkit.getMaxPlayers()))
+                    );
+                }
+            } else {
+                for (String line : ConfigHandler.getInstance().getSettingsConfig().getStringList("scoreboard.lines.spawn")) {
+                    list.add(CC.translate(line)
+                            .replace("{sidebar}", "&7&m------------------")
+                            .replace("{online}", String.valueOf(Bukkit.getOnlinePlayers().size()))
+                            .replace("{kills}", String.valueOf(profile.getStats().getTotalKills()))
+                            .replace("{deaths}", String.valueOf(profile.getStats().getTotalDeaths()))
+                            .replace("{KDR}", String.valueOf(profile.getStats().getKDR()))
+                            .replace("{max-online}", String.valueOf(Bukkit.getMaxPlayers()))
+                    );
+                }
             }
         }
         return list;

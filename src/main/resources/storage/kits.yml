@@ -54,7 +54,7 @@ kits:
         type: DIAMOND_CHESTPLATE
       - ==: org.bukkit.inventory.ItemStack
         type: DIAMOND_HELMET
-    icon: DIAMOND_AXE
+    icon: DIAMOND_SWORD
     icondata: 0
     enabled: true
   NoDebuff:

@@ -10,6 +10,7 @@ import me.emmy.tulip.kit.Kit;
 import me.emmy.tulip.profile.Profile;
 import org.bson.Document;
 
+import javax.print.Doc;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,6 +34,9 @@ public class MongoProfileHandler implements IProfile {
 
         profile.setName(document.getString("name"));
         profile.setOnline(document.getBoolean("online"));
+
+        Document settingsDocument = (Document) document.get("settings");
+        profile.getSettings().setShowScoreboard(settingsDocument.getBoolean("showScoreboard"));
 
         Document statsDocument = (Document) document.get("stats");
         if (statsDocument != null) {
@@ -71,6 +75,10 @@ public class MongoProfileHandler implements IProfile {
         document.put("uuid", profile.getUuid().toString());
         document.put("name", profile.getName());
         document.put("online", profile.isOnline());
+
+        Document settingsDocument = new Document();
+        settingsDocument.put("showScoreboard", profile.getSettings().isShowScoreboard());
+        document.put("settings", settingsDocument);
 
         Document statsDocument = new Document();
 
