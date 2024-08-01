@@ -6,7 +6,9 @@ When I get bored, I will commit. The purpose of this is to learn and improve my 
 - [x] **Arena System**
 - [x] **MongoDB Storage**
 - [x] **Profiles**
-- [ ] **Leaderboards/Statistics**
+- [x] **Player Settings**
+- [x] **Stats**
+- [ ] **Leaderboards**
 - [x] **Scoreboard**
 - [x] **Hotbar Items**
 - [ ] **Game System**
