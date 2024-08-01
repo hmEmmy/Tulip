@@ -1,4 +1,4 @@
-package me.emmy.tulip.profile.settings.command;
+package me.emmy.tulip.profile.settings.command.toggle;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.api.command.BaseCommand;
@@ -21,6 +21,6 @@ public class ToggleScoreboardCommand extends BaseCommand {
 
         Profile profile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
         profile.getSettings().setShowScoreboard(!profile.getSettings().isShowScoreboard());
-        player.sendMessage(CC.translate("&bYou've " + (profile.getSettings().isShowScoreboard() ? CC.translate("&aenabled") : CC.translate("&cdisabled")) + " &byour scoreboard."));
+        player.sendMessage(profile.getSettings().isShowScoreboard() ? CC.translate("&aYou can now see the sidebar.") : CC.translate("&cYou can no longer see the sidebar."));
     }
 }

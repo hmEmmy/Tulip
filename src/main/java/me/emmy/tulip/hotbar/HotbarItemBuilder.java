@@ -17,7 +17,7 @@ public enum HotbarItemBuilder {
     KIT_LAYOUT(Material.BOOK, 1, 0, "&dEdit Kit Layout &7(Right Click)", "kitlayout"),
     SHOP(Material.DIAMOND, 4, 0, "&dShop &7(Right Click)", "shop"),
     STATS(Material.NETHER_STAR, 7, 0, "&dStats &7(Right Click)", "stats"),
-    SETTINGS(Material.COMPASS, 8, 0, "&dSettings &7(Left Click)", "settings")
+    SETTINGS(Material.SKULL_ITEM, 8, 0, "&dSettings &7(Left Click)", "ffasettings")
 
     ;
 
