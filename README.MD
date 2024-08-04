@@ -1,4 +1,4 @@
-# Tulip - FFA Core
+# Tulip - FFA Core [![Codacy Badge](https://api.codacy.com/project/badge/Grade/3507936ade234ae7bb280eae37ca04ce)](https://app.codacy.com/gh/hmEmmy/Tulip?utm_source=github.com&utm_medium=referral&utm_content=hmEmmy/Tulip&utm_campaign=Badge_Grade_Settings)
 When I get bored, I will commit. The purpose of this is to learn and improve my abilities.
 
 ### To-do List:
