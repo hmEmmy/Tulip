@@ -12,9 +12,11 @@ When I get bored, I will commit. The purpose of this is to learn and improve my 
 - [x] **Scoreboard**
 - [x] **Hotbar Items**
 - [ ] **Game System**
+- [ ] **Kit Editor**
 - [ ] **Events (maybe)**
 - [ ] **Cosmetics**
 - [ ] **Shop**
+- [ ] **Visibility Logic**
 
 ### Credits:
 - [**@ThatKawaiiSam**](https://github.com/ThatKawaiiSam/Assemble) - *Scoreboard API.*
