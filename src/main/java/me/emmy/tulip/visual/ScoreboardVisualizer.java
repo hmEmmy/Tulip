@@ -11,6 +11,7 @@ import me.emmy.tulip.visual.assemble.AssembleAdapter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +30,7 @@ public class ScoreboardVisualizer implements AssembleAdapter {
     public List<String> getLines(Player player) {
         List<String> list = new ArrayList<>();
         Profile profile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
+        DecimalFormat decimalFormat = new DecimalFormat("0.0");
 
         if (profile.getSettings().isShowScoreboard()) {
             if (profile.getState() == EnumProfileState.FFA) {
@@ -52,7 +54,7 @@ public class ScoreboardVisualizer implements AssembleAdapter {
                             .replace("{online}", String.valueOf(Bukkit.getOnlinePlayers().size()))
                             .replace("{kills}", String.valueOf(profile.getStats().getTotalKills()))
                             .replace("{deaths}", String.valueOf(profile.getStats().getTotalDeaths()))
-                            .replace("{KDR}", String.valueOf(profile.getStats().getKDR()))
+                            .replace("{KDR}", decimalFormat.format(profile.getStats().getKDR()))
                             .replace("{max-online}", String.valueOf(Bukkit.getMaxPlayers()))
                     );
                 }
