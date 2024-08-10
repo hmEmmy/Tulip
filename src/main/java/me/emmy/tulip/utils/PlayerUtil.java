@@ -28,12 +28,10 @@ public class PlayerUtil {
         }
     }
 
+    /**
+     * Credit: Praxi
+     */
     public static void reset(Player player) {
-        if (!player.hasMetadata("frozen")) {
-            player.setWalkSpeed(0.2F);
-            player.setFlySpeed(0.1F);
-        }
-
         player.setHealth(20.0D);
         player.setSaturation(20.0F);
         player.setFallDistance(0.0F);
@@ -48,7 +46,6 @@ public class PlayerUtil {
         player.getInventory().setArmorContents(new ItemStack[4]);
         player.getInventory().setContents(new ItemStack[36]);
         player.getActivePotionEffects().forEach(effect -> player.removePotionEffect(effect.getType()));
-        //player.getInventory().setHeldItemSlot(0);
         player.updateInventory();
     }
 }

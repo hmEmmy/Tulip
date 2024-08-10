@@ -28,14 +28,14 @@ public class FFAMenu extends Menu {
     public Map<Integer, Button> getButtons(Player player) {
         Map<Integer, Button> buttons = new HashMap<>();
 
+        addBorder(buttons, (byte) 15, 5);
+
         int slot = 10;
 
         for (AbstractFFAMatch match : Tulip.getInstance().getFfaRepository().getMatches()) {
-            buttons.put(slot, new FFAButton(match));
-            slot++;
+            buttons.put(slot++, new FFAButton(match));
+            //if (slot >= 54) break;
         }
-
-        addBorder(buttons, (byte) 15, 5);
 
         return buttons;
     }

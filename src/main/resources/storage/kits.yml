@@ -1,6 +1,6 @@
 kits:
   Classic:
-    description: '&7Description of the &bClassic &7kit'
+    description: '&eDescription of the &dClassic &ekit'
     items:
       - ==: org.bukkit.inventory.ItemStack
         type: DIAMOND_SWORD
@@ -58,7 +58,7 @@ kits:
     icondata: 0
     enabled: true
   NoDebuff:
-    description: '&7Description of the &bNoDebuff &7kit'
+    description: '&eDescription of the &dNoDebuff &ekit'
     items:
       - ==: org.bukkit.inventory.ItemStack
         type: DIAMOND_SWORD
@@ -217,7 +217,7 @@ kits:
     icondata: 16421
     enabled: true
   Soup:
-    description: '&7Description of the &bSoup &7kit'
+    description: '&eDescription of the &dSoup &ekit'
     items:
       - ==: org.bukkit.inventory.ItemStack
         type: DIAMOND_SWORD

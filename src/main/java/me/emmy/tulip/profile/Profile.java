@@ -6,6 +6,7 @@ import lombok.Setter;
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.ffa.AbstractFFAMatch;
 import me.emmy.tulip.profile.enums.EnumProfileState;
+import me.emmy.tulip.profile.kitlayout.ProfileKitLayout;
 import me.emmy.tulip.profile.settings.ProfileSettings;
 import me.emmy.tulip.profile.stats.ProfileStats;
 import org.bson.Document;
@@ -30,6 +31,7 @@ public class Profile {
     private EnumProfileState state;
     private ProfileStats stats;
     private ProfileSettings settings;
+    private ProfileKitLayout kitLayout;
 
     /**
      * Constructor for the Profile class
@@ -42,6 +44,7 @@ public class Profile {
         this.online = false;
         this.stats = new ProfileStats();
         this.settings = new ProfileSettings();
+        this.kitLayout = new ProfileKitLayout();
     }
 
     /**

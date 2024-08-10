@@ -1,6 +1,8 @@
-package me.emmy.tulip.api.menu;
+package me.emmy.tulip.api.menu.listener;
 
 import me.emmy.tulip.Tulip;
+import me.emmy.tulip.api.menu.Button;
+import me.emmy.tulip.api.menu.Menu;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

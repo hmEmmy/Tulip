@@ -5,7 +5,6 @@ import me.emmy.tulip.profile.enums.EnumProfileState;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -54,6 +53,10 @@ public class SpawnListener implements Listener {
         Player player = (Player) event.getWhoClicked();
         if (Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId()).getState() == EnumProfileState.SPAWN) {
             if (event.getWhoClicked() instanceof Player) {
+                if (Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId()).getKitLayout().isEditing()) {
+                    return;
+                }
+
                 if (player.getGameMode() == GameMode.SURVIVAL) {
                     if (event.getClickedInventory() != null && event.getClickedInventory().equals(player.getInventory())) {
                         event.setCancelled(true);

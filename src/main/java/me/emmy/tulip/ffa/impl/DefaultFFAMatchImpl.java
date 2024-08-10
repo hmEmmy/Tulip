@@ -102,7 +102,13 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
 
         Kit kit = getKit();
         player.getInventory().setArmorContents(kit.getArmor());
-        player.getInventory().setContents(kit.getItems());
+        player.getInventory().setContents(profile.getKitLayout().getLayout(kit.getName()) == null ? kit.getItems() : profile.getKitLayout().getLayout(kit.getName()));
+
+        if (profile.getKitLayout().getLayout(kit.getName()) == null) {
+            player.sendMessage(CC.translate("&aGiving you the default kit layout."));
+        } else {
+            player.sendMessage(CC.translate("&aGiving you the saved kit layout."));
+        }
     }
 
     /**
@@ -122,8 +128,13 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
 
             Kit kit = getKit();
             player.getInventory().clear();
-            player.getInventory().setArmorContents(kit.getArmor());
-            player.getInventory().setContents(kit.getItems());
+            player.getInventory().setContents(profile.getKitLayout().getLayout(kit.getName()) == null ? kit.getItems() : profile.getKitLayout().getLayout(kit.getName()));
+
+            if (profile.getKitLayout().getLayout(kit.getName()) == null) {
+                player.sendMessage(CC.translate("&aGiving you the default kit layout."));
+            } else {
+                player.sendMessage(CC.translate("&aGiving you the saved kit layout."));
+            }
             player.updateInventory();
         }, 1L);
     }

@@ -8,9 +8,15 @@ import me.emmy.tulip.ffa.AbstractFFAMatch;
 import me.emmy.tulip.ffa.FFARepository;
 import me.emmy.tulip.kit.Kit;
 import me.emmy.tulip.profile.Profile;
+import me.emmy.tulip.utils.DatabaseUtil;
 import org.bson.Document;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.io.BukkitObjectInputStream;
+import org.bukkit.util.io.BukkitObjectOutputStream;
 
-import javax.print.Doc;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +26,7 @@ import java.util.Map;
  * @date 27/07/2024 - 18:25
  */
 public class MongoProfileHandler implements IProfile {
+
     /**
      * Load a profile
      *
@@ -48,20 +55,36 @@ public class MongoProfileHandler implements IProfile {
 
             if (killsDoc != null) {
                 for (Map.Entry<String, Object> entry : killsDoc.entrySet()) {
-                    Kit kit = Tulip.getInstance().getFfaRepository().getMatches().stream().map(AbstractFFAMatch::getKit).filter(k -> k.getName().equals(entry.getKey())).findFirst().orElse(null);
-                            kitKills.put(kit, (Integer) entry.getValue());
+                    Kit kit = Tulip.getInstance().getKitRepository().getKit(entry.getKey());
+                    if (kit != null) {
+                        kitKills.put(kit, (Integer) entry.getValue());
+                    }
                 }
             }
 
             if (deathsDoc != null) {
                 for (Map.Entry<String, Object> entry : deathsDoc.entrySet()) {
-                    Kit kit = Tulip.getInstance().getFfaRepository().getMatches().stream().map(AbstractFFAMatch::getKit).filter(k -> k.getName().equals(entry.getKey())).findFirst().orElse(null);
-                            kitDeaths.put(kit, (Integer) entry.getValue());
+                    Kit kit = Tulip.getInstance().getKitRepository().getKit(entry.getKey());
+                    if (kit != null) {
+                        kitDeaths.put(kit, (Integer) entry.getValue());
+                    }
                 }
             }
 
             profile.getStats().setKitKills(kitKills);
             profile.getStats().setKitDeaths(kitDeaths);
+        }
+
+        Document kitLayoutsDoc = (Document) document.get("kitLayouts");
+        if (kitLayoutsDoc != null) {
+            for (Kit kit : Tulip.getInstance().getKitRepository().getKits()) {
+                String kitName = kit.getName();
+                Document layoutDoc = (Document) kitLayoutsDoc.get(kitName);
+                if (layoutDoc != null) {
+                    ItemStack[] items = DatabaseUtil.deserializeItemStackArray(layoutDoc.getString("items"));
+                    profile.getKitLayout().setLayout(kitName, items);
+                }
+            }
         }
     }
 
@@ -102,8 +125,18 @@ public class MongoProfileHandler implements IProfile {
 
         document.put("stats", statsDocument);
 
+        Document kitLayoutsDoc = new Document();
+        for (Kit kit : Tulip.getInstance().getKitRepository().getKits()) {
+            String kitName = kit.getName();
+
+            Document layoutDoc = new Document();
+            layoutDoc.put("items", DatabaseUtil.serializeItemStackArray(profile.getKitLayout().getLayout(kitName)));
+
+            kitLayoutsDoc.put(kitName, layoutDoc);
+        }
+        document.put("kitLayouts", kitLayoutsDoc);
+
         Tulip.getInstance().getProfileRepository().getCollection()
                 .replaceOne(Filters.eq("uuid", profile.getUuid().toString()), document, new ReplaceOptions().upsert(true));
     }
-
 }

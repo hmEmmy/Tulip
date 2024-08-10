@@ -45,6 +45,7 @@ public class ProfileListener implements Listener {
         Profile profile = profileRepository.getProfile(player.getUniqueId());
         profile.setName(player.getName());
         profile.setOnline(true);
+        profile.getKitLayout().setEditing(false);
         profile.setState(EnumProfileState.SPAWN);
 
         player.getInventory().clear();
@@ -64,6 +65,7 @@ public class ProfileListener implements Listener {
         Player player = event.getPlayer();
         Profile profile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
         profile.setOnline(false);
+        profile.getKitLayout().setEditing(false);
         profile.saveProfile();
         event.setQuitMessage(null);
     }
