@@ -11,6 +11,7 @@ import me.emmy.tulip.utils.PlayerUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.FishHook;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -142,11 +143,21 @@ public class FFAListener implements Listener {
             }
         }
 
+        if (event.getDamager() instanceof FishHook) {
+            FishHook fishHook = (FishHook) event.getDamager();
+            if (fishHook.getShooter() instanceof Player) {
+                Player shooter = (Player) fishHook.getShooter();
+                if (ffaSpawnHandler.getCuboid().isIn(victim) || ffaSpawnHandler.getCuboid().isIn(shooter)) {
+                    event.setCancelled(true);
+                    return;
+                }
+            }
+        }
+
         if (event.getDamager() instanceof Arrow) {
             Arrow arrow = (Arrow) event.getDamager();
             if (arrow.getShooter() instanceof Player) {
                 Player shooter = (Player) arrow.getShooter();
-
                 if (ffaSpawnHandler.getCuboid().isIn(victim) || ffaSpawnHandler.getCuboid().isIn(shooter)) {
                     event.setCancelled(true);
                     shooter.sendMessage(CC.translate("&cYou cannot fight at spawn."));
