@@ -63,8 +63,11 @@ public class KitLayoutSelectionMenu extends Menu {
             return new ItemBuilder(kit.getIcon())
                     .name(CC.translate("&d" + kit.getName()))
                     .lore(CC.translate("&7" + kit.getDescription()))
+                    .durability(kit.getIconData())
+                    .hideMeta()
                     .build();
         }
+
         @Override
         public void clicked(Player player, ClickType clickType) {
             if (clickType != ClickType.LEFT) return;
