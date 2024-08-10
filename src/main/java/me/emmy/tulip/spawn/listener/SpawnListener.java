@@ -115,6 +115,10 @@ public class SpawnListener implements Listener {
         if (event.getEntity() instanceof Player) {
             Player player = (Player) event.getEntity();
             if (Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId()).getState() == EnumProfileState.SPAWN) {
+                if (player.getLocation().getY() < 0) {
+                    Tulip.getInstance().getSpawnHandler().teleportToSpawn(player);
+                }
+
                 event.setCancelled(true);
             }
         }
