@@ -2,6 +2,7 @@ package me.emmy.tulip;
 
 import lombok.Getter;
 import lombok.Setter;
+import me.emmy.tulip.api.command.CommandFramework;
 import me.emmy.tulip.arena.ArenaRepository;
 import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.cooldown.CooldownRepository;
@@ -15,14 +16,10 @@ import me.emmy.tulip.profile.ProfileRepository;
 import me.emmy.tulip.spawn.SpawnHandler;
 import me.emmy.tulip.utils.CC;
 import me.emmy.tulip.utils.ServerUtils;
-import me.emmy.tulip.api.command.CommandFramework;
 import me.emmy.tulip.visual.ScoreboardVisualizer;
 import me.emmy.tulip.visual.assemble.Assemble;
 import me.emmy.tulip.visual.assemble.AssembleStyle;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * @author Emmy

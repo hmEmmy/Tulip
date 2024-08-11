@@ -76,8 +76,7 @@ public class KitLayoutSelectionMenu extends Menu {
             profile.getKitLayout().setEditing(true);
 
             new KitLayoutEditorMenu(kit).openMenu(player);
-            player.getInventory().setContents(kit.getItems());
-            player.getInventory().setArmorContents(kit.getArmor());
+            player.getInventory().setContents(profile.getKitLayout().getLayout(kit.getName()));
         }
     }
 

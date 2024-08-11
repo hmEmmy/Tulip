@@ -24,12 +24,11 @@ public class FFAButton extends Button {
     @Override
     public ItemStack getButtonItem(Player player) {
         List<String> lore = new ArrayList<>();
-        lore.add("");
         lore.add("&f&l● &fPlayers: &d" + match.getPlayers().size() + "/" + match.getMaxPlayers());
         lore.add("&f&l● &fArena: &d" + match.getArena().getName());
         lore.add("&f&l● &fKit: &d" + match.getKit().getName());
         lore.add("");
-        lore.add("&fClick to join!");
+        lore.add("&fClick to play!");
 
         return new ItemBuilder(match.getKit().getIcon())
                 .name("&d&l" + match.getName())

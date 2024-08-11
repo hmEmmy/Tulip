@@ -3,6 +3,7 @@ package me.emmy.tulip.utils;
 import lombok.experimental.UtilityClass;
 import me.emmy.tulip.Tulip;
 import org.bukkit.Bukkit;
+import org.bukkit.Difficulty;
 import org.bukkit.GameMode;
 import org.bukkit.World;
 import org.bukkit.event.Listener;
@@ -111,6 +112,7 @@ public class ServerUtils {
             if (world.isThundering() || world.hasStorm()) {
                 world.setThundering(false);
                 world.setStorm(false);
+                world.setDifficulty(Difficulty.EASY);
             }
 
             world.setTime(6000L);
