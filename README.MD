@@ -21,6 +21,7 @@ When I get bored, I will commit. The purpose of this is to learn and improve my 
 ### Credits:
 - [**@ThatKawaiiSam**](https://github.com/ThatKawaiiSam/Assemble) - *Scoreboard API.*
 - [**@minnymin3**](https://github.com/mcardy/CommandFramework) - *Command API.*
+- [**@Remi**](https://github.com/hmRemi) - *For making the base of the FFA System.*
 
 
 *You have to leave clear and visible credits. Only if you follow by that, you are allowed to distribute, copy, modify this code.*
