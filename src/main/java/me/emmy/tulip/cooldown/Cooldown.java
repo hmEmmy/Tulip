@@ -5,7 +5,7 @@ import me.emmy.tulip.utils.TaskUtil;
 import org.bukkit.scheduler.BukkitTask;
 
 /**
- * @author Emmy
+ * @author Remi
  * @project Tulip
  * @date 5/27/2024
  */

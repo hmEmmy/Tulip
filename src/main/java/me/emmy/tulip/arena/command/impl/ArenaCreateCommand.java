@@ -2,6 +2,7 @@ package me.emmy.tulip.arena.command.impl;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.arena.Arena;
+import me.emmy.tulip.locale.Locale;
 import me.emmy.tulip.utils.CC;
 import me.emmy.tulip.api.command.BaseCommand;
 import me.emmy.tulip.api.command.CommandArgs;
@@ -29,11 +30,11 @@ public class ArenaCreateCommand extends BaseCommand {
 
         Arena arena = Tulip.getInstance().getArenaRepository().getArena(arenaName);
         if (arena != null) {
-            player.sendMessage(CC.translate("&cAn arena with that name already exists!"));
+            player.sendMessage(CC.translate(Locale.ARENA_ALREADY_EXISTS.getStringPath()).replace("{arena}", arenaName));
             return;
         }
 
         Tulip.getInstance().getArenaRepository().createArena(arenaName, String.valueOf(player.getLocation()), null, null, null);
-        player.sendMessage(CC.translate("&aArena " + arenaName + " has been created!"));
+        player.sendMessage(CC.translate(Locale.ARENA_CREATED.getStringPath()).replace("{arena}", arenaName));
     }
 }

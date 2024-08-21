@@ -1,4 +1,4 @@
-package me.emmy.tulip.utils;
+package me.emmy.tulip.database.serializer;
 
 import lombok.experimental.UtilityClass;
 import org.bukkit.inventory.ItemStack;
@@ -15,10 +15,13 @@ import java.util.Base64;
  * @date 10/08/2024 - 22:11
  */
 @UtilityClass
-public class DatabaseUtil {
+public class ItemStackSerializer {
 
     /**
-     * Serializes an array of ItemStacks to a Base64 string.
+     * Serialize an ItemStack array to a Base64 string
+     *
+     * @param items the ItemStack array to serialize
+     * @return the serialized ItemStack array
      */
     public String serializeItemStackArray(ItemStack[] items) {
         try {
@@ -38,7 +41,10 @@ public class DatabaseUtil {
     }
 
     /**
-     * Deserializes a Base64 string to an array of ItemStacks.
+     * Deserialize an ItemStack array from a Base64 string
+     *
+     * @param data the Base64 string to deserialize
+     * @return the deserialized ItemStack array
      */
     public ItemStack[] deserializeItemStackArray(String data) {
         try {

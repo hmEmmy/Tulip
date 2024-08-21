@@ -40,8 +40,6 @@ public class ArenaRepository {
             List<String> debugMessage = Arrays.asList(
                     "",
                     "&aLoading arena: &d" + name,
-                    "&aMax Players: &d" + config.getInt(key + ".maxPlayers"),
-                    "&aMin Players: &d" + config.getInt(key + ".minPlayers"),
                     "&aSpawn: &d" + config.getString(key + ".spawn"),
                     "&aCenter: &d" + config.getString(key + ".center"),
                     "&aSafe Pos 1: &d" + config.getString(key + ".safePos1"),
@@ -49,7 +47,7 @@ public class ArenaRepository {
                     ""
             );
 
-            debugMessage.forEach(msg -> Bukkit.getConsoleSender().sendMessage(CC.translate(msg)));
+            //debugMessage.forEach(msg -> Bukkit.getConsoleSender().sendMessage(CC.translate(msg)));
 
             Arena arena = new Arena(
                     name,
@@ -58,7 +56,7 @@ public class ArenaRepository {
                     LocationUtil.deserialize(config.getString(key + ".safePos1")),
                     LocationUtil.deserialize(config.getString(key + ".safePos2"))
             );
-            Bukkit.getConsoleSender().sendMessage(CC.translate("&aLoaded arena &d" + arena.getName()));
+            //Bukkit.getConsoleSender().sendMessage(CC.translate("&aLoaded arena &d" + arena.getName()));
             arenas.add(arena);
         }
     }
@@ -77,7 +75,7 @@ public class ArenaRepository {
             config.set(key + ".safePos2", LocationUtil.serialize(arena.getSafePos2()));
         }
 
-        Bukkit.getConsoleSender().sendMessage(CC.translate("&aSaved: &d" + arenas.size() + " arenas"));
+        //Bukkit.getConsoleSender().sendMessage(CC.translate("&aSaved: &d" + arenas.size() + " arenas"));
         ConfigHandler.getInstance().saveConfig(ConfigHandler.getInstance().getConfigFile("storage/arenas.yml"), config);
     }
 

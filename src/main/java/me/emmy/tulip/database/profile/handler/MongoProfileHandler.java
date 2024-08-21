@@ -8,15 +8,10 @@ import me.emmy.tulip.ffa.AbstractFFAMatch;
 import me.emmy.tulip.ffa.FFARepository;
 import me.emmy.tulip.kit.Kit;
 import me.emmy.tulip.profile.Profile;
-import me.emmy.tulip.utils.DatabaseUtil;
+import me.emmy.tulip.database.serializer.ItemStackSerializer;
 import org.bson.Document;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.util.io.BukkitObjectInputStream;
-import org.bukkit.util.io.BukkitObjectOutputStream;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -81,7 +76,7 @@ public class MongoProfileHandler implements IProfile {
                 String kitName = kit.getName();
                 Document layoutDoc = (Document) kitLayoutsDoc.get(kitName);
                 if (layoutDoc != null) {
-                    ItemStack[] items = DatabaseUtil.deserializeItemStackArray(layoutDoc.getString("items"));
+                    ItemStack[] items = ItemStackSerializer.deserializeItemStackArray(layoutDoc.getString("items"));
                     profile.getKitLayout().setLayout(kitName, items);
                 }
             }
@@ -130,7 +125,7 @@ public class MongoProfileHandler implements IProfile {
             String kitName = kit.getName();
 
             Document layoutDoc = new Document();
-            layoutDoc.put("items", DatabaseUtil.serializeItemStackArray(profile.getKitLayout().getLayout(kitName)));
+            layoutDoc.put("items", ItemStackSerializer.serializeItemStackArray(profile.getKitLayout().getLayout(kitName)));
 
             kitLayoutsDoc.put(kitName, layoutDoc);
         }

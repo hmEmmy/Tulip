@@ -1,7 +1,9 @@
 package me.emmy.tulip.kit.command.impl;
 
 import me.emmy.tulip.Tulip;
+import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.kit.Kit;
+import me.emmy.tulip.locale.Locale;
 import me.emmy.tulip.utils.CC;
 import me.emmy.tulip.api.command.BaseCommand;
 import me.emmy.tulip.api.command.CommandArgs;
@@ -9,8 +11,6 @@ import me.emmy.tulip.api.command.annotation.Command;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.List;
 
 /**
  * @author Emmy
@@ -34,7 +34,7 @@ public class KitInfoCommand extends BaseCommand {
         Kit kit = Tulip.getInstance().getKitRepository().getKit(name);
 
         if (kit == null) {
-            player.sendMessage(CC.translate("&cA kit with that name does not exist."));
+            player.sendMessage(CC.translate(Locale.KIT_DOES_NOT_EXIST.getStringPath()).replace("{kit}", name));
             return;
         }
 
@@ -48,24 +48,27 @@ public class KitInfoCommand extends BaseCommand {
         player.sendMessage(CC.translate(" &7- &dKit Icon: &f" + kit.getIcon().name() + "&7:&f" + kit.getIconData()));
         player.sendMessage(CC.translate(" &7- &dStatus: &f" + (kit.isEnabled() ? "&aEnabled" : "&cDisabled")));
         player.sendMessage("");
-        player.sendMessage(CC.translate("&d&lKit Items"));
-        for (ItemStack item : items) {
-            if (item == null || item.getType() == Material.AIR) {
-                continue;
+
+        if (ConfigHandler.getInstance().getLocaleConfig().getBoolean("kit.extend-info-command")) {
+            player.sendMessage(CC.translate("&d&lKit Items"));
+            for (ItemStack item : items) {
+                if (item == null || item.getType() == Material.AIR) {
+                    continue;
+                }
+
+                player.sendMessage(CC.translate(" &7- &d" + item.getType().name() + " &7x &f" + item.getAmount()));
             }
 
-            player.sendMessage(CC.translate(" &7- &d" + item.getType().name() + " &7x &f" + item.getAmount()));
-        }
+            player.sendMessage(CC.translate("&d&lKit Armor"));
+            for (ItemStack item : armor) {
+                if (item == null || item.getType() == Material.AIR) {
+                    continue;
+                }
 
-        player.sendMessage(CC.translate("&d&lKit Armor"));
-        for (ItemStack item : armor) {
-            if (item == null || item.getType() == Material.AIR) {
-                continue;
+                player.sendMessage(CC.translate(" &7- &d" + item.getType().name() + " &7x &f" + item.getAmount()));
             }
 
-            player.sendMessage(CC.translate(" &7- &d" + item.getType().name() + " &7x &f" + item.getAmount()));
+            player.sendMessage("");
         }
-
-        player.sendMessage("");
     }
 }

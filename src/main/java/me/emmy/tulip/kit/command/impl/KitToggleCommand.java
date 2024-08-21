@@ -1,6 +1,7 @@
 package me.emmy.tulip.kit.command.impl;
 
 import me.emmy.tulip.Tulip;
+import me.emmy.tulip.locale.Locale;
 import me.emmy.tulip.utils.CC;
 import me.emmy.tulip.api.command.BaseCommand;
 import me.emmy.tulip.api.command.CommandArgs;
@@ -27,13 +28,13 @@ public class KitToggleCommand extends BaseCommand {
         String name = args[0];
 
         if (Tulip.getInstance().getKitRepository().getKit(name) == null) {
-            player.sendMessage(CC.translate("&cA kit with that name does not exist."));
+            player.sendMessage(CC.translate(Locale.KIT_DOES_NOT_EXIST.getStringPath()).replace("{kit}", name));
             return;
         }
 
         Tulip.getInstance().getKitRepository().getKit(name).setEnabled(!Tulip.getInstance().getKitRepository().getKit(name).isEnabled());
         Tulip.getInstance().getKitRepository().saveKit(name);
 
-        player.sendMessage(CC.translate("&aKit " + name + " has been " + (Tulip.getInstance().getKitRepository().getKit(name).isEnabled() ? "enabled" : "disabled") + "."));
+        player.sendMessage(CC.translate(Locale.KIT_TOGGLED.getStringPath()).replace("{kit}", name).replace("{status}", Tulip.getInstance().getKitRepository().getKit(name).isEnabled() ? CC.translate("&aenabled") : CC.translate("&cdisabled")));
     }
 }

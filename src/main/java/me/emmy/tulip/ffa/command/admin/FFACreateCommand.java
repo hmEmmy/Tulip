@@ -48,6 +48,11 @@ public class FFACreateCommand extends BaseCommand {
             return;
         }
 
+        if (!Tulip.getInstance().getFfaRepository().getFFAMatch(kitName).getKit().isEnabled()) {
+            player.sendMessage(CC.translate("&cThe kit " + kitName + " is disabled."));
+            return;
+        }
+
         Tulip.getInstance().getFfaRepository().createFFAMatch(arena, kit, maxPlayers);
         player.sendMessage(CC.translate("&aSuccessfully created the FFA match."));
     }

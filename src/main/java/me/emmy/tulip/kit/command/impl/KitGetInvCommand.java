@@ -1,6 +1,7 @@
 package me.emmy.tulip.kit.command.impl;
 
 import me.emmy.tulip.Tulip;
+import me.emmy.tulip.locale.Locale;
 import me.emmy.tulip.utils.CC;
 import me.emmy.tulip.api.command.BaseCommand;
 import me.emmy.tulip.api.command.CommandArgs;
@@ -27,12 +28,12 @@ public class KitGetInvCommand extends BaseCommand {
         String name = args[0];
 
         if (Tulip.getInstance().getKitRepository().getKit(name) == null) {
-            player.sendMessage(CC.translate("&cA kit with that name does not exist."));
+            player.sendMessage(CC.translate(Locale.KIT_DOES_NOT_EXIST.getStringPath()).replace("{kit}", name));
             return;
         }
 
         player.getInventory().setContents(Tulip.getInstance().getKitRepository().getKit(name).getItems());
         player.getInventory().setArmorContents(Tulip.getInstance().getKitRepository().getKit(name).getArmor());
-        player.sendMessage(CC.translate("&aKit " + name + " inventory has been given."));
+        player.sendMessage(CC.translate(Locale.KIT_INVENTORY_GIVEN.getStringPath()).replace("{kit}", name));
     }
 }

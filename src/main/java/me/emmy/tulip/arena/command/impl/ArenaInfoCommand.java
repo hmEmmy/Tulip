@@ -3,6 +3,7 @@ package me.emmy.tulip.arena.command.impl;
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.arena.Arena;
 import me.emmy.tulip.config.ConfigHandler;
+import me.emmy.tulip.locale.Locale;
 import me.emmy.tulip.utils.CC;
 import me.emmy.tulip.api.command.BaseCommand;
 import me.emmy.tulip.api.command.CommandArgs;
@@ -31,7 +32,7 @@ public class ArenaInfoCommand extends BaseCommand {
         Arena arena = Tulip.getInstance().getArenaRepository().getArena(arenaName);
 
         if (arena == null) {
-            player.sendMessage(CC.translate("&cAn arena with that name does not exist!"));
+            player.sendMessage(CC.translate(Locale.ARENA_DOES_NOT_EXIST.getStringPath()).replace("{arena}", arenaName));
             return;
         }
 
@@ -45,7 +46,7 @@ public class ArenaInfoCommand extends BaseCommand {
             player.sendMessage(CC.translate("   &7* &dX: &7" + arena.getCenter().getBlockX()));
             player.sendMessage(CC.translate("   &7* &dY: &7" + arena.getCenter().getBlockY()));
             player.sendMessage(CC.translate("   &7* &dZ: &7" + arena.getCenter().getBlockZ()));
-            if (ConfigHandler.getInstance().getSettingsConfig().getBoolean("arena.extend-info-command")) {
+            if (ConfigHandler.getInstance().getLocaleConfig().getBoolean("arena.extend-info-command")) {
                 player.sendMessage(CC.translate("   &7* &dPitch: &7" + arena.getCenter().getPitch()));
                 player.sendMessage(CC.translate("   &7* &dYaw: &7" + arena.getCenter().getYaw()));
             }
@@ -58,7 +59,7 @@ public class ArenaInfoCommand extends BaseCommand {
             player.sendMessage(CC.translate("   &7* &dX: &7" + arena.getSpawn().getBlockX()));
             player.sendMessage(CC.translate("   &7* &dY: &7" + arena.getSpawn().getBlockY()));
             player.sendMessage(CC.translate("   &7* &dZ: &7" + arena.getSpawn().getBlockZ()));
-            if (ConfigHandler.getInstance().getSettingsConfig().getBoolean("arena.extend-info-command")) {
+            if (ConfigHandler.getInstance().getLocaleConfig().getBoolean("arena.extend-info-command")) {
                 player.sendMessage(CC.translate("   &7* &dPitch: &7" + arena.getSpawn().getPitch()));
                 player.sendMessage(CC.translate("   &7* &dYaw: &7" + arena.getSpawn().getYaw()));
             }

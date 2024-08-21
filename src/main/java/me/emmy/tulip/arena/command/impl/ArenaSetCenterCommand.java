@@ -2,6 +2,7 @@ package me.emmy.tulip.arena.command.impl;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.arena.Arena;
+import me.emmy.tulip.locale.Locale;
 import me.emmy.tulip.utils.CC;
 import me.emmy.tulip.api.command.BaseCommand;
 import me.emmy.tulip.api.command.annotation.Command;
@@ -29,12 +30,12 @@ public class ArenaSetCenterCommand extends BaseCommand {
 
         Arena arena = Tulip.getInstance().getArenaRepository().getArena(arenaName);
         if (arena == null) {
-            player.sendMessage(CC.translate("&cArena " + arenaName + " does not exist!"));
+            player.sendMessage(CC.translate(Locale.ARENA_DOES_NOT_EXIST.getStringPath()).replace("{arena}", arenaName));
             return;
         }
 
         Tulip.getInstance().getArenaRepository().getArena(arenaName).setCenter(player.getLocation());
         Tulip.getInstance().getArenaRepository().saveArena(arena);
-        player.sendMessage(CC.translate("&aCenter set for arena " + arenaName + "!"));
+        player.sendMessage(CC.translate(Locale.ARENA_CENTER_SET.getStringPath()).replace("{arena}", arenaName));
     }
 }

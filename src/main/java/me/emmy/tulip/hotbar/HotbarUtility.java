@@ -17,6 +17,7 @@ public class HotbarUtility {
      */
     public void applyHotbarItems(Player player) {
         for (HotbarItemBuilder hotbarItemBuilder : HotbarItemBuilder.values()) {
+            //HotbarItemBuilder.reloadConfig();
             player.getInventory().setItem(hotbarItemBuilder.getSlot(), hotbarItemBuilder.createItem());
         }
     }

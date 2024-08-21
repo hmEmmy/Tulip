@@ -1,14 +1,13 @@
 package me.emmy.tulip.kit.command.impl;
 
-import me.clip.placeholderapi.libs.kyori.adventure.platform.viaversion.ViaFacet;
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.kit.KitRepository;
+import me.emmy.tulip.locale.Locale;
 import me.emmy.tulip.utils.CC;
 import me.emmy.tulip.api.command.BaseCommand;
 import me.emmy.tulip.api.command.CommandArgs;
 import me.emmy.tulip.api.command.annotation.Command;
 import org.bukkit.entity.Player;
-import org.bukkit.event.block.Action;
 
 /**
  * @author Emmy
@@ -30,7 +29,7 @@ public class KitSetInvCommand extends BaseCommand {
         String name = args[0];
 
         if (Tulip.getInstance().getKitRepository().getKit(name) == null) {
-            player.sendMessage(CC.translate("&cA kit with that name does not exist."));
+            player.sendMessage(CC.translate(Locale.KIT_DOES_NOT_EXIST.getStringPath()).replace("{kit}", name));
             return;
         }
 
@@ -40,6 +39,6 @@ public class KitSetInvCommand extends BaseCommand {
         kitRepository.getKit(name).setArmor(player.getInventory().getArmorContents());
         kitRepository.saveKit(name);
 
-        player.sendMessage(CC.translate("&aKit " + name + " inventory has been set."));
+        player.sendMessage(CC.translate(Locale.KIT_INVENTORY_SET.getStringPath()).replace("{kit}", name));
     }
 }

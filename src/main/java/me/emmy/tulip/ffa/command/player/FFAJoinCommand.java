@@ -12,7 +12,7 @@ import me.emmy.tulip.utils.CC;
 import org.bukkit.entity.Player;
 
 /**
- * @author Emmy
+ * @author Remi
  * @project Tulip
  * @date 5/27/2024
  */

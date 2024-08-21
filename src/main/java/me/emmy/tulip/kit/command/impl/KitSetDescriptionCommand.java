@@ -1,10 +1,11 @@
 package me.emmy.tulip.kit.command.impl;
 
 import me.emmy.tulip.Tulip;
-import me.emmy.tulip.utils.CC;
 import me.emmy.tulip.api.command.BaseCommand;
 import me.emmy.tulip.api.command.CommandArgs;
 import me.emmy.tulip.api.command.annotation.Command;
+import me.emmy.tulip.locale.Locale;
+import me.emmy.tulip.utils.CC;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;
@@ -30,13 +31,13 @@ public class KitSetDescriptionCommand extends BaseCommand {
         String description = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
 
         if (Tulip.getInstance().getKitRepository().getKit(name) == null) {
-            player.sendMessage(CC.translate("&cA kit with that name does not exist."));
+            player.sendMessage(CC.translate(Locale.KIT_DOES_NOT_EXIST.getStringPath()).replace("{kit}", name));
             return;
         }
 
         Tulip.getInstance().getKitRepository().getKit(name).setDescription(description);
         Tulip.getInstance().getKitRepository().saveKit(name);
 
-        player.sendMessage(CC.translate("&aKit " + name + " description has been set."));
+        player.sendMessage(CC.translate(Locale.KIT_DESCRIPTION_SET.getStringPath()).replace("{kit}", name));
     }
 }

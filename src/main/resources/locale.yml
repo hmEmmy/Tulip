@@ -4,3 +4,31 @@ welcome-message:
   - ""
   - "&7>> &r&fTo join a game, &dright click &fwith your &dsword&f."
   - ""
+
+spawn:
+  set: "&aSuccessfully set the &bspawn &alocation."
+  teleported: "&aTeleported you to the &bspawn &alocation."
+
+arena:
+  extend-info-command: false # If true, the "arena info" command will additionally show the arena's yaw and pitch values.
+  already-exists: "&cAn arena called &b{arena} &calready exists."
+  does-not-exist: "&cAn arena called &b{arena} &cdoes not exist."
+  created: "&aAn arena with the name &b{arena} &ahas been created."
+  deleted: "&aArena &b{arena} &ahas been deleted."
+  center-set: "&aThe center of &b{arena} &ahas been set."
+  safe-pos-set: "&aThe safe position &b{pos} &aof &b{arena} &ahas been set."
+  spawn-set: "&aSpawn set for arena &b{arena}&a."
+  center-not-set: "&cThe center of &b{arena} &cis not set."
+
+kit:
+  extend-info-command: true # If true, the "kit info" command will additionally show you the contents of the kit.
+  default-description: "&eDescription of the &d{kit} &ekit." # When creating a kit, this will be the default description.
+  already-exists: "&cA kit called &b{kit} &calready exists."
+  does-not-exist: "&cA kit called &b{kit} &cdoes not exist."
+  created: "&aA kit with the name &b{kit} &ahas been created."
+  deleted: "&aKit &b{kit} &ahas been deleted."
+  inventory-given: "&aYou've been given the &b{kit} &ainventory."
+  description-set: "&aThe description of &b{kit} &ahas been set."
+  icon-set: "&aThe icon of &b{kit} &ahas been set to &b{icon}&a."
+  inventory-set: "&aThe inventory of &b{kit} &ahas been set."
+  toggled: "&aThe kit &b{kit} &ahas been &b{status}&a."

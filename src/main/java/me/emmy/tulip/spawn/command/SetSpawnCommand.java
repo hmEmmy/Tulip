@@ -1,6 +1,7 @@
 package me.emmy.tulip.spawn.command;
 
 import me.emmy.tulip.Tulip;
+import me.emmy.tulip.locale.Locale;
 import me.emmy.tulip.utils.CC;
 import me.emmy.tulip.api.command.BaseCommand;
 import me.emmy.tulip.api.command.CommandArgs;
@@ -19,6 +20,6 @@ public class SetSpawnCommand extends BaseCommand {
         Player player = command.getPlayer();
 
         Tulip.getInstance().getSpawnHandler().setSpawn(player.getLocation());
-        player.sendMessage(CC.translate("&aYou have set the spawn location."));
+        player.sendMessage(CC.translate(Locale.SPAWN_SET.getStringPath()));
     }
 }

@@ -49,7 +49,7 @@ public class KitRepository {
                 "&aIcon Data: &d" + iconData,
                 ""
             );
-            debugMessage.forEach(msg -> Bukkit.getConsoleSender().sendMessage(CC.translate(msg)));
+            //debugMessage.forEach(msg -> Bukkit.getConsoleSender().sendMessage(CC.translate(msg)));
 
             Kit kit = new Kit(
                     name,
@@ -84,7 +84,7 @@ public class KitRepository {
         File file = ConfigHandler.getInstance().getConfigFile("storage/kits.yml");
         ConfigHandler.getInstance().saveConfig(file, config);
 
-        Bukkit.getConsoleSender().sendMessage(CC.translate("&aSaved: &d" + kits.size() + " kits"));
+        //Bukkit.getConsoleSender().sendMessage(CC.translate("&aSaved: &d" + kits.size() + " kits"));
     }
 
     /**
@@ -147,6 +147,7 @@ public class KitRepository {
     public void createKit(String name, String description, ItemStack[] items, ItemStack[] armor, Material icon, int iconData, boolean enabled) {
         Kit kit = new Kit(name, description, items, armor, icon, iconData, enabled);
         kits.add(kit);
+        saveKit(kit);
     }
 
     /**

@@ -9,7 +9,7 @@ import me.emmy.tulip.api.command.annotation.Command;
 import org.bukkit.entity.Player;
 
 /**
- * @author Emmy
+ * @author Remi
  * @project Tulip
  * @date 5/27/2024
  */

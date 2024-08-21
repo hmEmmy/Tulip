@@ -1,6 +1,7 @@
 package me.emmy.tulip.arena.command.impl;
 
 import me.emmy.tulip.Tulip;
+import me.emmy.tulip.locale.Locale;
 import me.emmy.tulip.utils.CC;
 import me.emmy.tulip.api.command.BaseCommand;
 import me.emmy.tulip.api.command.CommandArgs;
@@ -27,7 +28,7 @@ public class ArenaSetSafePosCommand extends BaseCommand {
         String name = args[0];
 
         if (Tulip.getInstance().getArenaRepository().getArena(name) == null) {
-            player.sendMessage(CC.translate("&cAn arena with that name does not exist!"));
+            player.sendMessage(CC.translate(Locale.ARENA_DOES_NOT_EXIST.getStringPath()).replace("{arena}", name));
             return;
         }
 
@@ -45,13 +46,13 @@ public class ArenaSetSafePosCommand extends BaseCommand {
 
         if (args[1].equals("1")) {
             Tulip.getInstance().getArenaRepository().getArena(name).setSafePos1(player.getLocation());
-            player.sendMessage(CC.translate("&aSafe position 1 set for arena " + name + "!"));
+            player.sendMessage(CC.translate(Locale.ARENA_SAFE_POS_SET.getStringPath()).replace("{arena}", name).replace("{pos}", "1"));
             return;
         }
 
         if (args[1].equals("2")) {
             Tulip.getInstance().getArenaRepository().getArena(name).setSafePos2(player.getLocation());
-            player.sendMessage(CC.translate("&aSafe position 2 set for arena " + name + "!"));
+            player.sendMessage(CC.translate(Locale.ARENA_SAFE_POS_SET.getStringPath()).replace("{arena}", name).replace("{pos}", "2"));
             return;
         }
 

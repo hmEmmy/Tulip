@@ -32,6 +32,13 @@ public class ScoreboardVisualizer implements AssembleAdapter {
         Profile profile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
         DecimalFormat decimalFormat = new DecimalFormat("0.0");
 
+        if (profile == null) {
+            for (String line : ConfigHandler.getInstance().getSettingsConfig().getStringList("scoreboard.failed")) {
+                list.add(CC.translate(line).replace("{sidebar}", "&7&m------------------"));
+            }
+            return list;
+        }
+
         if (profile.getSettings().isShowScoreboard()) {
             if (profile.getState() == EnumProfileState.FFA) {
                 for (String line : ConfigHandler.getInstance().getSettingsConfig().getStringList("scoreboard.lines.in-game")) {

@@ -1,6 +1,7 @@
 package me.emmy.tulip.arena.command.impl;
 
 import me.emmy.tulip.Tulip;
+import me.emmy.tulip.locale.Locale;
 import me.emmy.tulip.utils.CC;
 import me.emmy.tulip.api.command.BaseCommand;
 import me.emmy.tulip.api.command.CommandArgs;
@@ -27,11 +28,11 @@ public class ArenaDeleteCommand extends BaseCommand {
         String arenaName = args[0];
 
         if (Tulip.getInstance().getArenaRepository().getArena(arenaName) == null) {
-            player.sendMessage(CC.translate("&cAn arena with that name does not exist!"));
+            player.sendMessage(CC.translate(Locale.ARENA_DOES_NOT_EXIST.getStringPath()).replace("{arena}", arenaName));
             return;
         }
 
         Tulip.getInstance().getArenaRepository().deleteArena(arenaName);
-        player.sendMessage(CC.translate("&cArena &b" + arenaName + " &chas been deleted!"));
+        player.sendMessage(CC.translate(Locale.ARENA_DELETED.getStringPath()).replace("{arena}", arenaName));
     }
 }

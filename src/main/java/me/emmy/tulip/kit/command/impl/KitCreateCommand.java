@@ -1,7 +1,7 @@
 package me.emmy.tulip.kit.command.impl;
 
 import me.emmy.tulip.Tulip;
-import me.emmy.tulip.kit.Kit;
+import me.emmy.tulip.locale.Locale;
 import me.emmy.tulip.utils.CC;
 import me.emmy.tulip.api.command.BaseCommand;
 import me.emmy.tulip.api.command.CommandArgs;
@@ -30,17 +30,19 @@ public class KitCreateCommand extends BaseCommand {
         String name = args[0];
 
         if (Tulip.getInstance().getKitRepository().getKit(name) != null) {
-            player.sendMessage(CC.translate("&cA kit with that name already exists."));
+            player.sendMessage(CC.translate(Locale.KIT_ALREADY_EXISTS.getStringPath()).replace("{kit}", name));
             return;
         }
 
         ItemStack[] items = player.getInventory().getContents();
         ItemStack[] armor = player.getInventory().getArmorContents();
 
-        Tulip.getInstance().getKitRepository().createKit(name, "&eDescription of the &d" + name + " &ekit", items, armor, Material.DIAMOND_AXE, 0, true);
+        String defaultDescription = Locale.KIT_DEFAULT_DESCRIPTION.getStringPath().replace("{kit}", name);
+
+        Tulip.getInstance().getKitRepository().createKit(name, defaultDescription, items, armor, Material.DIAMOND_AXE, 0, false);
         Tulip.getInstance().getKitRepository().saveKit(name);
 
-        player.sendMessage(CC.translate("&aKit &b" + name + " &ahas been created."));
+        player.sendMessage(CC.translate(Locale.KIT_CREATED.getStringPath()).replace("{kit}", name));
         player.sendMessage(CC.translate(" &7TIP: Your current inventory will be set as the kit's inventory content. You can change it by using &b/kit setinv " + name + "&7&o."));
     }
 }
