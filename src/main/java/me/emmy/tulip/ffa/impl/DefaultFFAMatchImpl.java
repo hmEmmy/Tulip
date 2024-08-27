@@ -42,6 +42,12 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
      */
     @Override
     public void join(Player player) {
+        if (getPlayers().size() >= getMaxPlayers()) {
+            player.sendMessage(CC.translate("&cThis FFA match is full. " + getMaxPlayers() + " players are already in the match."));
+            return;
+        }
+
+
         List<String> welcomer = new ArrayList<>();
         welcomer.add("");
         welcomer.add("&e&lPlaying FFA");
@@ -52,12 +58,6 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
 
         welcomer.forEach(message -> player.sendMessage(CC.translate(message)));
 
-        if (getPlayers().size() >= getMaxPlayers()) {
-            player.sendMessage(CC.translate("&cThis FFA match is full. " + getMaxPlayers() + " players are already in the match."));
-            return;
-        }
-
-        //getPlayers().forEach(online -> online.sendMessage(CC.translate("&a" + player.getName() + " has joined the FFA match.")));
         getPlayers().add(player);
         setupPlayer(player);
     }
