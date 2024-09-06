@@ -54,7 +54,7 @@ public abstract class AbstractFFAMatch {
      *
      * @param message The message
      */
-    public void broadcatMessage(String message) {
+    public void broadcastMessage(String message) {
         players.forEach(player -> player.sendMessage(message));
     }
 }
