@@ -20,6 +20,7 @@ import org.bukkit.entity.Player;
  * @date 5/27/2024
  */
 public class DefaultFFAMatchImpl extends AbstractFFAMatch {
+
     /**
      * Constructor for the DefaultFFAMatchImpl class
      *
@@ -96,12 +97,6 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
         Kit kit = getKit();
         player.getInventory().setArmorContents(kit.getArmor());
         player.getInventory().setContents(profile.getKitLayout().getLayout(kit.getName()) == null ? kit.getItems() : profile.getKitLayout().getLayout(kit.getName()));
-
-        if (profile.getKitLayout().getLayout(kit.getName()) == null) {
-            player.sendMessage(CC.translate(ConfigHandler.getInstance().getLocaleConfig().getString("game.given-default-layout")));
-        } else {
-            player.sendMessage(CC.translate(ConfigHandler.getInstance().getLocaleConfig().getString("game.given-saved-layout")));
-        }
     }
 
     /**
@@ -121,14 +116,9 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
 
             Kit kit = getKit();
             player.getInventory().clear();
-            player.getInventory().setArmorContents(kit.getArmor());
+            player.getInventory().setHeldItemSlot(0);
             player.getInventory().setContents(profile.getKitLayout().getLayout(kit.getName()) == null ? kit.getItems() : profile.getKitLayout().getLayout(kit.getName()));
-
-            if (profile.getKitLayout().getLayout(kit.getName()) == null) {
-                player.sendMessage(CC.translate(ConfigHandler.getInstance().getLocaleConfig().getString("game.given-default-layout")));
-            } else {
-                player.sendMessage(CC.translate(ConfigHandler.getInstance().getLocaleConfig().getString("game.given-saved-layout")));
-            }
+            player.getInventory().setArmorContents(kit.getArmor());
             player.updateInventory();
         }, 1L);
     }

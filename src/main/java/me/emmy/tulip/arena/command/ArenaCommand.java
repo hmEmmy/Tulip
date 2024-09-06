@@ -24,7 +24,7 @@ public class ArenaCommand extends BaseCommand {
         player.sendMessage(CC.translate("&7- &d/arena info &7<name>"));
         player.sendMessage(CC.translate("&7- &d/arena list"));
         player.sendMessage(CC.translate("&7- &d/arena setcenter &7<name>"));
-        player.sendMessage(CC.translate("&7- &d/arena setsafpos &7<name> &7<pos>"));
+        player.sendMessage(CC.translate("&7- &d/arena setsafepos &7<name> &7<pos>"));
         player.sendMessage(CC.translate("&7- &d/arena setspawn &7<name>"));
         player.sendMessage(CC.translate("&7- &d/arena teleport &7<name>"));
         player.sendMessage("");

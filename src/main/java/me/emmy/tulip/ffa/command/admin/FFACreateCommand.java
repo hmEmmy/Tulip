@@ -48,7 +48,7 @@ public class FFACreateCommand extends BaseCommand {
             return;
         }
 
-        if (!Tulip.getInstance().getFfaRepository().getFFAMatch(kitName).getKit().isEnabled()) {
+        if (!Tulip.getInstance().getKitRepository().getKit(kitName).isEnabled()) {
             player.sendMessage(CC.translate("&cThe kit " + kitName + " is disabled."));
             return;
         }

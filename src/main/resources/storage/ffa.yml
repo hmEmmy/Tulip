@@ -8,3 +8,6 @@ ffa:
   Soup:
     arena: test
     maxPlayers: 50
+  FistFight:
+    arena: test
+    maxPlayers: 50

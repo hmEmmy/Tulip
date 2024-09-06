@@ -30,6 +30,7 @@ public class MongoProfileHandler implements IProfile {
     public void loadProfile(Profile profile) {
         Document document = Tulip.getInstance().getProfileRepository().getCollection().find(Filters.eq("uuid", profile.getUuid().toString())).first();
         if (document == null) {
+            assignDefaultKitLayout(profile);
             this.saveProfile(profile);
             return;
         }
@@ -80,6 +81,19 @@ public class MongoProfileHandler implements IProfile {
                     profile.getKitLayout().setLayout(kitName, items);
                 }
             }
+        } else {
+            assignDefaultKitLayout(profile);
+        }
+    }
+
+    /**
+     * Assign the default kit layout
+     *
+     * @param profile the profile to assign the default kit layout to
+     */
+    private void assignDefaultKitLayout(Profile profile) {
+        for (Kit kit : Tulip.getInstance().getKitRepository().getKits()) {
+            profile.getKitLayout().setLayout(kit.getName(), kit.getItems());
         }
     }
 

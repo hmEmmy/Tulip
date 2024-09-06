@@ -34,8 +34,6 @@ kit:
   toggled: "&aThe kit &b{kit} &ahas been &b{status}&a."
 
 game:
-  given-default-layout: "&aYou've been given the default kit layout because you haven't configured one yet."
-  given-saved-layout: "&aYou've been given your custom kit layout."
   is-full: "&cThere are already {max-players} players in the game."
   killed:
     no-killer: "&d{player} &ewas killed."

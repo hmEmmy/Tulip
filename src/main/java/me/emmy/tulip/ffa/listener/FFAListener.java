@@ -7,6 +7,7 @@ import me.emmy.tulip.ffa.safezone.FFASpawnHandler;
 import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.profile.enums.EnumProfileState;
 import me.emmy.tulip.utils.CC;
+import me.emmy.tulip.utils.Logger;
 import me.emmy.tulip.utils.PlayerUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -20,6 +21,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
@@ -243,6 +245,23 @@ public class FFAListener implements Listener {
                 });
 
                 cooldown.resetCooldown();
+            }
+        }
+    }
+
+    @EventHandler
+    public void onEntityDamage(EntityDamageEvent event) {
+        if (event.getEntity() instanceof Player) {
+            Player player = (Player) event.getEntity();
+            Profile profile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
+            FFASpawnHandler ffaSpawnHandler = Tulip.getInstance().getFfaSpawnHandler();
+
+            if (profile.getState() == EnumProfileState.FFA) {
+                if (event.getCause() == EntityDamageEvent.DamageCause.FALL) {
+                    if (ffaSpawnHandler.getCuboid().isIn(player)) {
+                        event.setCancelled(true);
+                    }
+                }
             }
         }
     }

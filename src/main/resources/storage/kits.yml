@@ -313,3 +313,66 @@ kits:
     icon: MUSHROOM_SOUP
     icondata: 0
     enabled: true
+  FistFight:
+    description: §eDescription of the §dFistFight §ekit.
+    items:
+      - ==: org.bukkit.inventory.ItemStack
+        type: STICK
+      - ==: org.bukkit.inventory.ItemStack
+        type: FISHING_ROD
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - ==: org.bukkit.inventory.ItemStack
+        type: COOKED_BEEF
+        amount: 64
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+    armor:
+      - ==: org.bukkit.inventory.ItemStack
+        type: AIR
+        damage: -1
+        amount: 0
+      - ==: org.bukkit.inventory.ItemStack
+        type: AIR
+        damage: -1
+        amount: 0
+      - ==: org.bukkit.inventory.ItemStack
+        type: AIR
+        damage: -1
+        amount: 0
+      - ==: org.bukkit.inventory.ItemStack
+        type: AIR
+        damage: -1
+        amount: 0
+    icon: COOKED_BEEF
+    icondata: 0
+    enabled: true
