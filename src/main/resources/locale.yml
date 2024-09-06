@@ -32,3 +32,25 @@ kit:
   icon-set: "&aThe icon of &b{kit} &ahas been set to &b{icon}&a."
   inventory-set: "&aThe inventory of &b{kit} &ahas been set."
   toggled: "&aThe kit &b{kit} &ahas been &b{status}&a."
+
+game:
+  given-default-layout: "&aYou've been given the default kit layout because you haven't configured one yet."
+  given-saved-layout: "&aYou've been given your custom kit layout."
+  is-full: "&cThere are already {max-players} players in the game."
+  killed:
+    no-killer: "&d{player} &ewas killed."
+    with-killer: "&d{player} &ewas killed by &d{killer}&e."
+  left: "&aYou've left the game."
+  join-message:
+    - ""
+    - "&e&lPlaying FFA"
+    - " &e&l● &eKit: &d{kit}"
+    - " &e&l● &eArena: &d{arena}"
+    - " &e&l● &eTo leave, do /leaveffa."
+    - ""
+  killstreak:
+    interval: 5 #If the value is 5, every 5 kills it will broadcast the message.
+    broadcast:
+      - ""
+      - "&d&l{player} &e&lis on a &d&l{streak} Kill Streak&e&l!"
+      - ""

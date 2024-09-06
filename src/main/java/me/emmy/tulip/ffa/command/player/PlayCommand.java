@@ -1,4 +1,4 @@
-package me.emmy.tulip.ffa.command.admin;
+package me.emmy.tulip.ffa.command.player;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.ffa.menu.FFAMenu;

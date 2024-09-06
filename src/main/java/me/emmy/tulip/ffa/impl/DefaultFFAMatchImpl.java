@@ -2,6 +2,7 @@ package me.emmy.tulip.ffa.impl;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.arena.Arena;
+import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.ffa.AbstractFFAMatch;
 import me.emmy.tulip.hotbar.HotbarUtility;
 import me.emmy.tulip.kit.Kit;
@@ -12,10 +13,6 @@ import me.emmy.tulip.utils.CC;
 import me.emmy.tulip.utils.PlayerUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * @author Emmy
@@ -43,19 +40,16 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
     @Override
     public void join(Player player) {
         if (getPlayers().size() >= getMaxPlayers()) {
-            player.sendMessage(CC.translate("&cThis FFA match is full. " + getMaxPlayers() + " players are already in the match."));
+            player.sendMessage(CC.translate(ConfigHandler.getInstance().getLocaleConfig().getString("game.is-full").replace("{max-players}", String.valueOf(getMaxPlayers()))));
             return;
         }
 
-        List<String> welcomer = new ArrayList<>();
-        welcomer.add("");
-        welcomer.add("&e&lPlaying FFA");
-        welcomer.add(" &e&l● &eKit: &d" + getKit().getName());
-        welcomer.add(" &e&l● &eArena: &d" + getArena().getName());
-        welcomer.add(" &e&l● &eTo leave, do /leaveffa.");
-        welcomer.add("");
-
-        welcomer.forEach(message -> player.sendMessage(CC.translate(message)));
+        for (String welcomer : ConfigHandler.getInstance().getLocaleConfig().getStringList("game.join-message")) {
+            player.sendMessage(CC.translate(welcomer)
+                    .replace("{kit}", getKit().getName())
+                    .replace("{arena}", getArena().getName())
+            );
+        }
 
         getPlayers().add(player);
         setupPlayer(player);
@@ -70,7 +64,7 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
     public void leave(Player player) {
         getPlayers().remove(player);
 
-        player.sendMessage(CC.translate("&cYou've left the FFA arena."));
+        player.sendMessage(CC.translate(ConfigHandler.getInstance().getLocaleConfig().getString("game.left")));
 
         Profile profile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
         profile.setState(EnumProfileState.SPAWN);
@@ -104,9 +98,9 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
         player.getInventory().setContents(profile.getKitLayout().getLayout(kit.getName()) == null ? kit.getItems() : profile.getKitLayout().getLayout(kit.getName()));
 
         if (profile.getKitLayout().getLayout(kit.getName()) == null) {
-            player.sendMessage(CC.translate("&aGiving you the default kit layout."));
+            player.sendMessage(CC.translate(ConfigHandler.getInstance().getLocaleConfig().getString("game.given-default-layout")));
         } else {
-            player.sendMessage(CC.translate("&aGiving you the saved kit layout."));
+            player.sendMessage(CC.translate(ConfigHandler.getInstance().getLocaleConfig().getString("game.given-saved-layout")));
         }
     }
 
@@ -131,9 +125,9 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
             player.getInventory().setContents(profile.getKitLayout().getLayout(kit.getName()) == null ? kit.getItems() : profile.getKitLayout().getLayout(kit.getName()));
 
             if (profile.getKitLayout().getLayout(kit.getName()) == null) {
-                player.sendMessage(CC.translate("&aGiving you the default kit layout."));
+                player.sendMessage(CC.translate(ConfigHandler.getInstance().getLocaleConfig().getString("game.given-default-layout")));
             } else {
-                player.sendMessage(CC.translate("&aGiving you the saved kit layout."));
+                player.sendMessage(CC.translate(ConfigHandler.getInstance().getLocaleConfig().getString("game.given-saved-layout")));
             }
             player.updateInventory();
         }, 1L);
@@ -151,7 +145,7 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
             Profile playerProfile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
             playerProfile.getStats().incrementKitDeaths(getKit());
 
-            getPlayers().forEach(online -> online.sendMessage(CC.translate("&d" + player.getName() + " &ewas killed.")));
+            getPlayers().forEach(online -> online.sendMessage(CC.translate(ConfigHandler.getInstance().getLocaleConfig().getString("game.killed.no-killer").replace("{player}", player.getName()))));
             handleRespawn(player);
             return;
         }
@@ -164,9 +158,9 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
         }
 
         KillStreakData.incrementKillstreak(killer.getName());
-        alertEveryFiveKills(killer);
+        broadcastKillStreak(killer);
 
-        getPlayers().forEach(online -> online.sendMessage(CC.translate("&d" + player.getName() + " &ewas killed by &d" + killer.getName() + "&e.")));
+        getPlayers().forEach(online -> online.sendMessage(CC.translate(ConfigHandler.getInstance().getLocaleConfig().getString("game.killed.with-killer").replace("{player}", player.getName()).replace("{killer}", killer.getName()))));
         handleRespawn(player);
     }
 
@@ -175,13 +169,11 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
      *
      * @param killer The killer
      */
-    private void alertEveryFiveKills(Player killer) {
-        if (KillStreakData.getCurrentStreak(killer) % 5 == 0) {
-            Arrays.asList(
-                    "",
-                    "&d&l" + killer.getName() + " &e&lis on a &d&l" + KillStreakData.getCurrentStreak(killer) + " Kill Streak&e&l!",
-                    ""
-            ).forEach(message -> getPlayers().forEach(players -> players.sendMessage(CC.translate(message))));
+    private void broadcastKillStreak(Player killer) {
+        if (KillStreakData.getCurrentStreak(killer) % ConfigHandler.getInstance().getLocaleConfig().getInt("game.killstreak.interval") == 0) {
+            for (String message : ConfigHandler.getInstance().getLocaleConfig().getStringList("game.killstreak.broadcast")) {
+                getPlayers().forEach(pl -> pl.sendMessage(CC.translate(message).replace("{player}", killer.getName()).replace("{streak}", String.valueOf(KillStreakData.getCurrentStreak(killer)))));
+            }
         }
     }
 }
