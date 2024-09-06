@@ -47,7 +47,6 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
             return;
         }
 
-
         List<String> welcomer = new ArrayList<>();
         welcomer.add("");
         welcomer.add("&e&lPlaying FFA");
@@ -128,6 +127,7 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
 
             Kit kit = getKit();
             player.getInventory().clear();
+            player.getInventory().setArmorContents(kit.getArmor());
             player.getInventory().setContents(profile.getKitLayout().getLayout(kit.getName()) == null ? kit.getItems() : profile.getKitLayout().getLayout(kit.getName()));
 
             if (profile.getKitLayout().getLayout(kit.getName()) == null) {
