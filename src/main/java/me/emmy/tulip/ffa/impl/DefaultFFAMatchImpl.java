@@ -12,6 +12,7 @@ import me.emmy.tulip.ffa.killstreak.KillStreakData;
 import me.emmy.tulip.util.CC;
 import me.emmy.tulip.util.PlayerUtil;
 import org.bukkit.Bukkit;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 /**
@@ -64,6 +65,8 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
     @Override
     public void leave(Player player) {
         getPlayers().remove(player);
+
+        ((CraftPlayer) player).getHandle().getDataWatcher().watch(9, (byte) 0);
 
         player.sendMessage(CC.translate(ConfigHandler.getInstance().getLocaleConfig().getString("game.left")));
 
