@@ -13,16 +13,19 @@ import org.bukkit.command.CommandSender;
  * @date 27/07/2024 - 17:55
  */
 public class TulipCommand extends BaseCommand {
+    @Command(name = "tulip", inGameOnly = false)
     @Override
-    @Command(name = "tulip", aliases = {"ffa", "ffacore"}, inGameOnly = false)
     public void onCommand(CommandArgs command) {
         CommandSender sender = command.getSender();
 
         sender.sendMessage("");
-        sender.sendMessage(CC.translate("&d&lTulip &7- &fFFA Core made by &d" + Tulip.getInstance().getDescription().getAuthors() + "&f.").replace("[", "").replace("]", ""));
-        sender.sendMessage(CC.translate(" &fVersion: &d" + Tulip.getInstance().getDescription().getVersion()));
-        sender.sendMessage(CC.translate(" &fGithub: &dhttps://github.com/hmEmmy/Tulip"));
-        sender.sendMessage(CC.translate(" &fDiscord: &dhttps://dsc.gg/dulcy"));
+        sender.sendMessage(CC.translate("&d======================================"));
+        sender.sendMessage(CC.translate(" &d&lTULIP FFA CORE"));
+        sender.sendMessage(CC.translate("  &e▢ Author: &d" + Tulip.getInstance().getDescription().getAuthors().get(0)));
+        sender.sendMessage(CC.translate("  &e▢ Version: &d" + Tulip.getInstance().getDescription().getVersion()));
+        sender.sendMessage(CC.translate("  &e▢ Github: &dhttps://github.com/hmEmmy/Tulip"));
+        sender.sendMessage(CC.translate("  &e▢ Discord: &dhttps://discord.gg/eT4B65k5E4"));
+        sender.sendMessage(CC.translate("&d======================================"));
         sender.sendMessage("");
     }
 }

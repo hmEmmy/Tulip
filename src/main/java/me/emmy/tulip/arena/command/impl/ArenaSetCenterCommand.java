@@ -22,7 +22,7 @@ public class ArenaSetCenterCommand extends BaseCommand {
         String[] args = command.getArgs();
 
         if (command.length() < 1) {
-            player.sendMessage(CC.translate("&cUsage: /arena setcenter <name>"));
+            player.sendMessage(CC.translate("&6Usage: &e/arena setcenter &b<name>"));
             return;
         }
 

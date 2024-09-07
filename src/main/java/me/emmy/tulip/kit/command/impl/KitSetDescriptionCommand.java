@@ -23,7 +23,7 @@ public class KitSetDescriptionCommand extends BaseCommand {
         String[] args = command.getArgs();
 
         if (args.length < 2) {
-            player.sendMessage(CC.translate("&cUsage: /kit setdescription (name) (description)"));
+            player.sendMessage(CC.translate("&6Usage: &e/kit setdescription &b<name> &b<description>"));
             return;
         }
 

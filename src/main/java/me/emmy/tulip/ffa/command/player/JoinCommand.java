@@ -1,4 +1,4 @@
-package me.emmy.tulip.ffa.command.player;
+/*package me.emmy.tulip.ffa.command.player;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.ffa.FFARepository;
@@ -11,12 +11,11 @@ import me.emmy.tulip.profile.enums.EnumProfileState;
 import me.emmy.tulip.utils.CC;
 import org.bukkit.entity.Player;
 
-/**
- * @author Remi
- * @project Tulip
- * @date 5/27/2024
- */
-public class FFAJoinCommand extends BaseCommand {
+import java.util.ArrayList;
+import java.util.List;
+
+public class JoinCommand extends BaseCommand {
+
     @Command(name = "ffa.join")
     @Override
     public void onCommand(CommandArgs command) {
@@ -24,7 +23,7 @@ public class FFAJoinCommand extends BaseCommand {
         String[] args = command.getArgs();
 
         if (args.length != 1) {
-            player.sendMessage("Usage: /ffa join <kit>");
+            player.sendMessage(CC.translate("&6Usage: &e/ffa join &b<kit>"));
             return;
         }
 
@@ -50,4 +49,4 @@ public class FFAJoinCommand extends BaseCommand {
                 .ifPresent(match -> match.join(player));
 
     }
-}
+}*/

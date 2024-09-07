@@ -21,7 +21,7 @@ public class ArenaSetSafePosCommand extends BaseCommand {
         String[] args = command.getArgs();
 
         if (args.length < 2) {
-            player.sendMessage(CC.translate("&cUsage: /arena setsafepos (name) (1/2)"));
+            player.sendMessage(CC.translate("&6Usage: &e/arena setsafepos &b<name> &b<1/2>"));
             return;
         }
 

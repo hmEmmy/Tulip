@@ -21,7 +21,7 @@ public class KitSetIconCommand extends BaseCommand {
         String[] args = command.getArgs();
 
         if (args.length < 1) {
-            player.sendMessage(CC.translate("&cUsage: /kit seticon (name)"));
+            player.sendMessage(CC.translate("&6Usage: &e/kit seticon &b<name>"));
             return;
         }
 

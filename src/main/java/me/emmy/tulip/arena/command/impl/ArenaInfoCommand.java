@@ -23,7 +23,7 @@ public class ArenaInfoCommand extends BaseCommand {
         String[] args = command.getArgs();
 
         if (command.length() < 1) {
-            player.sendMessage(CC.translate("&cUsage: /arena info <name>"));
+            player.sendMessage(CC.translate("&6Usage: &e/arena info &b<name>"));
             return;
         }
 

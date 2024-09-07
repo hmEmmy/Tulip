@@ -37,7 +37,7 @@ public enum HotbarItemBuilder {
      * Loads the hotbar items from the configuration file.
      */
     private static void loadConfig() {
-        ConfigurationSection section = ConfigHandler.getInstance().getConfig("settings.yml").getConfigurationSection("hotbar-items");
+        ConfigurationSection section = ConfigHandler.getInstance().getHotbarConfig().getConfigurationSection("hotbar-items");
 
         if (section != null) {
             for (String key : section.getKeys(false)) {

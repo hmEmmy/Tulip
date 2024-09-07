@@ -22,7 +22,7 @@ public class ArenaSetSpawnCommand extends BaseCommand {
         String[] args = command.getArgs();
 
         if (command.length() < 1) {
-            player.sendMessage(CC.translate("&cUsage: /arena setspawn <name>"));
+            player.sendMessage(CC.translate("&6Usage: &e/arena setspawn &b<name>"));
             return;
         }
 

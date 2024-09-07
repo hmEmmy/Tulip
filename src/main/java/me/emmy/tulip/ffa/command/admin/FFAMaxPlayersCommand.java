@@ -23,7 +23,7 @@ public class FFAMaxPlayersCommand extends BaseCommand {
         String[] args = command.getArgs();
 
         if (args.length != 2) {
-            player.sendMessage(CC.translate("&cUsage: /ffa maxplayers <kit> <maxPlayers>"));
+            player.sendMessage(CC.translate("&6Usage: &e/ffa maxplayers &b<kit> <maxPlayers>"));
             return;
         }
 

@@ -21,7 +21,7 @@ public class KitGetInvCommand extends BaseCommand {
         String[] args = command.getArgs();
 
         if (args.length < 1) {
-            player.sendMessage(CC.translate("&cUsage: /kit getinv (name)"));
+            player.sendMessage(CC.translate("&6Usage: &e/kit getinv &b<name>"));
             return;
         }
 

@@ -22,7 +22,7 @@ public class KitSetInvCommand extends BaseCommand {
         String[] args = command.getArgs();
 
         if (args.length < 1) {
-            player.sendMessage(CC.translate("&cUsage: /kit setinv (name)"));
+            player.sendMessage(CC.translate("&6Usage: &e/kit setinv &b<name>"));
             return;
         }
 

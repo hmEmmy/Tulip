@@ -30,7 +30,7 @@ public class StatsMenu extends Menu {
 
     @Override
     public String getTitle(Player player) {
-        return CC.translate(offlineTargetPlayer.getName() + "'s Stats");
+        return CC.translate("&e&l" + offlineTargetPlayer.getName() + "'s Stats");
     }
 
     @Override

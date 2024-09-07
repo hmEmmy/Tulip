@@ -18,15 +18,17 @@ public class KitCommand extends BaseCommand {
         Player player = command.getPlayer();
 
         player.sendMessage("");
-        player.sendMessage(CC.translate("&dKit Creation Help"));
-        player.sendMessage(CC.translate("&7- &d/kit create &7<name>"));
-        player.sendMessage(CC.translate("&7- &d/kit delete &7<name>"));
-        player.sendMessage(CC.translate("&7- &d/kit info &7<name>"));
-        player.sendMessage(CC.translate("&7- &d/kit list"));
-        player.sendMessage(CC.translate("&7- &d/kit setinv &7<name>"));
-        player.sendMessage(CC.translate("&7- &d/kit getinv &7<name>"));
-        player.sendMessage(CC.translate("&7- &d/kit seticon &7<name>"));
-        player.sendMessage(CC.translate("&7- &d/kit toggle &7<name>"));
+        player.sendMessage(CC.translate("&d======================================"));
+        player.sendMessage(CC.translate(" &d&lTULIP &7- &d&lKIT CREATION"));
+        player.sendMessage(CC.translate("  &e▢ /kit create &d<name>"));
+        player.sendMessage(CC.translate("  &e▢ /kit delete &d<name>"));
+        player.sendMessage(CC.translate("  &e▢ /kit info &d<name>"));
+        player.sendMessage(CC.translate("  &e▢ /kit list"));
+        player.sendMessage(CC.translate("  &e▢ /kit setinv &d<name>"));
+        player.sendMessage(CC.translate("  &e▢ /kit getinv &d<name>"));
+        player.sendMessage(CC.translate("  &e▢ /kit seticon &d<name>"));
+        player.sendMessage(CC.translate("  &e▢ /kit toggle &d<name>"));
+        player.sendMessage(CC.translate("&d======================================"));
         player.sendMessage("");
     }
 }

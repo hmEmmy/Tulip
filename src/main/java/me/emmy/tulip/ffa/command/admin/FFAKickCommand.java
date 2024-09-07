@@ -25,7 +25,7 @@ public class FFAKickCommand extends BaseCommand {
         // /ffa kick <player>
 
         if (args.length != 1) {
-            player.sendMessage(CC.translate("&cUsage: /ffa kick <player>"));
+            player.sendMessage(CC.translate("&6Usage: &e/ffa kick &b<player>"));
             return;
         }
 

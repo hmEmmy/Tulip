@@ -13,8 +13,8 @@ import org.bukkit.entity.Player;
  * @project Tulip
  * @date 5/27/2024
  */
-public class FFALeaveCommand extends BaseCommand {
-    @Command(name = "ffa.leave", aliases = "leaveffa")
+public class LeaveCommand extends BaseCommand {
+    @Command(name = "leaveffa")
     @Override
     public void onCommand(CommandArgs command) {
         Player player = command.getPlayer();

@@ -22,7 +22,7 @@ public class ArenaCreateCommand extends BaseCommand {
         String[] args = command.getArgs();
 
         if (command.length() < 1) {
-            player.sendMessage(CC.translate("&cUsage: /arena create <name>"));
+            player.sendMessage(CC.translate("&6Usage: &e/arena create &b<name>"));
             return;
         }
 

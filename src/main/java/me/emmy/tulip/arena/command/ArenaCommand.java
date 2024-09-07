@@ -18,15 +18,17 @@ public class ArenaCommand extends BaseCommand {
         Player player = command.getPlayer();
 
         player.sendMessage("");
-        player.sendMessage(CC.translate("&dArena Creation Help"));
-        player.sendMessage(CC.translate("&7- &d/arena create &7<name>"));
-        player.sendMessage(CC.translate("&7- &d/arena delete &7<name>"));
-        player.sendMessage(CC.translate("&7- &d/arena info &7<name>"));
-        player.sendMessage(CC.translate("&7- &d/arena list"));
-        player.sendMessage(CC.translate("&7- &d/arena setcenter &7<name>"));
-        player.sendMessage(CC.translate("&7- &d/arena setsafepos &7<name> &7<pos>"));
-        player.sendMessage(CC.translate("&7- &d/arena setspawn &7<name>"));
-        player.sendMessage(CC.translate("&7- &d/arena teleport &7<name>"));
+        player.sendMessage(CC.translate("&d======================================"));
+        player.sendMessage(CC.translate(" &d&lTULIP &7- &d&lARENA CREATION"));
+        player.sendMessage(CC.translate("  &e▢ /arena create &d<name>"));
+        player.sendMessage(CC.translate("  &e▢ /arena delete &d<name>"));
+        player.sendMessage(CC.translate("  &e▢ /arena info &d<name>"));
+        player.sendMessage(CC.translate("  &e▢ /arena list"));
+        player.sendMessage(CC.translate("  &e▢ /arena setcenter &d<name>"));
+        player.sendMessage(CC.translate("  &e▢ /arena setsafepos &d<name> &d<pos>"));
+        player.sendMessage(CC.translate("  &e▢ /arena setspawn &d<name>"));
+        player.sendMessage(CC.translate("  &e▢ /arena teleport &d<name>"));
+        player.sendMessage(CC.translate("&d======================================"));
         player.sendMessage("");
     }
 }

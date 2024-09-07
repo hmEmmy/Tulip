@@ -1,0 +1,17 @@
+title: "&e&lSelect a kit"
+rows: 5
+
+glass-border:
+  enabled: true
+  durability: 15 #Data of the glass pane
+
+button:
+  name: "&d&l{kit}"
+  lore:
+    - "&7&o{description}"
+    - ""
+    - "&e&l● &ePlayers: &d{players}/{max-players}"
+    - "&e&l● &eArena: &d{arena}"
+    - "&e&l● &eKit: &d{kit}"
+    - ""
+    - "&eClick to play!"

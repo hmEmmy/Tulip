@@ -94,6 +94,12 @@ public class SettingsMenu extends Menu {
                     player.sendMessage(profile.getSettings().isShowScoreboard() ? CC.translate("&aYou can now see the sidebar.") : CC.translate("&cYou can no longer see the sidebar."));
                     break;
             }
+
+            if (profile.getSettings().isShowScoreboard()) {
+                playSuccess(player);
+            } else {
+                playFail(player);
+            }
         }
     }
 }

@@ -23,7 +23,7 @@ public class FFACreateCommand extends BaseCommand {
         String[] args = command.getArgs();
 
         if (args.length != 3) {
-            player.sendMessage(CC.translate("&cUsage: /ffa create <arena> <kit> <maxPlayers>"));
+            player.sendMessage(CC.translate("&6Usage: &e/ffa create &b<arena> <kit> <maxPlayers>"));
             return;
         }
 
