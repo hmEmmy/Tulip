@@ -1,0 +1,10 @@
+tablist:
+  enabled: true
+  header:
+    - ""
+    - "&eBuy &dRanks &eand &dMore &eat &dstore.tulip.club&e."
+    - ""
+  footer:
+    - ""
+    - "&eYou're playing &deu-ffa &eon &dtulip.club&e."
+    - ""
