@@ -1,11 +1,11 @@
 package me.emmy.tulip.ffa.listener;
 
-import jdk.nashorn.internal.runtime.regexp.joni.Config;
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.cooldown.Cooldown;
 import me.emmy.tulip.cooldown.CooldownRepository;
 import me.emmy.tulip.ffa.safezone.FFASpawnHandler;
+import me.emmy.tulip.task.ClearLagTask;
 import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.profile.enums.EnumProfileState;
 import me.emmy.tulip.util.CC;
@@ -23,6 +23,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
@@ -267,6 +268,13 @@ public class FFAListener implements Listener {
                     }
                 }
             }
+        }
+    }
+
+    @EventHandler
+    public void onArrowShoot(EntityShootBowEvent event) {
+        if (event.getProjectile() instanceof Arrow) {
+            new ClearLagTask().runTaskLater(Tulip.getInstance(), 20L);
         }
     }
 }

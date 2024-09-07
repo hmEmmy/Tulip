@@ -1,4 +1,4 @@
-package me.emmy.tulip.visual.assemble.events;
+package me.emmy.tulip.visual.scoreboard.assemble.events;
 
 import lombok.Getter;
 import lombok.Setter;

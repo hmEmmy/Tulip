@@ -1,4 +1,4 @@
-package me.emmy.tulip.visual;
+package me.emmy.tulip.visual.scoreboard;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.config.ConfigHandler;
@@ -7,7 +7,7 @@ import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.profile.enums.EnumProfileState;
 import me.emmy.tulip.util.BukkitReflection;
 import me.emmy.tulip.util.CC;
-import me.emmy.tulip.visual.assemble.AssembleAdapter;
+import me.emmy.tulip.visual.scoreboard.assemble.AssembleAdapter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -23,7 +23,7 @@ import java.util.List;
 public class ScoreboardVisualizer implements AssembleAdapter {
     @Override
     public String getTitle(Player player) {
-        return CC.translate(ConfigHandler.getInstance().getSettingsConfig().getString("scoreboard.title"));
+        return CC.translate(ConfigHandler.getInstance().getScoreboardConfig().getString("scoreboard.title"));
     }
 
     @Override
@@ -33,7 +33,7 @@ public class ScoreboardVisualizer implements AssembleAdapter {
         DecimalFormat decimalFormat = new DecimalFormat("0.0");
 
         if (profile == null) {
-            for (String line : ConfigHandler.getInstance().getSettingsConfig().getStringList("scoreboard.failed")) {
+            for (String line : ConfigHandler.getInstance().getScoreboardConfig().getStringList("scoreboard.failed")) {
                 list.add(CC.translate(line).replace("{sidebar}", "&7&m------------------"));
             }
             return list;
@@ -41,7 +41,7 @@ public class ScoreboardVisualizer implements AssembleAdapter {
 
         if (profile.getSettings().isShowScoreboard()) {
             if (profile.getState() == EnumProfileState.FFA) {
-                for (String line : ConfigHandler.getInstance().getSettingsConfig().getStringList("scoreboard.lines.in-game")) {
+                for (String line : ConfigHandler.getInstance().getScoreboardConfig().getStringList("scoreboard.lines.in-game")) {
                     list.add(CC.translate(line)
                             .replace("{sidebar}", "&7&m------------------")
                             .replace("{online}", String.valueOf(Bukkit.getOnlinePlayers().size()))
@@ -55,7 +55,7 @@ public class ScoreboardVisualizer implements AssembleAdapter {
                     );
                 }
             } else {
-                for (String line : ConfigHandler.getInstance().getSettingsConfig().getStringList("scoreboard.lines.spawn")) {
+                for (String line : ConfigHandler.getInstance().getScoreboardConfig().getStringList("scoreboard.lines.spawn")) {
                     list.add(CC.translate(line)
                             .replace("{sidebar}", "&7&m------------------")
                             .replace("{online}", String.valueOf(Bukkit.getOnlinePlayers().size()))

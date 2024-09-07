@@ -56,6 +56,11 @@ public class ProfileListener implements Listener {
 
         sendWelcomeMessage(player);
 
+        if (player.isOp()) {
+            player.setAllowFlight(true);
+            player.setFlying(true);
+        }
+
         event.setJoinMessage(null);
     }
 

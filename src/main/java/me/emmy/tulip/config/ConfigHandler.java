@@ -28,15 +28,23 @@ public class ConfigHandler {
     private final FileConfiguration settingsConfig;
     private final FileConfiguration localeConfig;
     private final FileConfiguration hotbarConfig;
+    private final FileConfiguration scoreboardConfig;
+    private final FileConfiguration tablistConfig;
     private final FileConfiguration arenasConfig;
     private final FileConfiguration kitsConfig;
     private final FileConfiguration ffaConfig;
     private final FileConfiguration gameMenuConfig;
 
+    /**
+     * Array of all the config file names
+     */
     private final String[] configFileNames = {
-            "settings.yml", "locale.yml", "hotbar.yml", "storage/arenas.yml", "storage/kits.yml", "storage/ffa.yml", "menus/game-menu.yml"
+            "settings.yml", "locale.yml", "hotbar.yml", "storage/arenas.yml", "storage/kits.yml", "storage/ffa.yml", "menus/game-menu.yml", "visual/scoreboard.yml", "visual/tablist.yml"
     };
 
+    /**
+     * Constructor for the ConfigHandler class
+     */
     public ConfigHandler() {
         for (String fileName : configFileNames) {
             loadConfig(fileName);
@@ -47,12 +55,19 @@ public class ConfigHandler {
         settingsConfig = getConfig("settings.yml");
         localeConfig = getConfig("locale.yml");
         hotbarConfig = getConfig("hotbar.yml");
+        scoreboardConfig = getConfig("visual/scoreboard.yml");
+        tablistConfig = getConfig("visual/tablist.yml");
         arenasConfig = getConfig("storage/arenas.yml");
         kitsConfig = getConfig("storage/kits.yml");
         ffaConfig = getConfig("storage/ffa.yml");
         gameMenuConfig = getConfig("menus/game-menu.yml");
     }
 
+    /**
+     * Load a config file
+     *
+     * @param fileName the name of the file to load
+     */
     private void loadConfig(String fileName) {
         File configFile = new File(plugin.getDataFolder(), fileName);
         configFiles.put(fileName, configFile);
@@ -65,12 +80,18 @@ public class ConfigHandler {
         fileConfigurations.put(fileName, config);
     }
 
+    /**
+     * Reload all the config files
+     */
     public void reloadConfigs() {
         for (String fileName : configFileNames) {
             loadConfig(fileName);
         }
     }
 
+    /**
+     * Save all the config files
+     */
     public void saveConfigs() {
         for (Map.Entry<String, FileConfiguration> entry : fileConfigurations.entrySet()) {
             String fileName = entry.getKey();
@@ -80,6 +101,12 @@ public class ConfigHandler {
         }
     }
 
+    /**
+     * Save a config file
+     *
+     * @param configFile the file to save
+     * @param fileConfiguration the configuration to save
+     */
     public void saveConfig(File configFile, FileConfiguration fileConfiguration) {
         try {
             fileConfiguration.save(configFile);
@@ -89,10 +116,23 @@ public class ConfigHandler {
         }
     }
 
+    /**
+     * Get a config file and load it to apply changes
+     *
+     * @param fileName the name of the file to get
+     * @return the config file
+     */
     public FileConfiguration getConfig(String fileName) {
-        return fileConfigurations.get(fileName);
+        File configFile = new File(Tulip.getInstance().getDataFolder(), fileName);
+        return YamlConfiguration.loadConfiguration(configFile);
     }
 
+    /**
+     * Get a config file from the configFiles map
+     *
+     * @param fileName the name of the file to get
+     * @return the config file
+     */
     public File getConfigFile(String fileName) {
         return configFiles.get(fileName);
     }

@@ -16,9 +16,10 @@ import me.emmy.tulip.profile.ProfileRepository;
 import me.emmy.tulip.spawn.SpawnHandler;
 import me.emmy.tulip.util.CC;
 import me.emmy.tulip.util.ServerUtils;
-import me.emmy.tulip.visual.ScoreboardVisualizer;
-import me.emmy.tulip.visual.assemble.Assemble;
-import me.emmy.tulip.visual.assemble.AssembleStyle;
+import me.emmy.tulip.visual.scoreboard.ScoreboardVisualizer;
+import me.emmy.tulip.visual.scoreboard.assemble.Assemble;
+import me.emmy.tulip.visual.scoreboard.assemble.AssembleStyle;
+import me.emmy.tulip.visual.tablist.task.TablistUpdateTask;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -101,14 +102,23 @@ public class Tulip extends JavaPlugin {
         CC.sendShutdownMessage();
     }
 
+    /**
+     * Load the scoreboard
+     */
     private void loadScoreboard() {
         Assemble assemble = new Assemble(this, new ScoreboardVisualizer());
         assemble.setTicks(2);
         assemble.setAssembleStyle(AssembleStyle.MODERN);
     }
 
+    /**
+     * Run the tasks
+     */
     private void runTasks() {
         new FFASpawnTask(this.ffaSpawnHandler.getCuboid(), this).runTaskTimer(this, 0, 20);
-        //new ArrowCleanupTask().runTaskTimer(this, 0, 6000);
+
+        if (configHandler.getTablistConfig().getBoolean("tablist.enabled")) {
+            new TablistUpdateTask().runTaskTimer(this, 0L, 20L);
+        }
     }
 }

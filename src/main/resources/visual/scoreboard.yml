@@ -1,0 +1,38 @@
+scoreboard:
+  title: "&d&lFree For All"
+  lines:
+    spawn:
+      - "{sidebar}"
+      - "&f&lStats"
+      - " &f&l● &rKills: &d{kills}"
+      - " &f&l● &rDeaths: &d{deaths}"
+      - " &f&l● &rKDR: &d{KDR}"
+      - ""
+      - "&f&lServer"
+      - " &f&l● &rOnline: &d{online}"
+      - ""
+      - "&dtulip.club"
+      - "{sidebar}"
+    in-game:
+      - "{sidebar}"
+      - "&fPlaying FFA:"
+      - " &d{kit}"
+      - ""
+      - " &fKills: &d{kills}"
+      - " &fDeaths: &d{deaths}"
+      - ""
+      - " &fKillstreak: &d{ks}"
+      - " &fPlayers: &d{players}"
+      - ""
+      - "&fYour Ping: &d{ping} ms"
+      - ""
+      - "&dtulip.club"
+      - "{sidebar}"
+    #In case if profile fails to load, this will be displayed to prevent console errors.
+    failed:
+      - "{sidebar}"
+      - "&c&lFailed to load your profile"
+      - "&c&lPlease try relogging."
+      - "&c&lIf the issue persists,"
+      - "&c&lcontact an admin."
+      - "{sidebar}"

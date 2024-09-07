@@ -1,8 +1,8 @@
-package me.emmy.tulip.visual.assemble;
+package me.emmy.tulip.visual.scoreboard.assemble;
 
 import lombok.Getter;
-import me.emmy.tulip.visual.assemble.events.AssembleBoardCreateEvent;
-import me.emmy.tulip.visual.assemble.events.AssembleBoardDestroyEvent;
+import me.emmy.tulip.visual.scoreboard.assemble.events.AssembleBoardCreateEvent;
+import me.emmy.tulip.visual.scoreboard.assemble.events.AssembleBoardDestroyEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
