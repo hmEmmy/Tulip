@@ -1,4 +1,4 @@
-package me.emmy.tulip.visual.scoreboard.assemble;
+package me.emmy.tulip.api.assemble;
 
 import lombok.Setter;
 import org.bukkit.scoreboard.Scoreboard;

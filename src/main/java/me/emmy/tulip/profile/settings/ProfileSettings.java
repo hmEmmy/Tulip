@@ -12,4 +12,5 @@ import lombok.Setter;
 @Setter
 public class ProfileSettings {
     private boolean showScoreboard = true;
+    private boolean showTablist = true;
 }

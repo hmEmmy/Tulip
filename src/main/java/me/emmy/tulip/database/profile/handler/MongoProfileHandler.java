@@ -40,6 +40,7 @@ public class MongoProfileHandler implements IProfile {
 
         Document settingsDocument = (Document) document.get("settings");
         profile.getSettings().setShowScoreboard(settingsDocument.getBoolean("showScoreboard"));
+        profile.getSettings().setShowTablist(settingsDocument.getBoolean("showTablist"));
 
         Document statsDocument = (Document) document.get("stats");
         if (statsDocument != null) {
@@ -110,6 +111,7 @@ public class MongoProfileHandler implements IProfile {
 
         Document settingsDocument = new Document();
         settingsDocument.put("showScoreboard", profile.getSettings().isShowScoreboard());
+        settingsDocument.put("showTablist", profile.getSettings().isShowTablist());
         document.put("settings", settingsDocument);
 
         Document statsDocument = new Document();

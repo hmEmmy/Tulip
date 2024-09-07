@@ -7,7 +7,7 @@ import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.profile.enums.EnumProfileState;
 import me.emmy.tulip.util.BukkitReflection;
 import me.emmy.tulip.util.CC;
-import me.emmy.tulip.visual.scoreboard.assemble.AssembleAdapter;
+import me.emmy.tulip.api.assemble.AssembleAdapter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 

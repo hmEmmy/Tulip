@@ -55,6 +55,27 @@ public class SettingsMenu extends Menu {
                         )
         ));
 
+        buttons.put(11, new SettingsButton(Material.NAME_TAG, "&e&lTablist Visibility", 0,
+                profile.getSettings().isShowTablist() ?
+                        Arrays.asList(
+                                "&7See the tablist.",
+                                "",
+                                " &e&l┃  &aYes",
+                                " &e┃ &7No",
+                                "",
+                                "&eClick to change!"
+                        )
+                        :
+                        Arrays.asList(
+                                "&7See the tablist.",
+                                "",
+                                " &e┃ &7Yes",
+                                " &e&l┃  &cNo",
+                                "",
+                                "&eClick to change!"
+                        )
+        ));
+
         addBorder(buttons, (byte) 15, 4);
 
         return buttons;
@@ -77,6 +98,7 @@ public class SettingsMenu extends Menu {
             return new ItemBuilder(icon)
                     .name(name)
                     .lore(lore)
+                    .hideMeta()
                     .durability(data)
                     .build();
         }
@@ -93,13 +115,13 @@ public class SettingsMenu extends Menu {
                     profile.getSettings().setShowScoreboard(!profile.getSettings().isShowScoreboard());
                     player.sendMessage(profile.getSettings().isShowScoreboard() ? CC.translate("&aYou can now see the sidebar.") : CC.translate("&cYou can no longer see the sidebar."));
                     break;
+                case NAME_TAG:
+                    profile.getSettings().setShowTablist(!profile.getSettings().isShowTablist());
+                    player.sendMessage(profile.getSettings().isShowTablist() ? CC.translate("&aYou can now see the tablist.") : CC.translate("&cYou can no longer see the tablist."));
+                    break;
             }
 
-            if (profile.getSettings().isShowScoreboard()) {
-                playSuccess(player);
-            } else {
-                playFail(player);
-            }
+            playerClickSound(player);
         }
     }
 }

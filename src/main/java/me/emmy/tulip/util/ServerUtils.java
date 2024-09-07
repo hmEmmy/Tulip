@@ -79,7 +79,7 @@ public class ServerUtils {
     public void registerListenersInPackage(String packageName) {
         Reflections reflections = new Reflections(packageName);
         Set<Class<? extends Listener>> classes = reflections.getSubTypesOf(Listener.class);
-        String[] excludedPackages = { "me.emmy.tulip.util", "me.emmy.tulip.visual.scoreboard.assemble" };
+        String[] excludedPackages = { "me.emmy.tulip.util", "me.emmy.tulip.api.assemble" };
 
         for (Class<? extends Listener> clazz : classes) {
             boolean isExcluded = false;

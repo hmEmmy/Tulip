@@ -17,8 +17,8 @@ import me.emmy.tulip.spawn.SpawnHandler;
 import me.emmy.tulip.util.CC;
 import me.emmy.tulip.util.ServerUtils;
 import me.emmy.tulip.visual.scoreboard.ScoreboardVisualizer;
-import me.emmy.tulip.visual.scoreboard.assemble.Assemble;
-import me.emmy.tulip.visual.scoreboard.assemble.AssembleStyle;
+import me.emmy.tulip.api.assemble.Assemble;
+import me.emmy.tulip.api.assemble.AssembleStyle;
 import me.emmy.tulip.visual.tablist.task.TablistUpdateTask;
 import org.bukkit.plugin.java.JavaPlugin;
 

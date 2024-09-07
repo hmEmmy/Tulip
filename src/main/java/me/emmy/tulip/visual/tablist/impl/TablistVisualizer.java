@@ -1,5 +1,6 @@
 package me.emmy.tulip.visual.tablist.impl;
 
+import me.emmy.tulip.Tulip;
 import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.util.CC;
 import me.emmy.tulip.util.Logger;
@@ -32,30 +33,47 @@ public class TablistVisualizer implements ITablist {
 
     @Override
     public void update(Player player) {
-        List<String> headerLines = getHeader(player).stream()
-                .map(CC::translate)
-                .collect(Collectors.toList());
+        if (Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId()).getSettings().isShowTablist()) {
+            List<String> headerLines = getHeader(player).stream()
+                    .map(CC::translate)
+                    .collect(Collectors.toList());
 
-        List<String> footerLines = getFooter(player).stream()
-                .map(CC::translate)
-                .collect(Collectors.toList());
+            List<String> footerLines = getFooter(player).stream()
+                    .map(CC::translate)
+                    .collect(Collectors.toList());
 
-        String headerText = String.join("\n", headerLines);
-        String footerText = String.join("\n", footerLines);
+            String headerText = String.join("\n", headerLines);
+            String footerText = String.join("\n", footerLines);
 
-        PacketPlayOutPlayerListHeaderFooter packet = new PacketPlayOutPlayerListHeaderFooter();
-        try {
-            Field headerField = packet.getClass().getDeclaredField("a");
-            headerField.setAccessible(true);
-            headerField.set(packet, new ChatComponentText(headerText));
+            PacketPlayOutPlayerListHeaderFooter packet = new PacketPlayOutPlayerListHeaderFooter();
+            try {
+                Field headerField = packet.getClass().getDeclaredField("a");
+                headerField.setAccessible(true);
+                headerField.set(packet, new ChatComponentText(headerText));
 
-            Field footerField = packet.getClass().getDeclaredField("b");
-            footerField.setAccessible(true);
-            footerField.set(packet, new ChatComponentText(footerText));
+                Field footerField = packet.getClass().getDeclaredField("b");
+                footerField.setAccessible(true);
+                footerField.set(packet, new ChatComponentText(footerText));
 
-            ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
-        } catch (Exception e) {
-            Logger.logError("Failed to update tablist for " + player.getName());
+                ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
+            } catch (Exception e) {
+                Logger.logError("Failed to update tablist for " + player.getName());
+            }
+        } else {
+            PacketPlayOutPlayerListHeaderFooter packet = new PacketPlayOutPlayerListHeaderFooter();
+            try {
+                Field headerField = packet.getClass().getDeclaredField("a");
+                headerField.setAccessible(true);
+                headerField.set(packet, new ChatComponentText(""));
+
+                Field footerField = packet.getClass().getDeclaredField("b");
+                footerField.setAccessible(true);
+                footerField.set(packet, new ChatComponentText(""));
+
+                ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
+            } catch (Exception e) {
+                Logger.logError("Failed to update tablist for " + player.getName());
+            }
         }
     }
 }

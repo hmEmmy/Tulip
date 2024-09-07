@@ -1,7 +1,7 @@
-package me.emmy.tulip.visual.scoreboard.assemble;
+package me.emmy.tulip.api.assemble;
 
 import lombok.Getter;
-import me.emmy.tulip.visual.scoreboard.assemble.events.AssembleBoardCreatedEvent;
+import me.emmy.tulip.api.assemble.events.AssembleBoardCreatedEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
