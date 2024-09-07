@@ -34,11 +34,6 @@ kit:
   toggled: "&aThe kit &b{kit} &ahas been &b{status}&a."
 
 game:
-  is-full: "&cThere are already {max-players} players in the game."
-  killed:
-    no-killer: "&d{player} &ewas killed."
-    with-killer: "&d{player} &ewas killed by &d{killer}&e."
-  left: "&aYou've left the game."
   join-message:
     - ""
     - "&e&lPlaying FFA"
@@ -46,6 +41,12 @@ game:
     - " &e&l● &eArena: &d{arena}"
     - " &e&l● &eTo leave, do /leaveffa."
     - ""
+  is-full: "&cThere are already {max-players} players in the game."
+  left: "&aYou've left the game."
+  killed:
+    no-killer: "&d{player} &ewas killed."
+    with-killer: "&d{player} &ewas killed by &d{killer}&e."
+  arrow-hit: "&d{victim} &eis now at &d{hearts}❤&e."
   killstreak:
     interval: 5 #If the value is 5, every 5 kills it will broadcast the message.
     broadcast:

@@ -1,4 +1,4 @@
-package me.emmy.tulip.ffa.command.admin;
+package me.emmy.tulip.ffa.command.admin.impl;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.ffa.AbstractFFAMatch;
@@ -13,26 +13,29 @@ import org.bukkit.entity.Player;
  * @project Tulip
  * @date 5/27/2024
  */
-public class FFADeleteCommand extends BaseCommand {
-    @Command(name = "ffa.delete", permission = "alley.admin")
+public class FFASetMaxPlayersCommand extends BaseCommand {
+    @Command(name = "ffa.setmaxplayers", permission = "Tulip.admin")
     @Override
     public void onCommand(CommandArgs command) {
         Player player = command.getPlayer();
         String[] args = command.getArgs();
 
-        if (args.length != 1) {
-            player.sendMessage(CC.translate("&6Usage: &e/ffa delete &b<name>"));
+        if (args.length != 2) {
+            player.sendMessage(CC.translate("&6Usage: &e/ffa setmaxplayers &b<kit> <maxPlayers>"));
             return;
         }
 
         String kitName = args[0];
+        int maxPlayers = Integer.parseInt(args[1]);
+
         AbstractFFAMatch match = Tulip.getInstance().getFfaRepository().getFFAMatch(kitName);
         if (match == null) {
             player.sendMessage(CC.translate("&cThere is no FFA match with the name " + kitName + "."));
             return;
         }
 
-        Tulip.getInstance().getFfaRepository().deleteFFAMatch(match);
-        player.sendMessage(CC.translate("&aSuccessfully deleted the FFA match."));
+        match.setMaxPlayers(maxPlayers);
+        Tulip.getInstance().getFfaRepository().saveFFAMatch(match);
+        player.sendMessage(CC.translate("&aSuccessfully set the max players for the FFA match."));
     }
 }

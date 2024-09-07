@@ -1,4 +1,4 @@
-package me.emmy.tulip.ffa.command.admin;
+package me.emmy.tulip.ffa.command.admin.impl;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.ffa.AbstractFFAMatch;
@@ -13,29 +13,31 @@ import org.bukkit.entity.Player;
  * @project Tulip
  * @date 5/27/2024
  */
-public class FFAMaxPlayersCommand extends BaseCommand {
-    @Command(name = "ffa.maxplayers", permission = "Tulip.admin")
+public class FFAListPlayersCommand extends BaseCommand {
+    @Command(name = "ffa.listplayers", permission = "Tulip.admin")
     @Override
     public void onCommand(CommandArgs command) {
         Player player = command.getPlayer();
         String[] args = command.getArgs();
 
-        if (args.length != 2) {
-            player.sendMessage(CC.translate("&6Usage: &e/ffa maxplayers &b<kit> <maxPlayers>"));
+        if (args.length != 1) {
+            player.sendMessage(CC.translate("&6Usage: &e/ffa listplayers &b<kit>"));
             return;
         }
-
+        
         String kitName = args[0];
-        int maxPlayers = Integer.parseInt(args[1]);
-
         AbstractFFAMatch match = Tulip.getInstance().getFfaRepository().getFFAMatch(kitName);
         if (match == null) {
             player.sendMessage(CC.translate("&cThere is no FFA match with the name " + kitName + "."));
             return;
         }
 
-        match.setMaxPlayers(maxPlayers);
-        Tulip.getInstance().getFfaRepository().saveFFAMatch(match);
-        player.sendMessage(CC.translate("&aSuccessfully set the max players for the FFA match."));
+        player.sendMessage("");
+        player.sendMessage(CC.translate("     &d&l" + match.getKit().getName() + " Player List &f(" + match.getPlayers().size() + "&f)"));
+        if (match.getPlayers().isEmpty()) {
+            player.sendMessage(CC.translate("      &f● &cNo Players available."));
+        }
+        match.getPlayers().forEach(participant -> player.sendMessage(CC.translate("      &f● &d" + participant.getName())));
+        player.sendMessage("");
     }
 }

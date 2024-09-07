@@ -1,4 +1,4 @@
-package me.emmy.tulip.ffa.command.admin;
+package me.emmy.tulip.ffa.command.admin.impl;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.util.CC;

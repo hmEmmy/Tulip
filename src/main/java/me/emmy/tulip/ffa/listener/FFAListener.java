@@ -1,6 +1,8 @@
 package me.emmy.tulip.ffa.listener;
 
+import jdk.nashorn.internal.runtime.regexp.joni.Config;
 import me.emmy.tulip.Tulip;
+import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.cooldown.Cooldown;
 import me.emmy.tulip.cooldown.CooldownRepository;
 import me.emmy.tulip.ffa.safezone.FFASpawnHandler;
@@ -167,7 +169,10 @@ public class FFAListener implements Listener {
 
                 double health = Math.ceil((victim.getHealth() - event.getFinalDamage()) / 2.0D);
                 if (health > 0.0D && !victim.getName().equals(shooter.getName())) {
-                    shooter.sendMessage(CC.translate("&d" + victim.getName() + "&e is now at &d" + health + "❤&e."));
+                    shooter.sendMessage(CC.translate(ConfigHandler.getInstance().getLocaleConfig().getString("game.arrow-hit")
+                            .replace("{victim}", victim.getName())
+                            .replace("{hearts}", String.valueOf(health)))
+                    );
                 }
             }
         }
