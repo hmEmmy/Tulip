@@ -4,7 +4,7 @@ import me.emmy.tulip.Tulip;
 import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.kit.Kit;
 import me.emmy.tulip.locale.Locale;
-import me.emmy.tulip.utils.CC;
+import me.emmy.tulip.util.CC;
 import me.emmy.tulip.api.command.BaseCommand;
 import me.emmy.tulip.api.command.CommandArgs;
 import me.emmy.tulip.api.command.annotation.Command;

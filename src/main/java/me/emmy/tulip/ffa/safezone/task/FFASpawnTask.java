@@ -5,7 +5,7 @@ import me.emmy.tulip.ffa.enums.EnumFFAState;
 import me.emmy.tulip.ffa.safezone.cuboid.Cuboid;
 import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.profile.enums.EnumProfileState;
-import me.emmy.tulip.utils.CC;
+import me.emmy.tulip.util.CC;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;

@@ -6,7 +6,7 @@ import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.ffa.AbstractFFAMatch;
 import me.emmy.tulip.api.menu.Button;
 import me.emmy.tulip.api.menu.Menu;
-import me.emmy.tulip.utils.ItemBuilder;
+import me.emmy.tulip.util.ItemBuilder;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;

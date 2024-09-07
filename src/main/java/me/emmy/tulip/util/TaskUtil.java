@@ -1,4 +1,4 @@
-package me.emmy.tulip.utils;
+package me.emmy.tulip.util;
 
 import lombok.experimental.UtilityClass;
 import me.emmy.tulip.Tulip;

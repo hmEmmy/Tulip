@@ -1,6 +1,6 @@
 package me.emmy.tulip.essential.command.admin;
 
-import me.emmy.tulip.utils.CC;
+import me.emmy.tulip.util.CC;
 import me.emmy.tulip.api.command.CommandArgs;
 import me.emmy.tulip.api.command.annotation.Command;
 import org.bukkit.Bukkit;

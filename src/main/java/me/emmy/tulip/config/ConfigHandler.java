@@ -2,7 +2,7 @@ package me.emmy.tulip.config;
 
 import lombok.Getter;
 import me.emmy.tulip.Tulip;
-import me.emmy.tulip.utils.Logger;
+import me.emmy.tulip.util.Logger;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 

@@ -6,10 +6,9 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 import lombok.Getter;
-import me.emmy.tulip.Tulip;
 import me.emmy.tulip.config.ConfigHandler;
-import me.emmy.tulip.utils.CC;
-import me.emmy.tulip.utils.ServerUtils;
+import me.emmy.tulip.util.CC;
+import me.emmy.tulip.util.ServerUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -30,10 +29,10 @@ public class MongoService {
         try {
             FileConfiguration config = ConfigHandler.getInstance().getSettingsConfig();
 
-            String databaseName = config.getString("mongo.databaseName");
+            String databaseName = config.getString("mongo.database");
             Bukkit.getConsoleSender().sendMessage(CC.translate("&6Connecting to the MongoDB database..."));
 
-            ConnectionString connectionString = new ConnectionString(Objects.requireNonNull(config.getString("mongo.connectionString")));
+            ConnectionString connectionString = new ConnectionString(Objects.requireNonNull(config.getString("mongo.uri")));
             MongoClientSettings.Builder settings = MongoClientSettings.builder();
             settings.applyConnectionString(connectionString);
             settings.applyToConnectionPoolSettings(builder -> builder.maxConnectionIdleTime(30, TimeUnit.SECONDS));

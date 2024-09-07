@@ -1,7 +1,7 @@
 package me.emmy.tulip.cooldown;
 
 import lombok.Getter;
-import me.emmy.tulip.utils.MutableTriple;
+import me.emmy.tulip.util.MutableTriple;
 
 import java.util.ArrayList;
 import java.util.List;

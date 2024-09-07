@@ -1,4 +1,4 @@
-package me.emmy.tulip.utils;
+package me.emmy.tulip.util;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

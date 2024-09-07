@@ -1,10 +1,9 @@
-package me.emmy.tulip.utils;
+package me.emmy.tulip.util;
 
 import lombok.experimental.UtilityClass;
 import me.emmy.tulip.Tulip;
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
-import org.bukkit.GameMode;
 import org.bukkit.World;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
@@ -80,7 +79,7 @@ public class ServerUtils {
     public void registerListenersInPackage(String packageName) {
         Reflections reflections = new Reflections(packageName);
         Set<Class<? extends Listener>> classes = reflections.getSubTypesOf(Listener.class);
-        String[] excludedPackages = { "me.emmy.tulip.utils", "me.emmy.tulip.visual.assemble" };
+        String[] excludedPackages = { "me.emmy.tulip.util", "me.emmy.tulip.visual.assemble" };
 
         for (Class<? extends Listener> clazz : classes) {
             boolean isExcluded = false;

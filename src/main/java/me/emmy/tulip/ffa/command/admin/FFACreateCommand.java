@@ -2,9 +2,8 @@ package me.emmy.tulip.ffa.command.admin;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.arena.Arena;
-import me.emmy.tulip.ffa.FFARepository;
 import me.emmy.tulip.kit.Kit;
-import me.emmy.tulip.utils.CC;
+import me.emmy.tulip.util.CC;
 import me.emmy.tulip.api.command.BaseCommand;
 import me.emmy.tulip.api.command.CommandArgs;
 import me.emmy.tulip.api.command.annotation.Command;

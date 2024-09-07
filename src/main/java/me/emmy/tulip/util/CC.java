@@ -1,7 +1,8 @@
-package me.emmy.tulip.utils;
+package me.emmy.tulip.util;
 
 import lombok.experimental.UtilityClass;
 import me.emmy.tulip.Tulip;
+import me.emmy.tulip.config.ConfigHandler;
 import org.bukkit.ChatColor;
 
 import java.util.Arrays;
@@ -32,13 +33,27 @@ public class CC {
      */
     public void sendStartupMessage() {
         List<String> message = Arrays.asList(
+                "&7&m--------------------------------------------",
+                "&d&lTULIP FFA CORE",
                 "",
-                "&7&m-----------------------------------------------------",
-                "&d&lTulip &7- &f" + Tulip.getInstance().getDescription().getDescription(),
-                "&d-> Version: &f" + Tulip.getInstance().getDescription().getVersion(),
-                "&d-> Author: &f" + Tulip.getInstance().getDescription().getAuthors().get(0),
-                "&7&m-----------------------------------------------------",
-                ""
+                "{",
+                "",
+                "  Author: &d" + Tulip.getInstance().getDescription().getAuthors().get(0),
+                "  Version: &d" + Tulip.getInstance().getDescription().getVersion(),
+                "  Github: &dhttps://github.com/hmEmmy/Tulip",
+                "  Discord: &dhttps://discord.gg/eT4B65k5E4",
+                "  Description: &d" + Tulip.getInstance().getDescription().getDescription(),
+                "",
+                "  Database: &aConnected.",
+                "   &8(&7" + ConfigHandler.getInstance().getSettingsConfig().getString("mongo.uri") + " - " + Tulip.getInstance().getMongoService().getMongoDatabase().getName() + "&8)",
+                "",
+                "  Kits: &d" + Tulip.getInstance().getKitRepository().getKits().size(),
+                "  Arenas: &d" + Tulip.getInstance().getArenaRepository().getArenas().size(),
+                "  FFA Arenas: &d" + Tulip.getInstance().getFfaRepository().getMatches().size(),
+                "",
+                "}",
+                "",
+                "&7&m--------------------------------------------"
         );
         message.forEach(line -> Tulip.getInstance().getServer().getConsoleSender().sendMessage(CC.translate(line)));
     }
@@ -49,9 +64,7 @@ public class CC {
     public void sendShutdownMessage() {
         List<String> message = Arrays.asList(
                 "",
-                "&7&m-----------------------------------------------------",
                 "&c&lDisabled Tulip...",
-                "&7&m-----------------------------------------------------",
                 ""
         );
         message.forEach(line -> Tulip.getInstance().getServer().getConsoleSender().sendMessage(CC.translate(line)));

@@ -1,7 +1,7 @@
 package me.emmy.tulip.cooldown;
 
 import lombok.Getter;
-import me.emmy.tulip.utils.TaskUtil;
+import me.emmy.tulip.util.TaskUtil;
 import org.bukkit.scheduler.BukkitTask;
 
 /**

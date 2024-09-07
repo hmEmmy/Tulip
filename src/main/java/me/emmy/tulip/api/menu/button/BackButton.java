@@ -3,7 +3,7 @@ package me.emmy.tulip.api.menu.button;
 import lombok.AllArgsConstructor;
 import me.emmy.tulip.api.menu.Button;
 import me.emmy.tulip.api.menu.Menu;
-import me.emmy.tulip.utils.ItemBuilder;
+import me.emmy.tulip.util.ItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;

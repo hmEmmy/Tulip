@@ -2,7 +2,7 @@ package me.emmy.tulip.locale;
 
 import lombok.Getter;
 import me.emmy.tulip.config.ConfigHandler;
-import me.emmy.tulip.utils.CC;
+import me.emmy.tulip.util.CC;
 import org.bukkit.ChatColor;
 
 import java.util.List;

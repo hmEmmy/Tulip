@@ -9,8 +9,8 @@ import me.emmy.tulip.kit.Kit;
 import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.profile.enums.EnumProfileState;
 import me.emmy.tulip.ffa.killstreak.KillStreakData;
-import me.emmy.tulip.utils.CC;
-import me.emmy.tulip.utils.PlayerUtil;
+import me.emmy.tulip.util.CC;
+import me.emmy.tulip.util.PlayerUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 

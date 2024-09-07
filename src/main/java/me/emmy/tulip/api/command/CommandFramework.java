@@ -1,8 +1,7 @@
 package me.emmy.tulip.api.command;
 
 import me.emmy.tulip.Tulip;
-import me.emmy.tulip.config.ConfigHandler;
-import me.emmy.tulip.utils.CC;
+import me.emmy.tulip.util.CC;
 import me.emmy.tulip.api.command.annotation.Command;
 import me.emmy.tulip.api.command.annotation.Completer;
 import org.bukkit.Bukkit;

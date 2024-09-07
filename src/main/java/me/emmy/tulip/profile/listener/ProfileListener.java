@@ -6,7 +6,7 @@ import me.emmy.tulip.hotbar.HotbarUtility;
 import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.profile.ProfileRepository;
 import me.emmy.tulip.profile.enums.EnumProfileState;
-import me.emmy.tulip.utils.CC;
+import me.emmy.tulip.util.CC;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

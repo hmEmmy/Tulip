@@ -3,7 +3,7 @@ package me.emmy.tulip.api.menu;
 import lombok.Getter;
 import lombok.Setter;
 import me.emmy.tulip.Tulip;
-import me.emmy.tulip.utils.CC;
+import me.emmy.tulip.util.CC;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

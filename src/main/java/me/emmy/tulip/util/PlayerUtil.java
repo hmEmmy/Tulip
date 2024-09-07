@@ -1,5 +1,6 @@
-package me.emmy.tulip.utils;
+package me.emmy.tulip.util;
 
+import lombok.experimental.UtilityClass;
 import me.emmy.tulip.Tulip;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -14,13 +15,14 @@ import java.util.UUID;
  * @project Practice
  * @date 29/04/2024 - 18:53
  */
+@UtilityClass
 public class PlayerUtil {
 
-    public static void setLastAttacker(Player victim, Player attacker) {
+    public void setLastAttacker(Player victim, Player attacker) {
         victim.setMetadata("lastAttacker", new FixedMetadataValue(Tulip.getInstance(), attacker.getUniqueId()));
     }
 
-    public static Player getLastAttacker(Player victim) {
+    public Player getLastAttacker(Player victim) {
         if (victim.hasMetadata("lastAttacker")) {
             return Bukkit.getPlayer((UUID) victim.getMetadata("lastAttacker").get(0).value());
         } else {
@@ -31,7 +33,7 @@ public class PlayerUtil {
     /**
      * Credit: Praxi
      */
-    public static void reset(Player player) {
+    public void reset(Player player) {
         player.setHealth(20.0D);
         player.setSaturation(20.0F);
         player.setFallDistance(0.0F);

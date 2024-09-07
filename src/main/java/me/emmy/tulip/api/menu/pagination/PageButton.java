@@ -2,8 +2,8 @@ package me.emmy.tulip.api.menu.pagination;
 
 import lombok.AllArgsConstructor;
 import me.emmy.tulip.api.menu.Button;
-import me.emmy.tulip.utils.CC;
-import me.emmy.tulip.utils.ItemBuilder;
+import me.emmy.tulip.util.CC;
+import me.emmy.tulip.util.ItemBuilder;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

@@ -2,8 +2,6 @@ package me.emmy.tulip.kit;
 
 import lombok.Getter;
 import me.emmy.tulip.config.ConfigHandler;
-import me.emmy.tulip.utils.CC;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;

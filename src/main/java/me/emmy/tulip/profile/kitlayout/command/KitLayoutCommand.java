@@ -6,7 +6,7 @@ import me.emmy.tulip.api.command.CommandArgs;
 import me.emmy.tulip.api.command.annotation.Command;
 import me.emmy.tulip.profile.enums.EnumProfileState;
 import me.emmy.tulip.profile.kitlayout.menu.KitLayoutSelectionMenu;
-import me.emmy.tulip.utils.CC;
+import me.emmy.tulip.util.CC;
 import org.bukkit.entity.Player;
 
 /**

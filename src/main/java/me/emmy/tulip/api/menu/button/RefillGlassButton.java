@@ -1,7 +1,7 @@
 package me.emmy.tulip.api.menu.button;
 
 import me.emmy.tulip.api.menu.Button;
-import me.emmy.tulip.utils.CC;
+import me.emmy.tulip.util.CC;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
