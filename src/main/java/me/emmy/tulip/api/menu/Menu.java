@@ -144,5 +144,4 @@ public abstract class Menu {
 
     public void onClose(Player player) {
     }
-
 }

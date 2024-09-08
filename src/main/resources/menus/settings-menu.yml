@@ -40,6 +40,6 @@ buttons:
       - ""
       - "&eClick to change!"
 
-  glass-border:
-    enabled: true
-    durability: 15
+glass-border:
+  enabled: true
+  durability: 15

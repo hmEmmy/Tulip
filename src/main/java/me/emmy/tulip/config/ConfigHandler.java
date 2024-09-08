@@ -35,12 +35,17 @@ public class ConfigHandler {
     private final FileConfiguration ffaConfig;
     private final FileConfiguration gameMenuConfig;
     private final FileConfiguration settingsMenuConfig;
+    private final FileConfiguration kitEditorMenuConfig;
+    private final FileConfiguration kitEditorSelectMenuConfig;
 
     /**
      * Array of all the config file names
      */
     private final String[] configFileNames = {
-            "settings.yml", "locale.yml", "hotbar.yml", "storage/arenas.yml", "storage/kits.yml", "storage/ffa.yml", "menus/game-menu.yml", "visual/scoreboard.yml", "visual/tablist.yml", "menus/settings-menu.yml"
+            "settings.yml", "locale.yml", "hotbar.yml",
+            "storage/arenas.yml", "storage/kits.yml", "storage/ffa.yml",
+            "visual/scoreboard.yml", "visual/tablist.yml",
+            "menus/game-menu.yml", "menus/settings-menu.yml", "menus/kit-editor-menu.yml", "menus/kit-editor-select-menu.yml"
     };
 
     /**
@@ -63,6 +68,8 @@ public class ConfigHandler {
         ffaConfig = getConfig("storage/ffa.yml");
         gameMenuConfig = getConfig("menus/game-menu.yml");
         settingsMenuConfig = getConfig("menus/settings-menu.yml");
+        kitEditorMenuConfig = getConfig("menus/kit-editor-menu.yml");
+        kitEditorSelectMenuConfig = getConfig("menus/kit-editor-select-menu.yml");
     }
 
     /**

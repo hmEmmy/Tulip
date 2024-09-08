@@ -1,8 +1,11 @@
 package me.emmy.tulip.spawn.listener;
 
 import me.emmy.tulip.Tulip;
+import me.emmy.tulip.api.menu.Menu;
 import me.emmy.tulip.profile.enums.EnumProfileState;
+import me.emmy.tulip.profile.kitlayout.menu.KitLayoutEditorMenu;
 import org.bukkit.GameMode;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -51,12 +54,14 @@ public class SpawnListener implements Listener {
     @EventHandler
     private void onMoveItem(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
+
+        Menu openedMenu = Menu.currentlyOpenedMenus.get(player.getName());
+        if (openedMenu instanceof KitLayoutEditorMenu) {
+            return;
+        }
+
         if (Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId()).getState() == EnumProfileState.SPAWN) {
             if (event.getWhoClicked() instanceof Player) {
-                if (Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId()).getKitLayout().isEditing()) {
-                    return;
-                }
-
                 if (player.getGameMode() == GameMode.SURVIVAL) {
                     if (event.getClickedInventory() != null && event.getClickedInventory().equals(player.getInventory())) {
                         event.setCancelled(true);

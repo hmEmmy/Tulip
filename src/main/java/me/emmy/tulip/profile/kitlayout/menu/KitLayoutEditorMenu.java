@@ -11,6 +11,7 @@ import me.emmy.tulip.util.CC;
 import me.emmy.tulip.util.ItemBuilder;
 import me.emmy.tulip.util.PlayerUtil;
 import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
@@ -27,11 +28,13 @@ import java.util.Map;
 @AllArgsConstructor
 public class KitLayoutEditorMenu extends Menu {
 
+    private final FileConfiguration config = Tulip.getInstance().getConfigHandler().getKitEditorMenuConfig();
+
     private Kit kit;
 
     @Override
     public String getTitle(Player player) {
-        return CC.translate("&eEditing Kit: &d" + kit.getName());
+        return CC.translate(config.getString("title").replace("{kit}", kit.getName()));
     }
 
     @Override
@@ -73,7 +76,6 @@ public class KitLayoutEditorMenu extends Menu {
             Profile profile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
             profile.getKitLayout().setLayout(kit.getName(), player.getInventory().getContents());
             profile.saveProfile();
-            profile.getKitLayout().setEditing(false);
 
             PlayerUtil.reset(player);
             player.closeInventory();
@@ -146,9 +148,6 @@ public class KitLayoutEditorMenu extends Menu {
         @Override
         public void clicked(Player player, ClickType clickType) {
             if (clickType != ClickType.LEFT) return;
-
-            Profile profile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
-            profile.getKitLayout().setEditing(false);
 
             PlayerUtil.reset(player);
             HotbarUtility.applyHotbarItems(player);

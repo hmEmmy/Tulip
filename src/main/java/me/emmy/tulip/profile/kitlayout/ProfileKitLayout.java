@@ -17,8 +17,6 @@ import java.util.HashMap;
 @Setter
 public class ProfileKitLayout {
 
-    private boolean isEditing;
-
     private Map<String, ItemStack[]> kitItems = new HashMap<>();
 
     /**
@@ -32,16 +30,6 @@ public class ProfileKitLayout {
     }
 
     /**
-     * Set the layout for a specific kit by the kit object.
-     *
-     * @param kit The kit.
-     * @param items The items to set.
-     */
-    public void setLayout(Kit kit, ItemStack[] items) {
-        this.kitItems.put(kit.getName(), items);
-    }
-
-    /**
      * Get the layout for a specific kit by the kit name.
      *
      * @param kitName The name of the kit.
@@ -49,15 +37,5 @@ public class ProfileKitLayout {
      */
     public ItemStack[] getLayout(String kitName) {
         return this.kitItems.getOrDefault(kitName, new ItemStack[0]);
-    }
-
-    /**
-     * Get the layout for a specific kit by the kit object.
-     *
-     * @param kit The kit.
-     * @return The layout for the kit.
-     */
-    public ItemStack[] getLayout(Kit kit) {
-        return this.kitItems.getOrDefault(kit.getName(), new ItemStack[0]);
     }
 }
