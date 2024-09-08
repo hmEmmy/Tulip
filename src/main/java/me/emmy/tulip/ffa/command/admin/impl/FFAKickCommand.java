@@ -2,6 +2,7 @@ package me.emmy.tulip.ffa.command.admin.impl;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.ffa.AbstractFFAMatch;
+import me.emmy.tulip.locale.Locale;
 import me.emmy.tulip.util.CC;
 import me.emmy.tulip.api.command.BaseCommand;
 import me.emmy.tulip.api.command.CommandArgs;
@@ -35,12 +36,12 @@ public class FFAKickCommand extends BaseCommand {
 
         AbstractFFAMatch match = Tulip.getInstance().getFfaRepository().getFFAMatch(target);
         if (match == null) {
-            player.sendMessage(CC.translate("&cThis player is not in a FFA match."));
+            player.sendMessage(CC.translate(Locale.FFA_PLAYER_NOT_IN_MATCH.getStringPath()).replace("{player}", target.getName()));
             return;
         }
 
         match.leave(target);
-        target.sendMessage(CC.translate("&cYou have been kicked from the FFA match."));
-        player.sendMessage(CC.translate("&aSuccessfully kicked " + target.getName() + " from the FFA match."));
+        target.sendMessage(CC.translate(Locale.FFA_KICKED.getStringPath()));
+        player.sendMessage(CC.translate(Locale.FFA_KICKED_PLAYER.getStringPath()).replace("{player}", target.getName()));
     }
 }

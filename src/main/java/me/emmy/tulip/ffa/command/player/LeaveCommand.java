@@ -1,6 +1,7 @@
 package me.emmy.tulip.ffa.command.player;
 
 import me.emmy.tulip.Tulip;
+import me.emmy.tulip.locale.Locale;
 import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.util.CC;
 import me.emmy.tulip.api.command.BaseCommand;
@@ -21,7 +22,7 @@ public class LeaveCommand extends BaseCommand {
 
         Profile profile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
         if (profile.getFfaMatch() == null) {
-            player.sendMessage(CC.translate("&cYou are not in a FFA match."));
+            player.sendMessage(CC.translate(Locale.FFA_NOT_IN_MATCH.getStringPath()));
             return;
         }
 

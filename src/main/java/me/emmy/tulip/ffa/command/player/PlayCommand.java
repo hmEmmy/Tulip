@@ -5,6 +5,7 @@ import me.emmy.tulip.ffa.menu.FFAMenu;
 import me.emmy.tulip.api.command.BaseCommand;
 import me.emmy.tulip.api.command.CommandArgs;
 import me.emmy.tulip.api.command.annotation.Command;
+import me.emmy.tulip.locale.Locale;
 import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.profile.enums.EnumProfileState;
 import me.emmy.tulip.util.CC;
@@ -23,7 +24,7 @@ public class PlayCommand extends BaseCommand {
 
         Profile profile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
         if (profile.getState() == EnumProfileState.FFA) {
-            player.sendMessage(CC.translate("&cYou are already in a match."));
+            player.sendMessage(CC.translate(Locale.FFA_ALREADY_IN_MATCH.getStringPath()));
             return;
         }
 

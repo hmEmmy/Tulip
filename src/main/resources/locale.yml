@@ -42,7 +42,20 @@ kit:
   description-set: "&aThe description of &b{kit} &ahas been set."
   icon-set: "&aThe icon of &b{kit} &ahas been set to &b{icon}&a."
   inventory-set: "&aThe inventory of &b{kit} &ahas been set."
+  disabled: "&cThe kit &b{kit} &cis disabled."
   toggled: "&aThe kit &b{kit} &ahas been &b{status}&a."
+
+ffa-match:
+  already-exists: "&cA match with the &b{kit} &ckit already exists."
+  does-not-exist: "&cA match with the &b{kit} &ckit does not exist."
+  created: "&aA match with the &b{kit} &ckit has been created."
+  deleted: "&aMatch with the &b{kit} &ckit has been deleted."
+  player-not-in-match: "&c{player} is not in a match."
+  kicked-player: "&aSuccessfully kicked &b{player} &afrom the ffa match."
+  kicked: "&aYou've been kicked from the ffa match."
+  max-players-set: "&aSuccessfully set the max players to &b{maxPlayers} &afor the &b{kit} &affa match."
+  not-in-match: "&cYou are not in a match."
+  already-in-match: "&cYou are already in a match."
 
 game:
   join-message:

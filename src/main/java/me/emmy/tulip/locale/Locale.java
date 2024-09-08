@@ -40,6 +40,18 @@ public enum Locale {
     KIT_ICON_SET("kit.icon-set", "locale.yml"),
     KIT_INVENTORY_SET("kit.inventory-set", "locale.yml"),
     KIT_TOGGLED("kit.toggled", "locale.yml"),
+    KIT_DISABLED("kit.disabled", "locale.yml"),
+
+    FFA_MATCH_ALREADY_EXISTS("ffa-match.already-exists", "locale.yml"),
+    FFA_MATCH_DOES_NOT_EXIST("ffa-match.does-not-exist", "locale.yml"),
+    FFA_MATCH_CREATED("ffa-match.created", "locale.yml"),
+    FFA_MATCH_DELETED("ffa-match.deleted", "locale.yml"),
+    FFA_PLAYER_NOT_IN_MATCH("ffa.player-not-in-match", "locale.yml"),
+    FFA_KICKED_PLAYER("ffa.kicked-player", "locale.yml"),
+    FFA_KICKED("ffa.kicked", "locale.yml"),
+    FFA_MAX_PLAYERS_SET("ffa.max-players-set", "locale.yml"),
+    FFA_NOT_IN_MATCH("ffa.not-in-match", "locale.yml"),
+    FFA_ALREADY_IN_MATCH("ffa.already-in-match", "locale.yml"),
 
     ;
 

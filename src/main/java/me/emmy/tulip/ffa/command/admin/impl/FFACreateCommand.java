@@ -3,6 +3,7 @@ package me.emmy.tulip.ffa.command.admin.impl;
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.arena.Arena;
 import me.emmy.tulip.kit.Kit;
+import me.emmy.tulip.locale.Locale;
 import me.emmy.tulip.util.CC;
 import me.emmy.tulip.api.command.BaseCommand;
 import me.emmy.tulip.api.command.CommandArgs;
@@ -29,30 +30,30 @@ public class FFACreateCommand extends BaseCommand {
         String arenaName = args[0];
         Arena arena = Tulip.getInstance().getArenaRepository().getArena(arenaName);
         if (arena == null) {
-            player.sendMessage(CC.translate("&cArena not found."));
+            player.sendMessage(CC.translate(Locale.ARENA_DOES_NOT_EXIST.getStringPath()).replace("{arena}", arenaName));
             return;
         }
 
         String kitName = args[1];
         Kit kit = Tulip.getInstance().getKitRepository().getKit(kitName);
         if (kit == null) {
-            player.sendMessage(CC.translate("&cKit not found."));
+            player.sendMessage(CC.translate(Locale.KIT_DOES_NOT_EXIST.getStringPath()).replace("{kit}", kitName));
             return;
         }
 
         int maxPlayers = Integer.parseInt(args[2]);
 
         if (Tulip.getInstance().getFfaRepository().getFFAMatch(kitName) != null) {
-            player.sendMessage(CC.translate("&cThere is already a FFA match with the name " + kitName + "."));
+            player.sendMessage(CC.translate(Locale.FFA_MATCH_ALREADY_EXISTS.getStringPath()).replace("{kit}", kitName));
             return;
         }
 
         if (!Tulip.getInstance().getKitRepository().getKit(kitName).isEnabled()) {
-            player.sendMessage(CC.translate("&cThe kit " + kitName + " is disabled."));
+            player.sendMessage(CC.translate(Locale.KIT_DISABLED.getStringPath()).replace("{kit}", kitName));
             return;
         }
 
         Tulip.getInstance().getFfaRepository().createFFAMatch(arena, kit, maxPlayers);
-        player.sendMessage(CC.translate("&aSuccessfully created the FFA match."));
+        player.sendMessage(CC.translate(Locale.FFA_MATCH_CREATED.getStringPath()).replace("{kit}", kitName));
     }
 }

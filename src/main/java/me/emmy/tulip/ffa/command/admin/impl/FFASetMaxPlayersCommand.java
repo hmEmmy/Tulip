@@ -1,11 +1,12 @@
 package me.emmy.tulip.ffa.command.admin.impl;
 
 import me.emmy.tulip.Tulip;
-import me.emmy.tulip.ffa.AbstractFFAMatch;
-import me.emmy.tulip.util.CC;
 import me.emmy.tulip.api.command.BaseCommand;
 import me.emmy.tulip.api.command.CommandArgs;
 import me.emmy.tulip.api.command.annotation.Command;
+import me.emmy.tulip.ffa.AbstractFFAMatch;
+import me.emmy.tulip.locale.Locale;
+import me.emmy.tulip.util.CC;
 import org.bukkit.entity.Player;
 
 /**
@@ -30,12 +31,12 @@ public class FFASetMaxPlayersCommand extends BaseCommand {
 
         AbstractFFAMatch match = Tulip.getInstance().getFfaRepository().getFFAMatch(kitName);
         if (match == null) {
-            player.sendMessage(CC.translate("&cThere is no FFA match with the name " + kitName + "."));
+            player.sendMessage(CC.translate(Locale.FFA_MATCH_DOES_NOT_EXIST.getStringPath()).replace("{kit}", kitName));
             return;
         }
 
         match.setMaxPlayers(maxPlayers);
         Tulip.getInstance().getFfaRepository().saveFFAMatch(match);
-        player.sendMessage(CC.translate("&aSuccessfully set the max players for the FFA match."));
+        player.sendMessage(CC.translate(Locale.FFA_MAX_PLAYERS_SET.getStringPath()).replace("{kit}", kitName).replace("{maxPlayers}", String.valueOf(maxPlayers)));
     }
 }

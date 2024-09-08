@@ -2,6 +2,7 @@ package me.emmy.tulip.ffa.command.admin.impl;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.ffa.AbstractFFAMatch;
+import me.emmy.tulip.locale.Locale;
 import me.emmy.tulip.util.CC;
 import me.emmy.tulip.api.command.BaseCommand;
 import me.emmy.tulip.api.command.CommandArgs;
@@ -28,11 +29,11 @@ public class FFADeleteCommand extends BaseCommand {
         String kitName = args[0];
         AbstractFFAMatch match = Tulip.getInstance().getFfaRepository().getFFAMatch(kitName);
         if (match == null) {
-            player.sendMessage(CC.translate("&cThere is no FFA match with the name " + kitName + "."));
+            player.sendMessage(CC.translate(Locale.FFA_MATCH_DOES_NOT_EXIST.getStringPath()).replace("{kit}", kitName));
             return;
         }
 
         Tulip.getInstance().getFfaRepository().deleteFFAMatch(match);
-        player.sendMessage(CC.translate("&aSuccessfully deleted the FFA match."));
+        player.sendMessage(CC.translate(Locale.FFA_MATCH_DELETED.getStringPath()).replace("{kit}", kitName));
     }
 }
