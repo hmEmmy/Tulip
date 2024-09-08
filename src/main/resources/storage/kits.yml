@@ -376,3 +376,110 @@ kits:
     icon: COOKED_BEEF
     icondata: 0
     enabled: true
+  Archer:
+    description: §eDescription of the §dArcher §ekit.
+    items:
+      - ==: org.bukkit.inventory.ItemStack
+        type: BOW
+        meta:
+          ==: ItemMeta
+          meta-type: UNSPECIFIC
+          enchants:
+            DURABILITY: 3
+            ARROW_INFINITE: 1
+          repair-cost: 3
+      - ==: org.bukkit.inventory.ItemStack
+        type: ARROW
+      - null
+      - null
+      - null
+      - null
+      - null
+      - ==: org.bukkit.inventory.ItemStack
+        type: GOLDEN_APPLE
+      - ==: org.bukkit.inventory.ItemStack
+        type: COOKED_BEEF
+        amount: 64
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+    armor:
+      - ==: org.bukkit.inventory.ItemStack
+        type: LEATHER_BOOTS
+        meta:
+          ==: ItemMeta
+          meta-type: LEATHER_ARMOR
+          enchants:
+            DURABILITY: 3
+          repair-cost: 1
+          color:
+            ==: Color
+            RED: 127
+            BLUE: 178
+            GREEN: 63
+      - ==: org.bukkit.inventory.ItemStack
+        type: LEATHER_LEGGINGS
+        meta:
+          ==: ItemMeta
+          meta-type: LEATHER_ARMOR
+          enchants:
+            DURABILITY: 3
+          repair-cost: 1
+          color:
+            ==: Color
+            RED: 127
+            BLUE: 178
+            GREEN: 63
+      - ==: org.bukkit.inventory.ItemStack
+        type: LEATHER_CHESTPLATE
+        meta:
+          ==: ItemMeta
+          meta-type: LEATHER_ARMOR
+          enchants:
+            DURABILITY: 3
+          repair-cost: 1
+          color:
+            ==: Color
+            RED: 127
+            BLUE: 178
+            GREEN: 63
+      - ==: org.bukkit.inventory.ItemStack
+        type: LEATHER_HELMET
+        meta:
+          ==: ItemMeta
+          meta-type: LEATHER_ARMOR
+          enchants:
+            DURABILITY: 3
+          repair-cost: 1
+          color:
+            ==: Color
+            RED: 127
+            BLUE: 178
+            GREEN: 63
+    icon: BOW
+    icondata: 0
+    enabled: true

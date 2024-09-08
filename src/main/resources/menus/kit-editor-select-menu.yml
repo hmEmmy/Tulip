@@ -1,1 +1,13 @@
 title: "&eSelect a Kit to Edit"
+rows: 5
+button:
+  name: "&d&l{kit} Kit"
+  lore:
+    - ""
+    - "&7&o{description}"
+    - ""
+    - "&eClick to edit!"
+
+glass-border:
+  enabled: true
+  durability: 15

@@ -5,6 +5,7 @@ import me.emmy.tulip.Tulip;
 import me.emmy.tulip.config.ConfigHandler;
 import org.bukkit.ChatColor;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,6 +27,22 @@ public class CC {
      */
     public String translate(String string) {
         return ChatColor.translateAlternateColorCodes('&', string);
+    }
+
+    /**
+     * Translate a list of strings with color codes
+     *
+     * @param message the list of strings to translate
+     * @return the translated list of strings
+     */
+    public List<String> translate(List<String> message) {
+        List<String> list = new ArrayList<>();
+
+        for (String line : message) {
+            list.add(ChatColor.translateAlternateColorCodes('&', line));
+        }
+
+        return list;
     }
 
     /**

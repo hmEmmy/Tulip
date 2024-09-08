@@ -16,7 +16,9 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author Emmy
@@ -37,14 +39,23 @@ public class KitLayoutSelectionMenu extends Menu {
     public Map<Integer, Button> getButtons(Player player) {
         Map<Integer, Button> buttons = new HashMap<>();
 
-        addBorder(buttons, (byte) 15, 5);
+        if (config.getBoolean("glass-border.enabled")) {
+            addBorder(buttons, (byte) config.getInt("glass-border.durability"), config.getInt("rows"));
 
-        KitRepository kitRepository = Tulip.getInstance().getKitRepository();
-        int slot = 10;
+            KitRepository kitRepository = Tulip.getInstance().getKitRepository();
+            int slot = 10;
 
-        for (Kit kit : kitRepository.getKits()) {
-            buttons.put(slot++, new KitButton(kit));
-            //if (slot >= 54) break;
+            for (Kit kit : kitRepository.getKits()) {
+                buttons.put(slot++, new KitButton(kit));
+                //if (slot >= 54) break;
+            }
+        } else {
+            KitRepository kitRepository = Tulip.getInstance().getKitRepository();
+            int slot = 0;
+
+            for (Kit kit : kitRepository.getKits()) {
+                buttons.put(slot++, new KitButton(kit));
+            }
         }
 
         return buttons;
@@ -52,7 +63,7 @@ public class KitLayoutSelectionMenu extends Menu {
 
     @Override
     public int getSize() {
-        return 5 * 9;
+        return config.getInt("rows") * 9;
     }
 
     @AllArgsConstructor
@@ -62,9 +73,17 @@ public class KitLayoutSelectionMenu extends Menu {
 
         @Override
         public ItemStack getButtonItem(Player player) {
+            FileConfiguration config = Tulip.getInstance().getConfigHandler().getKitEditorSelectMenuConfig();
+            List<String> lore = config.getStringList("button.lore").stream()
+                    .map(line -> line
+                            .replace("{kit}", kit.getName())
+                            .replace("{description}", kit.getDescription())
+                    )
+                    .collect(Collectors.toList());
+
             return new ItemBuilder(kit.getIcon())
-                    .name(CC.translate("&d" + kit.getName()))
-                    .lore(CC.translate("&7" + kit.getDescription()))
+                    .name(config.getString("button.name").replace("{kit}", kit.getName()))
+                    .lore(lore)
                     .durability(kit.getIconData())
                     .hideMeta()
                     .build();
@@ -78,6 +97,7 @@ public class KitLayoutSelectionMenu extends Menu {
 
             new KitLayoutEditorMenu(kit).openMenu(player);
             player.getInventory().setContents(profile.getKitLayout().getLayout(kit.getName()));
+            playerClickSound(player);
         }
     }
 

@@ -11,3 +11,6 @@ ffa:
   FistFight:
     arena: test
     maxPlayers: 50
+  Archer:
+    arena: test
+    maxPlayers: 50
