@@ -28,6 +28,7 @@ public class ConfigHandler {
     private final FileConfiguration settingsConfig;
     private final FileConfiguration localeConfig;
     private final FileConfiguration hotbarConfig;
+    private final FileConfiguration shopConfig;
     private final FileConfiguration scoreboardConfig;
     private final FileConfiguration tablistConfig;
     private final FileConfiguration arenasConfig;
@@ -42,7 +43,7 @@ public class ConfigHandler {
      * Array of all the config file names
      */
     private final String[] configFileNames = {
-            "settings.yml", "locale.yml", "hotbar.yml",
+            "settings.yml", "locale.yml", "hotbar.yml", "shop.yml",
             "storage/arenas.yml", "storage/kits.yml", "storage/ffa.yml",
             "visual/scoreboard.yml", "visual/tablist.yml",
             "menus/game-menu.yml", "menus/settings-menu.yml", "menus/kit-editor-menu.yml", "menus/kit-editor-select-menu.yml"
@@ -61,6 +62,7 @@ public class ConfigHandler {
         settingsConfig = getConfig("settings.yml");
         localeConfig = getConfig("locale.yml");
         hotbarConfig = getConfig("hotbar.yml");
+        shopConfig = getConfig("shop.yml");
         scoreboardConfig = getConfig("visual/scoreboard.yml");
         tablistConfig = getConfig("visual/tablist.yml");
         arenasConfig = getConfig("storage/arenas.yml");

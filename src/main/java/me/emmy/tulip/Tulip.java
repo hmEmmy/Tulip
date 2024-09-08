@@ -13,6 +13,7 @@ import me.emmy.tulip.ffa.safezone.FFASpawnHandler;
 import me.emmy.tulip.ffa.safezone.task.FFASpawnTask;
 import me.emmy.tulip.kit.KitRepository;
 import me.emmy.tulip.profile.ProfileRepository;
+import me.emmy.tulip.shop.ProductRepository;
 import me.emmy.tulip.spawn.SpawnHandler;
 import me.emmy.tulip.util.CC;
 import me.emmy.tulip.util.ServerUtils;
@@ -77,6 +78,9 @@ public class Tulip extends JavaPlugin {
         profileRepository.initializeEveryProfile();
 
         cooldownRepository = new CooldownRepository();
+
+        ProductRepository productRepository = new ProductRepository();
+        productRepository.loadProducts();
 
         ServerUtils.registerListenersInPackage("me.emmy.tulip");
         ServerUtils.setupWorld();
