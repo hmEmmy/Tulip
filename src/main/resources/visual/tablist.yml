@@ -2,9 +2,9 @@ tablist:
   enabled: true
   header:
     - ""
-    - "&eBuy &dRanks &eand &dMore &eat &dstore.tulip.club&e."
+    - "&eYou're playing &d&lEU FFA &eon &d&ltulip.club"
     - ""
   footer:
     - ""
-    - "&eYou're playing &deu-ffa &eon &dtulip.club&e."
+    - "&eBuy ranks and more here: &d&lstore.tulip.club"
     - ""

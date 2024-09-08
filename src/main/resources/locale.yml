@@ -1,8 +1,11 @@
 welcome-message:
   - ""
-  - "&d&lFFA &7- &fFree For All"
+  - "&e&lEU FFA"
+  - " &7Different Maps, &7Stats, Shop"
+  - " &75+ Kits, &7Leaderboards, &7Events"
   - ""
-  - "&7>> &r&fTo join a game, &dright click &fwith your &dsword&f."
+  - " &e&l● &eTo play, &dright click you sword."
+  - " &e&l● &eTo change kit layout, &dright click your book."
   - ""
 
 spawn:
