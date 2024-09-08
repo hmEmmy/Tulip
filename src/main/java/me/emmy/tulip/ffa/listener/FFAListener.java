@@ -5,9 +5,10 @@ import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.cooldown.Cooldown;
 import me.emmy.tulip.cooldown.CooldownRepository;
 import me.emmy.tulip.ffa.safezone.FFASpawnHandler;
-import me.emmy.tulip.task.ClearLagTask;
+import me.emmy.tulip.locale.Locale;
 import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.profile.enums.EnumProfileState;
+import me.emmy.tulip.task.ClearLagTask;
 import me.emmy.tulip.util.CC;
 import me.emmy.tulip.util.PlayerUtil;
 import org.bukkit.Bukkit;
@@ -25,7 +26,10 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.*;
+import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerKickEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -81,9 +85,7 @@ public class FFAListener implements Listener {
 
             Tulip.getInstance().getServer().getScheduler().runTaskLater(Tulip.getInstance(), () -> player.spigot().respawn(), 1L);
 
-            Bukkit.getScheduler().runTaskLater(Tulip.getInstance(), () -> {
-                profile.getFfaMatch().handleDeath(player, killer);
-            }, 1L);
+            Bukkit.getScheduler().runTaskLater(Tulip.getInstance(), () -> profile.getFfaMatch().handleDeath(player, killer), 1L);
         }
     }
 
@@ -239,12 +241,12 @@ public class FFAListener implements Listener {
                 if (optionalCooldown.isPresent() && optionalCooldown.get().isActive()) {
                     event.setCancelled(true);
                     player.updateInventory();
-                    player.sendMessage(CC.translate("&cYou must wait " + optionalCooldown.get().remainingTime() + " seconds before using another ender pearl."));
+                    player.sendMessage(CC.translate(Locale.FFA_ENDERPEARL_COOLDOWN.getStringPath().replace("{time}", String.valueOf(optionalCooldown.get().remainingTime()))));
                     return;
                 }
 
                 Cooldown cooldown = optionalCooldown.orElseGet(() -> {
-                    Cooldown newCooldown = new Cooldown(15 * 1000L, () -> player.sendMessage(CC.translate("&aYou can now use pearls again!")));
+                    Cooldown newCooldown = new Cooldown(15 * 1000L, () -> player.sendMessage(CC.translate(Locale.FFA_COOLDOWN_EXPIRED.getStringPath())));
                     cooldownRepository.addCooldown(player.getUniqueId(), "ENDERPEARL", newCooldown);
                     return newCooldown;
                 });

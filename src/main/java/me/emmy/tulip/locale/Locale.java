@@ -46,12 +46,14 @@ public enum Locale {
     FFA_MATCH_DOES_NOT_EXIST("ffa-match.does-not-exist", "locale.yml"),
     FFA_MATCH_CREATED("ffa-match.created", "locale.yml"),
     FFA_MATCH_DELETED("ffa-match.deleted", "locale.yml"),
-    FFA_PLAYER_NOT_IN_MATCH("ffa.player-not-in-match", "locale.yml"),
-    FFA_KICKED_PLAYER("ffa.kicked-player", "locale.yml"),
-    FFA_KICKED("ffa.kicked", "locale.yml"),
-    FFA_MAX_PLAYERS_SET("ffa.max-players-set", "locale.yml"),
-    FFA_NOT_IN_MATCH("ffa.not-in-match", "locale.yml"),
-    FFA_ALREADY_IN_MATCH("ffa.already-in-match", "locale.yml"),
+    FFA_PLAYER_NOT_IN_MATCH("ffa-match.player-not-in-match", "locale.yml"),
+    FFA_KICKED_PLAYER("ffa-match.kicked-player", "locale.yml"),
+    FFA_KICKED("ffa-match.kicked", "locale.yml"),
+    FFA_MAX_PLAYERS_SET("ffa-match.max-players-set", "locale.yml"),
+    FFA_NOT_IN_MATCH("ffa-match.not-in-match", "locale.yml"),
+    FFA_ALREADY_IN_MATCH("ffa-match.already-in-match", "locale.yml"),
+    FFA_ENDERPEARL_COOLDOWN("ffa-match.enderpearl-cooldown", "locale.yml"),
+    FFA_COOLDOWN_EXPIRED("ffa-match.cooldown-expired", "locale.yml"),
 
     ;
 

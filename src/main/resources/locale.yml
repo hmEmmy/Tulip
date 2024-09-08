@@ -56,6 +56,8 @@ ffa-match:
   max-players-set: "&aSuccessfully set the max players to &b{maxPlayers} &afor the &b{kit} &affa match."
   not-in-match: "&cYou are not in a match."
   already-in-match: "&cYou are already in a match."
+  enderpearl-cooldown: "&cYou must wait &b{time}s &cbefore using an enderpearl again."
+  cooldown-expired: "&aYou can now use enderpearls again."
 
 game:
   join-message:
