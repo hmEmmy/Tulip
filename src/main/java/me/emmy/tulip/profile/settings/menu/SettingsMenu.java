@@ -4,10 +4,12 @@ import lombok.AllArgsConstructor;
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.api.menu.Button;
 import me.emmy.tulip.api.menu.Menu;
+import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.util.CC;
 import me.emmy.tulip.util.ItemBuilder;
 import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
@@ -24,9 +26,12 @@ import java.util.Map;
  */
 @AllArgsConstructor
 public class SettingsMenu extends Menu {
+
+    private final FileConfiguration config = ConfigHandler.getInstance().getSettingsMenuConfig();
+    
     @Override
     public String getTitle(Player player) {
-        return CC.translate("&e&lSettings");
+        return CC.translate(config.getString("title", "&e&lSettings"));
     }
 
     @Override
@@ -34,56 +39,46 @@ public class SettingsMenu extends Menu {
         Map<Integer, Button> buttons = new HashMap<>();
         Profile profile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
 
-        buttons.put(10, new SettingsButton(Material.PAPER, "&e&lSidebar Visibility", 0,
+        // -- SIDEBAR --
+        
+        int sidebarSlot = config.getInt("buttons.sidebar-visibility.slot");
+        Material sidebarMaterial = Material.matchMaterial(config.getString("buttons.sidebar-visibility.material", "PAPER"));
+        String sidebarName = CC.translate(config.getString("buttons.sidebar-visibility.name", "&e&lSidebar Visibility"));
+        int sidebarDurability = config.getInt("buttons.sidebar-visibility.durability", 0);
+
+        buttons.put(sidebarSlot, new SettingsButton(sidebarMaterial, sidebarName, sidebarDurability,
                 profile.getSettings().isShowScoreboard() ?
-                        Arrays.asList(
-                                "&7See the scoreboard.",
-                                "",
-                                " &e&l┃  &aYes",
-                                " &e┃ &7No",
-                                "",
-                                "&eClick to change!"
-                        )
+                        config.getStringList("buttons.sidebar-visibility.enabled-lore")
                         :
-                        Arrays.asList(
-                                "&7See the scoreboard.",
-                                "",
-                                " &e┃ &7Yes",
-                                " &e&l┃  &cNo",
-                                "",
-                                "&eClick to change!"
-                        )
+                        config.getStringList("buttons.sidebar-visibility.disabled-lore")
         ));
-
-        buttons.put(11, new SettingsButton(Material.NAME_TAG, "&e&lTablist Visibility", 0,
+        
+        // -- TABLIST --
+        
+        int tablistSlot = config.getInt("buttons.tablist-visibility.slot");
+        Material tablistMaterial = Material.matchMaterial(config.getString("buttons.tablist-visibility.material", "NAME_TAG"));
+        String tablistName = CC.translate(config.getString("buttons.tablist-visibility.name", "&e&lTablist Visibility"));
+        int tablistDurability = config.getInt("buttons.tablist-visibility.durability", 0);
+        
+        buttons.put(tablistSlot, new SettingsButton(tablistMaterial, tablistName, tablistDurability,
                 profile.getSettings().isShowTablist() ?
-                        Arrays.asList(
-                                "&7See the tablist.",
-                                "",
-                                " &e&l┃  &aYes",
-                                " &e┃ &7No",
-                                "",
-                                "&eClick to change!"
-                        )
+                        config.getStringList("buttons.tablist-visibility.enabled-lore")
                         :
-                        Arrays.asList(
-                                "&7See the tablist.",
-                                "",
-                                " &e┃ &7Yes",
-                                " &e&l┃  &cNo",
-                                "",
-                                "&eClick to change!"
-                        )
+                        config.getStringList("buttons.tablist-visibility.disabled-lore")
         ));
-
-        addBorder(buttons, (byte) 15, 4);
+        
+        // -- GLASS BORDER --
+        
+        if (config.getBoolean("glass-border.enabled")) {
+            addBorder(buttons, (byte) config.getInt("glass-border.durability"), config.getInt("rows"));
+        }
 
         return buttons;
     }
 
     @Override
     public int getSize() {
-        return 9 * 4;
+        return config.getInt("rows") * 9;
     }
 
     @AllArgsConstructor
@@ -109,15 +104,17 @@ public class SettingsMenu extends Menu {
                 return;
             }
 
+            FileConfiguration config = ConfigHandler.getInstance().getLocaleConfig();
+
             Profile profile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
             switch (icon) {
                 case PAPER:
                     profile.getSettings().setShowScoreboard(!profile.getSettings().isShowScoreboard());
-                    player.sendMessage(profile.getSettings().isShowScoreboard() ? CC.translate("&aYou can now see the sidebar.") : CC.translate("&cYou can no longer see the sidebar."));
+                    player.sendMessage(profile.getSettings().isShowScoreboard() ? CC.translate(config.getString("profile-settings.sidebar.enabled")) : CC.translate(config.getString("profile-settings.sidebar.disabled")));
                     break;
                 case NAME_TAG:
                     profile.getSettings().setShowTablist(!profile.getSettings().isShowTablist());
-                    player.sendMessage(profile.getSettings().isShowTablist() ? CC.translate("&aYou can now see the tablist.") : CC.translate("&cYou can no longer see the tablist."));
+                    player.sendMessage(profile.getSettings().isShowTablist() ? CC.translate(config.getString("profile-settings.tablist.enabled")) : CC.translate(config.getString("profile-settings.tablist.disabled")));
                     break;
             }
 

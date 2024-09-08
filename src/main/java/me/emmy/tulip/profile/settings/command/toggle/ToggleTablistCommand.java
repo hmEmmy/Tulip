@@ -4,8 +4,10 @@ import me.emmy.tulip.Tulip;
 import me.emmy.tulip.api.command.BaseCommand;
 import me.emmy.tulip.api.command.CommandArgs;
 import me.emmy.tulip.api.command.annotation.Command;
+import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.util.CC;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 /**
@@ -18,10 +20,11 @@ public class ToggleTablistCommand extends BaseCommand {
     @Override
     public void onCommand(CommandArgs command) {
         Player player = command.getPlayer();
+        FileConfiguration config = ConfigHandler.getInstance().getLocaleConfig();
 
         Profile profile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
         profile.getSettings().setShowTablist(!profile.getSettings().isShowTablist());
-        player.sendMessage(profile.getSettings().isShowTablist() ? CC.translate("&aYou can now see the tablist.") : CC.translate("&cYou can no longer see the tablist."));
+        player.sendMessage(profile.getSettings().isShowTablist() ? CC.translate(config.getString("profile-settings.tablist.enabled")) : CC.translate(config.getString("profile-settings.tablist.disabled")));
 
     }
 }

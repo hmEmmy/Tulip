@@ -1,0 +1,45 @@
+title: "&e&lSettings"
+rows: 4
+buttons:
+  sidebar-visibility:
+    name: "&e&lSidebar Visibility"
+    material: "PAPER"
+    durability: 0
+    slot: 10
+    enabled-lore:
+      - "&7See the scoreboard."
+      - ""
+      - " &e&l┃  &aYes"
+      - " &e┃ &7No"
+      - ""
+      - "&eClick to change!"
+    disabled-lore:
+      - "&7See the scoreboard."
+      - ""
+      - " &e┃ &7Yes"
+      - " &e&l┃  &cNo"
+      - ""
+      - "&eClick to change!"
+  tablist-visibility:
+    name: "&e&lTablist Visibility"
+    material: "NAME_TAG"
+    durability: 0
+    slot: 11
+    enabled-lore:
+      - "&7See the tablist."
+      - ""
+      - " &e&l┃  &aYes"
+      - " &e┃ &7No"
+      - ""
+      - "&eClick to change!"
+    disabled-lore:
+      - "&7See the tablist."
+      - ""
+      - " &e┃ &7Yes"
+      - " &e&l┃  &cNo"
+      - ""
+      - "&eClick to change!"
+
+  glass-border:
+    enabled: true
+    durability: 15

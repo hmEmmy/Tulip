@@ -9,6 +9,14 @@ spawn:
   set: "&aSuccessfully set the &bspawn &alocation."
   teleported: "&aTeleported you to the &bspawn &alocation."
 
+profile-settings:
+  sidebar:
+    enabled: "&aYou can now see the sidebar."
+    disabled: "&cYou can no longer see the sidebar."
+  tablist:
+    enabled: "&aYou can now see the tablist."
+    disabled: "&cYou can no longer see the tablist."
+
 arena:
   extend-info-command: false # If true, the "arena info" command will additionally show the arena's yaw and pitch values.
   already-exists: "&cAn arena called &b{arena} &calready exists."

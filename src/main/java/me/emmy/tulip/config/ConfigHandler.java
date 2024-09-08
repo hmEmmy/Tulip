@@ -34,12 +34,13 @@ public class ConfigHandler {
     private final FileConfiguration kitsConfig;
     private final FileConfiguration ffaConfig;
     private final FileConfiguration gameMenuConfig;
+    private final FileConfiguration settingsMenuConfig;
 
     /**
      * Array of all the config file names
      */
     private final String[] configFileNames = {
-            "settings.yml", "locale.yml", "hotbar.yml", "storage/arenas.yml", "storage/kits.yml", "storage/ffa.yml", "menus/game-menu.yml", "visual/scoreboard.yml", "visual/tablist.yml"
+            "settings.yml", "locale.yml", "hotbar.yml", "storage/arenas.yml", "storage/kits.yml", "storage/ffa.yml", "menus/game-menu.yml", "visual/scoreboard.yml", "visual/tablist.yml", "menus/settings-menu.yml"
     };
 
     /**
@@ -61,6 +62,7 @@ public class ConfigHandler {
         kitsConfig = getConfig("storage/kits.yml");
         ffaConfig = getConfig("storage/ffa.yml");
         gameMenuConfig = getConfig("menus/game-menu.yml");
+        settingsMenuConfig = getConfig("menus/settings-menu.yml");
     }
 
     /**
