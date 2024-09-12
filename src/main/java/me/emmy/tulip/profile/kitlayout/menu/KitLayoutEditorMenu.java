@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.api.menu.Button;
 import me.emmy.tulip.api.menu.Menu;
+import me.emmy.tulip.api.menu.button.BackButton;
 import me.emmy.tulip.hotbar.HotbarUtility;
 import me.emmy.tulip.kit.Kit;
 import me.emmy.tulip.profile.Profile;
@@ -41,6 +42,7 @@ public class KitLayoutEditorMenu extends Menu {
     public Map<Integer, Button> getButtons(Player player) {
         Map<Integer, Button> buttons = new HashMap<>();
 
+        buttons.put(0, new BackButton(new KitLayoutSelectionMenu()));
         buttons.put(10, new LoadCurrentLayoutButton(kit));
         buttons.put(12, new SaveButton(kit));
         buttons.put(14, new ResetButton(kit));
@@ -81,6 +83,7 @@ public class KitLayoutEditorMenu extends Menu {
             player.closeInventory();
             player.sendMessage(CC.translate("&aKit layout saved."));
             HotbarUtility.applyHotbarItems(player);
+            playSuccess(player);
         }
     }
 
@@ -103,6 +106,7 @@ public class KitLayoutEditorMenu extends Menu {
 
             player.getInventory().setContents(kit.getItems());
             player.sendMessage(CC.translate("&cGiving you the default kit layout."));
+            playerClickSound(player);
         }
     }
 
@@ -131,6 +135,7 @@ public class KitLayoutEditorMenu extends Menu {
 
             player.getInventory().setContents(items);
             player.sendMessage(CC.translate("&aLoaded your currently saved kit layout."));
+            playNeutral(player);
         }
     }
 
@@ -153,6 +158,7 @@ public class KitLayoutEditorMenu extends Menu {
             HotbarUtility.applyHotbarItems(player);
             player.closeInventory();
             player.sendMessage(CC.translate("&cEditing process cancelled."));
+            playFail(player);
         }
     }
 

@@ -3,17 +3,21 @@ package me.emmy.tulip.ffa.impl;
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.arena.Arena;
 import me.emmy.tulip.config.ConfigHandler;
+import me.emmy.tulip.cooldown.Cooldown;
+import me.emmy.tulip.cooldown.CooldownRepository;
 import me.emmy.tulip.ffa.AbstractFFAMatch;
+import me.emmy.tulip.ffa.killstreak.KillStreakData;
 import me.emmy.tulip.hotbar.HotbarUtility;
 import me.emmy.tulip.kit.Kit;
 import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.profile.enums.EnumProfileState;
-import me.emmy.tulip.ffa.killstreak.KillStreakData;
 import me.emmy.tulip.util.CC;
 import me.emmy.tulip.util.PlayerUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+
+import java.util.Optional;
 
 /**
  * @author Emmy
@@ -74,6 +78,13 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
         profile.setState(EnumProfileState.SPAWN);
         profile.setFfaMatch(null);
 
+        CooldownRepository cooldownRepository = Tulip.getInstance().getCooldownRepository();
+        Optional<Cooldown> optionalCooldown = Optional.ofNullable(cooldownRepository.getCooldown(player.getUniqueId(), "ENDERPEARL"));
+        if (optionalCooldown.isPresent()) {
+            Cooldown cooldown = optionalCooldown.get();
+            cooldown.cancelCooldown();
+        }
+
         KillStreakData.resetKillstreak(player);
 
         PlayerUtil.reset(player);
@@ -89,6 +100,10 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
      */
     @Override
     public void setupPlayer(Player player) {
+        if (player.isFlying()) {
+            player.setFlying(false);
+            player.setAllowFlight(false);
+        }
         Profile profile = Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId());
         profile.setState(EnumProfileState.FFA);
         profile.setFfaMatch(this);
@@ -141,6 +156,13 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
             getPlayers().forEach(online -> online.sendMessage(CC.translate(ConfigHandler.getInstance().getLocaleConfig().getString("game.killed.no-killer").replace("{player}", player.getName()))));
             handleRespawn(player);
             return;
+        }
+
+        CooldownRepository cooldownRepository = Tulip.getInstance().getCooldownRepository();
+        Optional<Cooldown> optionalCooldown = Optional.ofNullable(cooldownRepository.getCooldown(player.getUniqueId(), "ENDERPEARL"));
+        if (optionalCooldown.isPresent()) {
+            Cooldown cooldown = optionalCooldown.get();
+            cooldown.cancelCooldown();
         }
 
         Profile killerProfile = Tulip.getInstance().getProfileRepository().getProfile(killer.getUniqueId());

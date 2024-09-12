@@ -30,7 +30,7 @@ public class BackButton extends Button {
 
     @Override
     public void clicked(Player player, ClickType clickType) {
-        Button.playNeutral(player);
+        playDoor(player);
         back.openMenu(player);
     }
 }

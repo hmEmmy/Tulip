@@ -37,6 +37,10 @@ public abstract class Button {
         player.playSound(player.getLocation(), Sound.CLICK, 20F, 15F);
     }
 
+    public static void playDoor(Player player) {
+        player.playSound(player.getLocation(), Sound.DOOR_OPEN, 20F, 15F);
+    }
+
     public static void playNeutral(Player player) {
         player.playSound(player.getLocation(), Sound.NOTE_STICKS, 20F, 15F);
     }

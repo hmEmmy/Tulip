@@ -5,7 +5,6 @@ import me.emmy.tulip.api.menu.Menu;
 import me.emmy.tulip.profile.enums.EnumProfileState;
 import me.emmy.tulip.profile.kitlayout.menu.KitLayoutEditorMenu;
 import org.bukkit.GameMode;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -111,8 +110,8 @@ public class SpawnListener implements Listener {
     @EventHandler
     private void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
         if (event.getEntity() instanceof Player) {
-            Player victim = (Player) event.getEntity();
-            if (Tulip.getInstance().getProfileRepository().getProfile(victim.getUniqueId()).getState() == EnumProfileState.SPAWN) {
+            Player player = (Player) event.getEntity();
+            if (Tulip.getInstance().getProfileRepository().getProfile(player.getUniqueId()).getState() == EnumProfileState.SPAWN) {
                 event.setCancelled(true);
             }
         }

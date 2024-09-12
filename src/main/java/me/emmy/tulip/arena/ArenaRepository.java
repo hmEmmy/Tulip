@@ -35,18 +35,6 @@ public class ArenaRepository {
         for (String name : arenasConfig.getKeys(false)) {
             String key = "arenas." + name;
 
-            List<String> debugMessage = Arrays.asList(
-                    "",
-                    "&aLoading arena: &d" + name,
-                    "&aSpawn: &d" + config.getString(key + ".spawn"),
-                    "&aCenter: &d" + config.getString(key + ".center"),
-                    "&aSafe Pos 1: &d" + config.getString(key + ".safePos1"),
-                    "&aSafe Pos 2: &d" + config.getString(key + ".safePos2"),
-                    ""
-            );
-
-            //debugMessage.forEach(msg -> Bukkit.getConsoleSender().sendMessage(CC.translate(msg)));
-
             Arena arena = new Arena(
                     name,
                     LocationUtil.deserialize(config.getString(key + ".spawn")),
@@ -54,7 +42,6 @@ public class ArenaRepository {
                     LocationUtil.deserialize(config.getString(key + ".safePos1")),
                     LocationUtil.deserialize(config.getString(key + ".safePos2"))
             );
-            //Bukkit.getConsoleSender().sendMessage(CC.translate("&aLoaded arena &d" + arena.getName()));
             arenas.add(arena);
         }
     }
@@ -73,7 +60,6 @@ public class ArenaRepository {
             config.set(key + ".safePos2", LocationUtil.serialize(arena.getSafePos2()));
         }
 
-        //Bukkit.getConsoleSender().sendMessage(CC.translate("&aSaved: &d" + arenas.size() + " arenas"));
         ConfigHandler.getInstance().saveConfig(ConfigHandler.getInstance().getConfigFile("storage/arenas.yml"), config);
     }
 
@@ -95,6 +81,12 @@ public class ArenaRepository {
         ConfigHandler.getInstance().saveConfig(ConfigHandler.getInstance().getConfigFile("storage/arenas.yml"), config);
     }
 
+    /**
+     * Get an arena by name
+     *
+     * @param name The name of the arena
+     * @return The arena
+     */
     public Arena getArena(String name) {
         return arenas.stream()
                 .filter(arena -> arena.getName().equalsIgnoreCase(name))
@@ -102,12 +94,26 @@ public class ArenaRepository {
                 orElse(null);
     }
 
+    /**
+     * Create an arena
+     *
+     * @param name     The name of the arena
+     * @param spawn    The spawn location of the arena
+     * @param center   The center location of the arena
+     * @param safePos1 The first safe position of the arena
+     * @param safePos2 The second safe position of the arena
+     */
     public void createArena(String name, String spawn, String center, String safePos1, String safePos2) {
         Arena arena = new Arena(name, LocationUtil.deserialize(spawn), LocationUtil.deserialize(center), LocationUtil.deserialize(safePos1), LocationUtil.deserialize(safePos2));
         arenas.add(arena);
         saveArena(arena);
     }
 
+    /**
+     * Delete an arena
+     *
+     * @param name The name of the arena
+     */
     public void deleteArena(String name) {
         Arena arena = getArena(name);
         arenas.remove(arena);
