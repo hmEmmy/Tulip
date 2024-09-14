@@ -1,1 +1,38 @@
 title: "&eEditing Kit: &d{kit}"
+rows: 3
+
+buttons:
+  load-current:
+    slot: 10
+    name: "&eLoad Current Layout"
+    lore:
+      - "&7Click to load the current layout."
+    material: BOOK
+    durability: 0
+  save:
+    slot: 12
+    name: "&aSave Kit Layout"
+    lore:
+      - "&7Click to save the kit layout."
+    material: EMERALD_BLOCK
+    durability: 0
+  reset:
+    slot: 14
+    name: "&cReset Kit Layout"
+    lore:
+      - "&7Click to reset the kit layout."
+    material: REDSTONE_BLOCK
+    durability: 0
+  cancel:
+    slot: 16
+    name: "&cCancel Editing Process"
+    lore: "&7Click to cancel the editing process."
+    material: BARRIER
+    durability: 0
+
+glass-border:
+  enabled: true
+  durability: 15
+
+back-button:
+  slot: 0

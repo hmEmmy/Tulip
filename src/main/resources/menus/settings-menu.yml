@@ -1,5 +1,6 @@
 title: "&e&lSettings"
 rows: 4
+
 buttons:
   sidebar-visibility:
     name: "&e&lSidebar Visibility"

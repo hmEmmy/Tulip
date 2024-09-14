@@ -30,7 +30,6 @@ import java.util.Map;
 public class KitLayoutEditorMenu extends Menu {
 
     private final FileConfiguration config = Tulip.getInstance().getConfigHandler().getKitEditorMenuConfig();
-
     private Kit kit;
 
     @Override
@@ -42,20 +41,22 @@ public class KitLayoutEditorMenu extends Menu {
     public Map<Integer, Button> getButtons(Player player) {
         Map<Integer, Button> buttons = new HashMap<>();
 
-        buttons.put(0, new BackButton(new KitLayoutSelectionMenu()));
-        buttons.put(10, new LoadCurrentLayoutButton(kit));
-        buttons.put(12, new SaveButton(kit));
-        buttons.put(14, new ResetButton(kit));
-        buttons.put(16, new CancelEditingProcessButton());
+        buttons.put(config.getInt("back-button.slot"), new BackButton(new KitLayoutSelectionMenu()));
+        buttons.put(config.getInt("buttons.load-current.slot"), new LoadCurrentLayoutButton(kit));
+        buttons.put(config.getInt("buttons.save.slot"), new SaveButton(kit));
+        buttons.put(config.getInt("buttons.reset.slot"), new ResetButton(kit));
+        buttons.put(config.getInt("buttons.cancel.slot"), new CancelEditingProcessButton());
 
-        addBorder(buttons, (byte) 15, 3);
+        if (config.getBoolean("glass-border.enabled")) {
+            addBorder(buttons, (byte) config.getInt("glass-border.durability"), getSize() / 9);
+        }
 
         return buttons;
     }
 
     @Override
     public int getSize() {
-        return 3 * 9;
+        return config.getInt("rows") * 9;
     }
 
     @AllArgsConstructor
@@ -65,9 +66,11 @@ public class KitLayoutEditorMenu extends Menu {
 
         @Override
         public ItemStack getButtonItem(Player player) {
-            return new ItemBuilder(Material.EMERALD_BLOCK)
-                    .name(CC.translate("&aSave Kit Layout"))
-                    .lore(Collections.singletonList(CC.translate("&7Click to save the kit layout.")))
+            FileConfiguration config = Tulip.getInstance().getConfigHandler().getKitEditorMenuConfig();
+            return new ItemBuilder(Material.matchMaterial(config.getString("buttons.save.material")))
+                    .name(CC.translate(config.getString("buttons.save.name")))
+                    .lore(config.getStringList("buttons.save.lore"))
+                    .durability(config.getInt("buttons.save.durability"))
                     .build();
         }
 
@@ -94,9 +97,11 @@ public class KitLayoutEditorMenu extends Menu {
 
         @Override
         public ItemStack getButtonItem(Player player) {
-            return new ItemBuilder(Material.REDSTONE_BLOCK)
-                    .name(CC.translate("&cReset Kit Layout"))
-                    .lore(Collections.singletonList(CC.translate("&7Click to reset the kit layout.")))
+            FileConfiguration config = Tulip.getInstance().getConfigHandler().getKitEditorMenuConfig();
+            return new ItemBuilder(Material.matchMaterial(config.getString("buttons.reset.material")))
+                    .name(CC.translate(config.getString("buttons.reset.name")))
+                    .lore(config.getStringList("buttons.reset.lore"))
+                    .durability(config.getInt("buttons.reset.durability"))
                     .build();
         }
 
@@ -117,9 +122,11 @@ public class KitLayoutEditorMenu extends Menu {
 
         @Override
         public ItemStack getButtonItem(Player player) {
-            return new ItemBuilder(Material.BOOK)
-                    .name(CC.translate("&eLoad Current Layout"))
-                    .lore(Collections.singletonList(CC.translate("&7Click to load the current layout.")))
+            FileConfiguration config = Tulip.getInstance().getConfigHandler().getKitEditorMenuConfig();
+            return new ItemBuilder(Material.matchMaterial(config.getString("buttons.load-current.material")))
+                    .name(CC.translate(config.getString("buttons.load-current.name")))
+                    .lore(config.getStringList("buttons.load-current.lore"))
+                    .durability(config.getInt("buttons.load-current.durability"))
                     .build();
         }
 
@@ -144,9 +151,10 @@ public class KitLayoutEditorMenu extends Menu {
 
         @Override
         public ItemStack getButtonItem(Player player) {
-            return new ItemBuilder(Material.BARRIER)
-                    .name(CC.translate("&cCancel Editing Process"))
-                    .lore(Collections.singletonList(CC.translate("&7Click to cancel the editing process.")))
+            FileConfiguration config = Tulip.getInstance().getConfigHandler().getKitEditorMenuConfig();
+            return new ItemBuilder(Material.matchMaterial(config.getString("buttons.cancel.material")))
+                    .name(CC.translate(config.getString("buttons.cancel.name")))
+                    .lore(Collections.singletonList(CC.translate(config.getString("buttons.cancel.lore"))))
                     .build();
         }
 
