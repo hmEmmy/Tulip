@@ -13,6 +13,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -69,8 +70,10 @@ public class StatsMenu extends Menu {
             }
             List<String> lore = new ArrayList<>();
             lore.add("");
-            lore.add("&f&l● &fKills: &d" + profile.getStats().getKitKills(match.getKit()));
-            lore.add("&f&l● &fDeaths: &d" + profile.getStats().getKitDeaths(match.getKit()));
+            lore.add("&e&l● &eKills: &d" + profile.getStats().getKitKills(match.getKit()));
+            lore.add("&e&l● &eDeaths: &d" + profile.getStats().getKitDeaths(match.getKit()));
+            lore.add("");
+            lore.add("&e&l● &eHighest Killstreak: &d" + profile.getStats().getHighestKillstreak(match.getKit()));
             lore.add("");
 
             return new ItemBuilder(match.getKit().getIcon())
@@ -90,6 +93,7 @@ public class StatsMenu extends Menu {
         @Override
         public ItemStack getButtonItem(Player player) {
             Profile profile = Tulip.getInstance().getProfileRepository().getProfileWithNoAdding(offlineTargetPlayer.getUniqueId());
+            DecimalFormat decimalFormat = new DecimalFormat("0.0");
             if (profile == null) {
                 return new ItemBuilder(Material.BARRIER)
                         .name(CC.translate("&c&lError"))
@@ -99,11 +103,10 @@ public class StatsMenu extends Menu {
             }
             List<String> lore = new ArrayList<>();
             lore.add("");
-            lore.add("&f&l● &fTotal Kills: &d" + profile.getStats().getTotalKills());
-            lore.add("&f&l● &fTotal Deaths: &d" + profile.getStats().getTotalDeaths());
+            lore.add("&e&l● &eTotal Kills: &d" + profile.getStats().getTotalKills());
+            lore.add("&e&l● &eTotal Deaths: &d" + profile.getStats().getTotalDeaths());
             lore.add("");
-            lore.add("&f&l● &fKill/Death Ratio: &d" + profile.getStats().getKDR());
-            lore.add("&f&l● &fHighest Killstreak: &d" + "null" + " &7(null kit)");
+            lore.add("&e&l● &eKill/Death Ratio: &d" + decimalFormat.format(profile.getStats().getKDR()));
             lore.add("");
 
             return new ItemBuilder(Material.NETHER_STAR)

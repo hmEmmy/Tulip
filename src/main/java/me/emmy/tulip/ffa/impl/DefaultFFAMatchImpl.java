@@ -6,7 +6,6 @@ import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.cooldown.Cooldown;
 import me.emmy.tulip.cooldown.CooldownRepository;
 import me.emmy.tulip.ffa.AbstractFFAMatch;
-import me.emmy.tulip.ffa.killstreak.KillStreakData;
 import me.emmy.tulip.hotbar.HotbarUtility;
 import me.emmy.tulip.kit.Kit;
 import me.emmy.tulip.profile.Profile;
@@ -85,7 +84,7 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
             cooldown.cancelCooldown();
         }
 
-        KillStreakData.resetKillstreak(player);
+        profile.getStats().resetStreakAndSaveIfPresent(getKit(), profile.getStats().getHighestKillstreak(getKit()), player.getUniqueId());
 
         PlayerUtil.reset(player);
         Tulip.getInstance().getSpawnHandler().teleportToSpawn(player);
@@ -168,11 +167,11 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
         Profile killerProfile = Tulip.getInstance().getProfileRepository().getProfile(killer.getUniqueId());
         killerProfile.getStats().incrementKitKills(getKit());
 
-        if (KillStreakData.getCurrentStreak(player) != 0) {
-            KillStreakData.resetKillstreak(player);
+        if (killerProfile.getStats().getHighestKillstreak(getKit()) < killerProfile.getStats().getHighestKillstreak(getKit()) + 1) {
+            killerProfile.getStats().setHighestKillstreak(getKit(), killerProfile.getStats().getHighestKillstreak(getKit()) + 1);
         }
 
-        KillStreakData.incrementKillstreak(killer.getName());
+        killerProfile.getStats().incrementKillstreak(getKit());
         broadcastKillStreak(killer);
 
         getPlayers().forEach(online -> online.sendMessage(CC.translate(ConfigHandler.getInstance().getLocaleConfig().getString("game.killed.with-killer").replace("{player}", player.getName()).replace("{killer}", killer.getName()))));
@@ -185,10 +184,18 @@ public class DefaultFFAMatchImpl extends AbstractFFAMatch {
      * @param killer The killer
      */
     private void broadcastKillStreak(Player killer) {
-        if (KillStreakData.getCurrentStreak(killer) % ConfigHandler.getInstance().getLocaleConfig().getInt("game.killstreak.interval") == 0) {
+        Profile killerProfile = Tulip.getInstance().getProfileRepository().getProfile(killer.getUniqueId());
+
+        if (killerProfile.getStats().getHighestKillstreak(getKit()) % ConfigHandler.getInstance().getLocaleConfig().getInt("game.killstreak.interval") == 0) {
             for (String message : ConfigHandler.getInstance().getLocaleConfig().getStringList("game.killstreak.broadcast")) {
-                getPlayers().forEach(pl -> pl.sendMessage(CC.translate(message).replace("{player}", killer.getName()).replace("{streak}", String.valueOf(KillStreakData.getCurrentStreak(killer)))));
+                getPlayers().forEach(pl -> pl.sendMessage(CC.translate(message).replace("{player}", killer.getName()).replace("{streak}", String.valueOf(killerProfile.getStats().getHighestKillstreak(getKit())))));
             }
         }
+
+        //if (KillStreakData.getCurrentStreak(killer) % ConfigHandler.getInstance().getLocaleConfig().getInt("game.killstreak.interval") == 0) {
+        //            for (String message : ConfigHandler.getInstance().getLocaleConfig().getStringList("game.killstreak.broadcast")) {
+        //                getPlayers().forEach(pl -> pl.sendMessage(CC.translate(message).replace("{player}", killer.getName()).replace("{streak}", String.valueOf(KillStreakData.getCurrentStreak(killer)))));
+        //            }
+        //        }
     }
 }

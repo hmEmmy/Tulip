@@ -9,17 +9,7 @@ import me.emmy.tulip.profile.Profile;
  */
 public interface IProfile {
 
-    /**
-     * Load a profile
-     *
-     * @param profile the profile to load
-     */
     void loadProfile(Profile profile);
 
-    /**
-     * Save a profile
-     *
-     * @param profile the profile to save
-     */
     void saveProfile(Profile profile);
 }

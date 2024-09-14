@@ -46,9 +46,11 @@ public class MongoProfileHandler implements IProfile {
         if (statsDocument != null) {
             Map<Kit, Integer> kitKills = new HashMap<>();
             Map<Kit, Integer> kitDeaths = new HashMap<>();
+            Map<Kit, Integer> highestKillstreak = new HashMap<>();
 
             Document killsDoc = (Document) statsDocument.get("kills");
             Document deathsDoc = (Document) statsDocument.get("deaths");
+            Document highestKillstreakDoc = (Document) statsDocument.get("highestKillstreak");
 
             if (killsDoc != null) {
                 for (Map.Entry<String, Object> entry : killsDoc.entrySet()) {
@@ -68,8 +70,18 @@ public class MongoProfileHandler implements IProfile {
                 }
             }
 
+            if (highestKillstreakDoc != null) {
+                for (Map.Entry<String, Object> entry : highestKillstreakDoc.entrySet()) {
+                    Kit kit = Tulip.getInstance().getKitRepository().getKit(entry.getKey());
+                    if (kit != null) {
+                        highestKillstreak.put(kit, (Integer) entry.getValue());
+                    }
+                }
+            }
+
             profile.getStats().setKitKills(kitKills);
             profile.getStats().setKitDeaths(kitDeaths);
+            profile.getStats().setHighestKillstreak(highestKillstreak);
         }
 
         Document kitLayoutsDoc = (Document) document.get("kitLayouts");
@@ -119,6 +131,7 @@ public class MongoProfileHandler implements IProfile {
         FFARepository ffaRepository = Tulip.getInstance().getFfaRepository();
         Map<String, Integer> killsMap = new HashMap<>();
         Map<String, Integer> deathsMap = new HashMap<>();
+        Map<String, Integer> highestKillstreakMap = new HashMap<>();
 
         for (AbstractFFAMatch match : ffaRepository.getMatches()) {
             Kit kit = match.getKit();
@@ -129,10 +142,14 @@ public class MongoProfileHandler implements IProfile {
 
             Integer deaths = profile.getStats().getKitDeaths().getOrDefault(kit, 0);
             deathsMap.put(kitName, deaths);
+
+            Integer highestKillstreak = profile.getStats().getHighestKillstreak().getOrDefault(kit, 0);
+            highestKillstreakMap.put(kitName, highestKillstreak);
         }
 
         statsDocument.put("kills", killsMap);
         statsDocument.put("deaths", deathsMap);
+        statsDocument.put("highestKillstreak", highestKillstreakMap);
 
         document.put("stats", statsDocument);
 

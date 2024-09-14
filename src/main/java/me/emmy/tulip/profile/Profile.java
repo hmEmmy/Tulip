@@ -27,9 +27,12 @@ public class Profile {
 
     private String name;
     private UUID uuid;
+
     private boolean online;
+
     private AbstractFFAMatch ffaMatch;
     private EnumProfileState state;
+
     private ProfileStats stats;
     private ProfileSettings settings;
     private ProfileKitLayout kitLayout;
