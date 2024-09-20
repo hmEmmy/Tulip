@@ -45,6 +45,7 @@ public class Tulip extends JavaPlugin {
     private CooldownRepository cooldownRepository;
     private FFARepository ffaRepository;
     private FFASpawnHandler ffaSpawnHandler;
+    private ProductRepository productRepository;
 
     @Override
     public void onEnable() {
@@ -79,7 +80,7 @@ public class Tulip extends JavaPlugin {
 
         cooldownRepository = new CooldownRepository();
 
-        ProductRepository productRepository = new ProductRepository();
+        productRepository = new ProductRepository();
         productRepository.loadProducts();
 
         ServerUtils.registerListenersInPackage("me.emmy.tulip");
