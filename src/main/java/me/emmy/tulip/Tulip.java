@@ -2,24 +2,24 @@ package me.emmy.tulip;
 
 import lombok.Getter;
 import lombok.Setter;
+import me.emmy.tulip.api.assemble.Assemble;
+import me.emmy.tulip.api.assemble.AssembleStyle;
 import me.emmy.tulip.api.command.CommandFramework;
 import me.emmy.tulip.arena.ArenaRepository;
 import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.cooldown.CooldownRepository;
 import me.emmy.tulip.database.MongoService;
-import me.emmy.tulip.essential.command.admin.GamemodeCommand;
 import me.emmy.tulip.ffa.FFARepository;
 import me.emmy.tulip.ffa.safezone.FFASpawnHandler;
 import me.emmy.tulip.ffa.safezone.task.FFASpawnTask;
 import me.emmy.tulip.kit.KitRepository;
+import me.emmy.tulip.product.ProductRepository;
 import me.emmy.tulip.profile.ProfileRepository;
-import me.emmy.tulip.shop.ProductRepository;
 import me.emmy.tulip.spawn.SpawnHandler;
 import me.emmy.tulip.util.CC;
+import me.emmy.tulip.util.CommandUtility;
 import me.emmy.tulip.util.ServerUtils;
 import me.emmy.tulip.visual.scoreboard.ScoreboardVisualizer;
-import me.emmy.tulip.api.assemble.Assemble;
-import me.emmy.tulip.api.assemble.AssembleStyle;
 import me.emmy.tulip.visual.tablist.task.TablistUpdateTask;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -54,8 +54,8 @@ public class Tulip extends JavaPlugin {
         configHandler = new ConfigHandler();
 
         commandFramework = new CommandFramework();
-        commandFramework.registerCommandsInPackage("me.emmy.tulip");
-        commandFramework.registerCommands(new GamemodeCommand());
+        //commandFramework.registerCommandsInPackage("me.emmy.tulip");
+        CommandUtility.registerCommands();
 
         spawnHandler = new SpawnHandler();
         spawnHandler.loadSpawn();

@@ -1,7 +1,7 @@
-package me.emmy.tulip.shop;
+package me.emmy.tulip.product;
 
 import lombok.Getter;
-import me.emmy.tulip.shop.enums.EnumProductType;
+import me.emmy.tulip.product.enums.EnumProductType;
 import org.bukkit.Material;
 
 /**

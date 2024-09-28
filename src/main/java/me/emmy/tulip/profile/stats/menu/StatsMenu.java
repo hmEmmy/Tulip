@@ -4,20 +4,19 @@ import lombok.AllArgsConstructor;
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.api.menu.Button;
 import me.emmy.tulip.api.menu.Menu;
+import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.ffa.AbstractFFAMatch;
 import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.util.CC;
 import me.emmy.tulip.util.ItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Emmy
@@ -27,11 +26,13 @@ import java.util.Map;
 @AllArgsConstructor
 public class StatsMenu extends Menu {
 
+    private final FileConfiguration config = ConfigHandler.getInstance().getStatsMenuConfig();
+
     private OfflinePlayer offlineTargetPlayer;
 
     @Override
     public String getTitle(Player player) {
-        return CC.translate("&e&l" + offlineTargetPlayer.getName() + "'s Stats");
+        return CC.translate(config.getString("title").replace("{player}", offlineTargetPlayer.getName()));
     }
 
     @Override
@@ -68,18 +69,18 @@ public class StatsMenu extends Menu {
                         .hideMeta()
                         .build();
             }
-            List<String> lore = new ArrayList<>();
-            lore.add("");
-            lore.add("&e&l● &eKills: &d" + profile.getStats().getKitKills(match.getKit()));
-            lore.add("&e&l● &eDeaths: &d" + profile.getStats().getKitDeaths(match.getKit()));
-            lore.add("");
-            lore.add("&e&l● &eHighest Killstreak: &d" + profile.getStats().getHighestKillstreak(match.getKit()));
-            lore.add("");
 
             return new ItemBuilder(match.getKit().getIcon())
-                    .name(CC.translate("&d&l" + match.getKit().getName()))
+                    .name("&d&l" + match.getKit().getName())
                     .durability(match.getKit().getIconData())
-                    .lore(lore)
+                    .lore(Arrays.asList(
+                            "",
+                            "&e&l● &eKills: &d" + profile.getStats().getKitKills(match.getKit()),
+                            "&e&l● &eDeaths: &d" + profile.getStats().getKitDeaths(match.getKit()),
+                            "",
+                            "&e&l● &eHighest Killstreak: &d" + profile.getStats().getHighestKillstreak(match.getKit()),
+                            ""
+                    ))
                     .hideMeta()
                     .build();
         }
@@ -96,23 +97,23 @@ public class StatsMenu extends Menu {
             DecimalFormat decimalFormat = new DecimalFormat("0.0");
             if (profile == null) {
                 return new ItemBuilder(Material.BARRIER)
-                        .name(CC.translate("&c&lError"))
-                        .lore(CC.translate("&cThis Player has never played before."))
+                        .name("&c&lError")
+                        .lore("&cThis Player has never played before.")
                         .hideMeta()
                         .build();
             }
-            List<String> lore = new ArrayList<>();
-            lore.add("");
-            lore.add("&e&l● &eTotal Kills: &d" + profile.getStats().getTotalKills());
-            lore.add("&e&l● &eTotal Deaths: &d" + profile.getStats().getTotalDeaths());
-            lore.add("");
-            lore.add("&e&l● &eKill/Death Ratio: &d" + decimalFormat.format(profile.getStats().getKDR()));
-            lore.add("");
 
             return new ItemBuilder(Material.NETHER_STAR)
-                    .name(CC.translate("&d&lPlayer Stats"))
+                    .name("&d&lPlayer Stats")
                     .durability(0)
-                    .lore(lore)
+                    .lore(Arrays.asList(
+                            "",
+                            "&e&l● &eTotal Kills: &d" + profile.getStats().getTotalKills(),
+                            "&e&l● &eTotal Deaths: &d" + profile.getStats().getTotalDeaths(),
+                            "",
+                            "&e&l● &eKill/Death Ratio: &d" + decimalFormat.format(profile.getStats().getKDR()),
+                            ""
+                    ))
                     .hideMeta()
                     .build();
         }

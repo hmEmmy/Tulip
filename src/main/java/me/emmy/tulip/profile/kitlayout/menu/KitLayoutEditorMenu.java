@@ -68,7 +68,7 @@ public class KitLayoutEditorMenu extends Menu {
         public ItemStack getButtonItem(Player player) {
             FileConfiguration config = Tulip.getInstance().getConfigHandler().getKitEditorMenuConfig();
             return new ItemBuilder(Material.matchMaterial(config.getString("buttons.save.material")))
-                    .name(CC.translate(config.getString("buttons.save.name")))
+                    .name(config.getString("buttons.save.name"))
                     .lore(config.getStringList("buttons.save.lore"))
                     .durability(config.getInt("buttons.save.durability"))
                     .build();
@@ -99,7 +99,7 @@ public class KitLayoutEditorMenu extends Menu {
         public ItemStack getButtonItem(Player player) {
             FileConfiguration config = Tulip.getInstance().getConfigHandler().getKitEditorMenuConfig();
             return new ItemBuilder(Material.matchMaterial(config.getString("buttons.reset.material")))
-                    .name(CC.translate(config.getString("buttons.reset.name")))
+                    .name(config.getString("buttons.reset.name"))
                     .lore(config.getStringList("buttons.reset.lore"))
                     .durability(config.getInt("buttons.reset.durability"))
                     .build();
@@ -124,7 +124,7 @@ public class KitLayoutEditorMenu extends Menu {
         public ItemStack getButtonItem(Player player) {
             FileConfiguration config = Tulip.getInstance().getConfigHandler().getKitEditorMenuConfig();
             return new ItemBuilder(Material.matchMaterial(config.getString("buttons.load-current.material")))
-                    .name(CC.translate(config.getString("buttons.load-current.name")))
+                    .name(config.getString("buttons.load-current.name"))
                     .lore(config.getStringList("buttons.load-current.lore"))
                     .durability(config.getInt("buttons.load-current.durability"))
                     .build();
@@ -153,8 +153,9 @@ public class KitLayoutEditorMenu extends Menu {
         public ItemStack getButtonItem(Player player) {
             FileConfiguration config = Tulip.getInstance().getConfigHandler().getKitEditorMenuConfig();
             return new ItemBuilder(Material.matchMaterial(config.getString("buttons.cancel.material")))
-                    .name(CC.translate(config.getString("buttons.cancel.name")))
-                    .lore(Collections.singletonList(CC.translate(config.getString("buttons.cancel.lore"))))
+                    .name(config.getString("buttons.cancel.name"))
+                    .lore(config.getStringList("buttons.cancel.lore"))
+                    .durability(config.getInt("buttons.cancel.durability"))
                     .build();
         }
 

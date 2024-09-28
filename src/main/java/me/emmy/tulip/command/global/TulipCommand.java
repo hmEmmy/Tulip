@@ -1,4 +1,4 @@
-package me.emmy.tulip.essential.command;
+package me.emmy.tulip.command.global;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.util.CC;

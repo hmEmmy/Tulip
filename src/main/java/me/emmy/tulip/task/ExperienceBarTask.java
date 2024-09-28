@@ -6,6 +6,7 @@ import me.emmy.tulip.cooldown.CooldownRepository;
 import me.emmy.tulip.util.CC;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Optional;
 
@@ -14,7 +15,7 @@ import java.util.Optional;
  * @project Tulip
  * @date 08/09/2024 - 23:19
  */
-public class ExperienceBarTask implements Runnable {
+public class ExperienceBarTask extends BukkitRunnable {
 
     //TODO: FIX THIS RETARDED CLASS
 
@@ -33,7 +34,7 @@ public class ExperienceBarTask implements Runnable {
                 player.setLevel(0);
                 player.setExp(0);
                 Bukkit.getConsoleSender().sendMessage(CC.translate("&cI'm killing performance right now"));
-                Bukkit.getScheduler().cancelTask(this.hashCode());
+                cancel();
             }
         }
     }

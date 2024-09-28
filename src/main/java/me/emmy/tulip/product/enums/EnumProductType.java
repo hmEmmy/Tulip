@@ -1,4 +1,4 @@
-package me.emmy.tulip.shop.enums;
+package me.emmy.tulip.product.enums;
 
 import lombok.Getter;
 
