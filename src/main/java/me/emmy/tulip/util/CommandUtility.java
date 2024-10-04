@@ -35,7 +35,6 @@ import me.emmy.tulip.spawn.command.SpawnCommand;
  */
 @UtilityClass
 public class CommandUtility {
-
     /**
      * Register all commands based on their category.
      */

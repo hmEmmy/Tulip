@@ -16,7 +16,6 @@ import java.util.HashMap;
 @Getter
 @Setter
 public class ProfileKitLayout {
-
     private Map<String, ItemStack[]> kitItems = new HashMap<>();
 
     /**

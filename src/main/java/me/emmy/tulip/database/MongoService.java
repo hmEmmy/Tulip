@@ -25,6 +25,9 @@ public class MongoService {
     private MongoDatabase mongoDatabase;
     private MongoClient mongoClient;
 
+    /**
+     * Start the MongoDB connection
+     */
     public void startMongo() {
         try {
             FileConfiguration config = ConfigHandler.getInstance().getSettingsConfig();

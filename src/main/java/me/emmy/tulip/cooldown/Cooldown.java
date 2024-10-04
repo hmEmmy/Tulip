@@ -11,12 +11,17 @@ import org.bukkit.scheduler.BukkitTask;
  */
 @Getter
 public class Cooldown {
-
     private final long cooldownDuration;
     private final Runnable actionToRun;
     private long startTime;
     private BukkitTask cooldownTask;
 
+    /**
+     * Instantiates a new Cooldown.
+     *
+     * @param cooldownDuration the cooldown duration
+     * @param actionToRun      the action to run
+     */
     public Cooldown(long cooldownDuration, Runnable actionToRun) {
         this.cooldownDuration = cooldownDuration;
         this.actionToRun = actionToRun;

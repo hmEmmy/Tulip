@@ -12,7 +12,6 @@ import org.bukkit.scheduler.BukkitTask;
  */
 @UtilityClass
 public class TaskUtil {
-
     private static final Tulip plugin = Tulip.getInstance();
 
     public void runTaskAsync(Runnable runnable) {
@@ -58,5 +57,4 @@ public class TaskUtil {
     public BukkitTask runTimerAsync(Runnable runnable, long delay, long interval) {
         return plugin.getServer().getScheduler().runTaskTimerAsynchronously(plugin, runnable, delay, interval);
     }
-
 }

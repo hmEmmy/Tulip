@@ -19,7 +19,7 @@ import org.bukkit.entity.Player;
 import java.util.Optional;
 
 /**
- * @author Emmy
+ * @author Remi
  * @project Tulip
  * @date 5/27/2024
  */

@@ -14,7 +14,6 @@ import java.util.UUID;
  */
 @Getter
 public class CooldownRepository {
-
     /**
      * -- GETTER --
      *  Get all the cooldowns from the repository

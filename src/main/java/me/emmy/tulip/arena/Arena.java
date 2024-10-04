@@ -15,7 +15,6 @@ import org.bukkit.Location;
 @AllArgsConstructor
 public class Arena {
     private String name;
-
     private Location spawn;
     private Location center;
     private Location safePos1;

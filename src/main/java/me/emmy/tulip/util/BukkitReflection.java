@@ -17,7 +17,6 @@ import java.util.Arrays;
  * @date 5/26/2024
  */
 public class BukkitReflection {
-
     private static final String CRAFT_BUKKIT_PACKAGE;
     private static final String NET_MINECRAFT_SERVER_PACKAGE;
 

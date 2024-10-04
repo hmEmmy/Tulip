@@ -15,7 +15,6 @@ import java.util.List;
  */
 @Getter
 public class ProductRepository {
-
     private final List<Product> products = new ArrayList<>();
 
     /**

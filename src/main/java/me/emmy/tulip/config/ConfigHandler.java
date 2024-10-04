@@ -17,7 +17,6 @@ import java.util.Map;
  */
 @Getter
 public class ConfigHandler {
-
     @Getter private static ConfigHandler instance;
 
     private final Tulip plugin = Tulip.getInstance();

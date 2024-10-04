@@ -11,7 +11,6 @@ import org.bukkit.Material;
  */
 @Getter
 public class Product {
-
     private final String name;
     private final String displayName;
     private final String description;

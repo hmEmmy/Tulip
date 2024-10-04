@@ -14,13 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Emmy
+ * @author Remi
  * @project Tulip
  * @date 5/27/2024
  */
 @Getter
 public class FFARepository {
-
     private final List<AbstractFFAMatch> matches = new ArrayList<>();
 
     /**

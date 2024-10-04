@@ -14,7 +14,6 @@ import java.util.List;
  */
 @Getter
 public enum Locale {
-
     NO_PERMISSION("no-permission", "locale.yml"),
 
     SPAWN_SET("spawn.set", "locale.yml"),

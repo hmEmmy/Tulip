@@ -17,11 +17,22 @@ import java.util.UUID;
  */
 @UtilityClass
 public class PlayerUtil {
-
+    /**
+     * Set the last attacker of a player
+     *
+     * @param victim   the player to set the last attacker of
+     * @param attacker the player to set as the last attacker
+     */
     public void setLastAttacker(Player victim, Player attacker) {
         victim.setMetadata("lastAttacker", new FixedMetadataValue(Tulip.getInstance(), attacker.getUniqueId()));
     }
 
+    /**
+     * Get the last attacker of a player
+     *
+     * @param victim the player to get the last attacker of
+     * @return the last attacker
+     */
     public Player getLastAttacker(Player victim) {
         if (victim.hasMetadata("lastAttacker")) {
             return Bukkit.getPlayer((UUID) victim.getMetadata("lastAttacker").get(0).value());
@@ -31,7 +42,10 @@ public class PlayerUtil {
     }
 
     /**
-     * Credit: Praxi
+     * Reset a player
+     * (From Praxi)
+     *
+     * @param player the player to reset
      */
     public void reset(Player player) {
         player.setHealth(20.0D);

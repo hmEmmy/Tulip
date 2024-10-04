@@ -9,7 +9,6 @@ import lombok.Getter;
  */
 @Getter
 public enum EnumProductType {
-
     EFFECT("Effect", "Gives you an effect"),
     COIN_BOOSTER("Coin Booster", "Doubles your coins by a certain amount each time you kill a player");
 

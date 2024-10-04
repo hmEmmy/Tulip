@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemBuilder implements Listener {
-
 	private final ItemStack itemStack;
 	private String command;
 	private boolean commandEnabled = true;

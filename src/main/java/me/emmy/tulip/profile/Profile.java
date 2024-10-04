@@ -23,8 +23,6 @@ import java.util.UUID;
 @Getter
 @Setter
 public class Profile {
-    public MongoCollection<Document> collection;
-
     private String name;
     private UUID uuid;
 

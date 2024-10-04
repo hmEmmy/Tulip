@@ -25,7 +25,6 @@ import java.util.*;
  */
 @AllArgsConstructor
 public class StatsMenu extends Menu {
-
     private final FileConfiguration config = ConfigHandler.getInstance().getStatsMenuConfig();
 
     private OfflinePlayer offlineTargetPlayer;
