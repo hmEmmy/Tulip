@@ -36,8 +36,8 @@ For further questions, feel free to join the [Discord server](https://discord.gg
 
 > **Note**: You are free to modify, distribute, and copy this code **as long as proper credits remain clear and visible**.
 
-1. Download the source code from the [Polymart page](https://polymart.org/resource/tulip-ffa-core-minemen-styled.6510).
-2. Configure the plugin to your liking.
+1. Download the compiled jar from the [Polymart page](https://polymart.org/resource/tulip-ffa-core-minemen-styled.6510).
+2. Configure the plugin to your likings.
 3. Launch your server and enjoy an enhanced FFA experience!
 
 ---
