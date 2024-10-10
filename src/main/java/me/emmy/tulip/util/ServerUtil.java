@@ -18,13 +18,13 @@ import java.util.logging.Level;
  * @date 27/07/2024 - 15:06
  */
 @UtilityClass
-public class ServerUtils {
+public class ServerUtil {
     /**
      * Shutdown the server.
      */
-    public void shutDown() {
+    public void shutDown(int delay) {
         Bukkit.getConsoleSender().sendMessage(CC.translate("&cServer is shutting down..."));
-        System.exit(0);
+        System.exit(delay);
     }
 
     /**
@@ -53,54 +53,6 @@ public class ServerUtils {
 
         Bukkit.getConsoleSender().sendMessage(CC.translate("&cStopping tasks..."));
         Bukkit.getScheduler().cancelTasks(Tulip.getInstance());
-    }
-
-    /**
-     * Disable a specific plugin.
-     *
-     * @param pluginName the plugin name
-     */
-    public void disableSpecificPlugin(String pluginName) {
-        Plugin plugin = Bukkit.getPluginManager().getPlugin(pluginName);
-        if (plugin == null) {
-            Bukkit.getConsoleSender().sendMessage(CC.translate("&cAttempted to disable the plugin " + pluginName + " but it was not found."));
-            return;
-        }
-
-        Bukkit.getConsoleSender().sendMessage(CC.translate("&cDisabling " + plugin.getName() + "..."));
-        Bukkit.getPluginManager().disablePlugin(plugin);
-    }
-
-    /**
-     * Register listeners in a specific package.
-     *
-     * @param packageName the package name
-     */
-    public void registerListenersInPackage(String packageName) {
-        Reflections reflections = new Reflections(packageName);
-        Set<Class<? extends Listener>> classes = reflections.getSubTypesOf(Listener.class);
-        String[] excludedPackages = { "me.emmy.tulip.util", "me.emmy.tulip.api.assemble" };
-
-        for (Class<? extends Listener> clazz : classes) {
-            boolean isExcluded = false;
-            for (String excludedPackage : excludedPackages) {
-                if (clazz.getName().startsWith(excludedPackage)) {
-                    isExcluded = true;
-                    break;
-                }
-            }
-
-            if (!isExcluded) {
-                try {
-                    Listener listener = clazz.getDeclaredConstructor().newInstance();
-                    Bukkit.getPluginManager().registerEvents(listener, Tulip.getInstance());
-                    Bukkit.getConsoleSender().sendMessage(CC.translate("&cRegistered listener: &f" + clazz.getSimpleName()));
-                } catch (Exception e) {
-                    //e.printStackTrace();
-                    Bukkit.getLogger().log(Level.SEVERE, "Failed to register listener: " + clazz.getSimpleName(), e);
-                }
-            }
-        }
     }
 
     /**

@@ -1,8 +1,8 @@
-package me.emmy.tulip.ffa.safezone.task;
+package me.emmy.tulip.ffa.spawn.task;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.ffa.enums.EnumFFAState;
-import me.emmy.tulip.ffa.safezone.cuboid.Cuboid;
+import me.emmy.tulip.util.Cuboid;
 import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.profile.enums.EnumProfileState;
 import me.emmy.tulip.util.CC;
@@ -20,7 +20,6 @@ import java.util.UUID;
  * @date 12/06/2024 - 22:26
  */
 public class FFASpawnTask extends BukkitRunnable {
-
     private final Cuboid cuboid;
     private final Tulip plugin;
     private final Map<UUID, EnumFFAState> playerStates;

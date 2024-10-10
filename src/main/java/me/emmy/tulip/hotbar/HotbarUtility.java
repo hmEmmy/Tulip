@@ -3,6 +3,8 @@ package me.emmy.tulip.hotbar;
 import lombok.experimental.UtilityClass;
 import org.bukkit.entity.Player;
 
+import java.util.Arrays;
+
 /**
  * @author Emmy
  * @project Tulip
@@ -16,10 +18,10 @@ public class HotbarUtility {
      * @param player the player
      */
     public void applyHotbarItems(Player player) {
-        for (HotbarItemBuilder hotbarItemBuilder : HotbarItemBuilder.values()) {
-            //HotbarItemBuilder.reloadConfig();
-            player.getInventory().setItem(hotbarItemBuilder.getSlot(), hotbarItemBuilder.createItem());
-        }
+        Arrays.stream(HotbarItem.values())
+                .filter(HotbarItem::isItemEnabledInConfig)
+                .forEach(hotbarItem -> player.getInventory().setItem(hotbarItem.getSlot(), hotbarItem.createItem()))
+        ;
     }
 
     /**
@@ -28,8 +30,9 @@ public class HotbarUtility {
      * @param player the player
      */
     public void removeHotbarItems(Player player) {
-        for (HotbarItemBuilder hotbarItemBuilder : HotbarItemBuilder.values()) {
-            player.getInventory().setItem(hotbarItemBuilder.getSlot(), null);
-        }
+        Arrays.stream(HotbarItem.values())
+                .filter(HotbarItem::isItemEnabledInConfig)
+                .forEach(hotbarItem -> player.getInventory().setItem(hotbarItem.getSlot(), null))
+        ;
     }
 }

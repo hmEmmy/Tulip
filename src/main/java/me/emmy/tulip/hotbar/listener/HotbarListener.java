@@ -1,6 +1,6 @@
 package me.emmy.tulip.hotbar.listener;
 
-import me.emmy.tulip.hotbar.HotbarItemBuilder;
+import me.emmy.tulip.hotbar.HotbarItem;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,7 +22,7 @@ public class HotbarListener implements Listener {
             return;
         }
 
-        HotbarItemBuilder hotbarItem = HotbarItemBuilder.getItem(event.getItem());
+        HotbarItem hotbarItem = HotbarItem.getItem(event.getItem());
         if (hotbarItem == null) {
             return;
         }

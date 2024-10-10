@@ -12,7 +12,7 @@ import org.bukkit.scheduler.BukkitTask;
  */
 @UtilityClass
 public class TaskUtil {
-    private static final Tulip plugin = Tulip.getInstance();
+    private final Tulip plugin = Tulip.getInstance();
 
     public void runTaskAsync(Runnable runnable) {
         plugin.getServer().getScheduler().runTaskAsynchronously(plugin, runnable);

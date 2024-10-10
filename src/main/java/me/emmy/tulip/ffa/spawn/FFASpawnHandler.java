@@ -1,11 +1,11 @@
-package me.emmy.tulip.ffa.safezone;
+package me.emmy.tulip.ffa.spawn;
 
 import lombok.Getter;
 import lombok.Setter;
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.arena.Arena;
 import me.emmy.tulip.config.ConfigHandler;
-import me.emmy.tulip.ffa.safezone.cuboid.Cuboid;
+import me.emmy.tulip.util.Cuboid;
 import me.emmy.tulip.util.CC;
 import me.emmy.tulip.util.LocationUtil;
 import me.emmy.tulip.util.Logger;
@@ -21,13 +21,9 @@ import org.bukkit.configuration.file.FileConfiguration;
 @Getter
 @Setter
 public class FFASpawnHandler {
-
-    private final Tulip plugin = Tulip.getInstance();
-
     private Location spawnLocation;
     private Location safezoneMin;
     private Location safezoneMax;
-
     private Cuboid cuboid;
 
     /**

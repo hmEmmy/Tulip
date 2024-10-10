@@ -16,7 +16,7 @@ import java.util.Map;
  * @date 28/07/2024 - 20:45
  */
 @Getter
-public enum HotbarItemBuilder {
+public enum HotbarItem {
 
     GAME_MENU, KIT_LAYOUT, SHOP, STATS, SETTINGS;
 
@@ -27,7 +27,7 @@ public enum HotbarItemBuilder {
     private String command;
     private String[] lore;
 
-    private static final Map<String, HotbarItemBuilder> hotbarItemsMap = new HashMap<>();
+    private static final Map<String, HotbarItem> hotbarItemsMap = new HashMap<>();
 
     static {
         loadConfig();
@@ -41,7 +41,7 @@ public enum HotbarItemBuilder {
 
         if (section != null) {
             for (String key : section.getKeys(false)) {
-                HotbarItemBuilder hotbarItem = HotbarItemBuilder.valueOf(key.toUpperCase());
+                HotbarItem hotbarItem = HotbarItem.valueOf(key.toUpperCase());
                 ConfigurationSection itemSection = section.getConfigurationSection(key);
                 hotbarItem.material = Material.valueOf(itemSection.getString("material"));
                 hotbarItem.slot = itemSection.getInt("slot");
@@ -52,6 +52,16 @@ public enum HotbarItemBuilder {
                 hotbarItemsMap.put(hotbarItem.name, hotbarItem);
             }
         }
+    }
+
+    /**
+     * Check if the item is enabled in the config.
+     *
+     * @param hotbarItem the hotbar item
+     * @return the boolean
+     */
+    public static boolean isItemEnabledInConfig(HotbarItem hotbarItem) {
+        return ConfigHandler.getInstance().getHotbarConfig().getBoolean("hotbar-items." + hotbarItem.name + ".enabled");
     }
 
     /**
@@ -73,8 +83,8 @@ public enum HotbarItemBuilder {
      * @param item the item
      * @return the item
      */
-    public static HotbarItemBuilder getItem(ItemStack item) {
-        for (HotbarItemBuilder hotbarItem : values()) {
+    public static HotbarItem getItem(ItemStack item) {
+        for (HotbarItem hotbarItem : values()) {
             if (hotbarItem.createItem().equals(item)) {
                 return hotbarItem;
             }

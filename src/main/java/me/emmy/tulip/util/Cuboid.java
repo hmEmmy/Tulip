@@ -1,4 +1,4 @@
-package me.emmy.tulip.ffa.safezone.cuboid;
+package me.emmy.tulip.util;
 
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -9,7 +9,6 @@ import org.bukkit.entity.Player;
  * Modified by: @Elb1to
  */
 public class Cuboid {
-
     private final int xMin;
     private final int xMax;
 

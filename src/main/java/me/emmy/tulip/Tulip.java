@@ -10,15 +10,16 @@ import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.cooldown.CooldownRepository;
 import me.emmy.tulip.database.MongoService;
 import me.emmy.tulip.ffa.FFARepository;
-import me.emmy.tulip.ffa.safezone.FFASpawnHandler;
-import me.emmy.tulip.ffa.safezone.task.FFASpawnTask;
+import me.emmy.tulip.ffa.spawn.FFASpawnHandler;
+import me.emmy.tulip.ffa.spawn.task.FFASpawnTask;
 import me.emmy.tulip.kit.KitRepository;
 import me.emmy.tulip.product.ProductRepository;
 import me.emmy.tulip.profile.ProfileRepository;
 import me.emmy.tulip.spawn.SpawnHandler;
 import me.emmy.tulip.util.CC;
 import me.emmy.tulip.util.CommandUtility;
-import me.emmy.tulip.util.ServerUtils;
+import me.emmy.tulip.util.PluginUtil;
+import me.emmy.tulip.util.ServerUtil;
 import me.emmy.tulip.visual.scoreboard.ScoreboardVisualizer;
 import me.emmy.tulip.visual.tablist.task.TablistUpdateTask;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -83,8 +84,12 @@ public class Tulip extends JavaPlugin {
         productRepository = new ProductRepository();
         productRepository.loadProducts();
 
-        ServerUtils.registerListenersInPackage("me.emmy.tulip");
-        ServerUtils.setupWorld();
+        PluginUtil.registerListenersInPackage(
+                "me.emmy.tulip",
+                "me.emmy.tulip.util", "me.emmy.tulip.api.assemble"
+        );
+
+        ServerUtil.setupWorld();
 
         runTasks();
         loadScoreboard();
@@ -96,13 +101,13 @@ public class Tulip extends JavaPlugin {
         profileRepository.getProfiles().forEach((uuid, profile) -> profile.setOnline(false));
         profileRepository.getProfiles().forEach((uuid, profile) -> profile.saveProfile());
 
-        ServerUtils.disconnectPlayers();
+        ServerUtil.disconnectPlayers();
 
         arenaRepository.saveArenas();
         kitRepository.saveKits();
         ffaRepository.saveFFAMatches();
 
-        ServerUtils.stopTasks();
+        ServerUtil.stopTasks();
 
         CC.sendShutdownMessage();
     }
@@ -121,7 +126,6 @@ public class Tulip extends JavaPlugin {
      */
     private void runTasks() {
         new FFASpawnTask(this.ffaSpawnHandler.getCuboid(), this).runTaskTimer(this, 0, 20);
-
         if (configHandler.getTablistConfig().getBoolean("tablist.enabled")) {
             new TablistUpdateTask().runTaskTimer(this, 0L, 20L);
         }

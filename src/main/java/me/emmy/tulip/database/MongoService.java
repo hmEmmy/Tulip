@@ -8,7 +8,7 @@ import com.mongodb.client.MongoDatabase;
 import lombok.Getter;
 import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.util.CC;
-import me.emmy.tulip.util.ServerUtils;
+import me.emmy.tulip.util.ServerUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -47,7 +47,7 @@ public class MongoService {
             Bukkit.getConsoleSender().sendMessage(CC.translate("&aSuccessfully connected to the MongoDB database."));
         } catch (Exception exception) {
             Bukkit.getConsoleSender().sendMessage(CC.translate("&cFailed to connect to the MongoDB database."));
-            ServerUtils.disablePlugin();
+            ServerUtil.disablePlugin();
         }
     }
 }

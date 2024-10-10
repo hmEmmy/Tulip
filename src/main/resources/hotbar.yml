@@ -1,5 +1,6 @@
 hotbar-items:
   GAME_MENU:
+    enabled: true
     material: DIAMOND_SWORD
     slot: 0
     durability: 0
@@ -10,6 +11,7 @@ hotbar-items:
       - "&7&oClick to open the game menu."
       - ""
   KIT_LAYOUT:
+    enabled: true
     material: BOOK
     slot: 1
     durability: 0
@@ -20,6 +22,7 @@ hotbar-items:
       - "&7&oClick to edit your kit layout."
       - ""
   SHOP:
+    enabled: false
     material: DIAMOND
     slot: 4
     durability: 0
@@ -30,6 +33,7 @@ hotbar-items:
       - "&7&oClick to open the shop."
       - ""
   STATS:
+    enabled: true
     material: NETHER_STAR
     slot: 7
     durability: 0
@@ -40,6 +44,7 @@ hotbar-items:
       - "&7&oClick to view your stats."
       - ""
   SETTINGS:
+    enabled: true
     material: SKULL_ITEM
     slot: 8
     durability: 0

@@ -4,7 +4,7 @@ import me.emmy.tulip.Tulip;
 import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.cooldown.Cooldown;
 import me.emmy.tulip.cooldown.CooldownRepository;
-import me.emmy.tulip.ffa.safezone.FFASpawnHandler;
+import me.emmy.tulip.ffa.spawn.FFASpawnHandler;
 import me.emmy.tulip.locale.Locale;
 import me.emmy.tulip.profile.Profile;
 import me.emmy.tulip.profile.enums.EnumProfileState;
