@@ -61,7 +61,7 @@ public enum HotbarItem {
      * @return the boolean
      */
     public static boolean isItemEnabledInConfig(HotbarItem hotbarItem) {
-        return ConfigHandler.getInstance().getHotbarConfig().getBoolean("hotbar-items." + hotbarItem.name + ".enabled");
+        return ConfigHandler.getInstance().getHotbarConfig().getBoolean("hotbar-items." + hotbarItem.name() + ".enabled");
     }
 
     /**
@@ -74,6 +74,7 @@ public enum HotbarItem {
                 .name(name)
                 .durability(durability)
                 .lore(lore)
+                .hideMeta()
                 .build();
     }
 

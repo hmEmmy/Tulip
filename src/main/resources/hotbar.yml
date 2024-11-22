@@ -7,9 +7,7 @@ hotbar-items:
     name: "&dGame Menu &7(Right Click)"
     command: "play"
     lore:
-      - ""
-      - "&7&oClick to open the game menu."
-      - ""
+      - "&eClick to open the game menu."
   KIT_LAYOUT:
     enabled: true
     material: BOOK
@@ -18,9 +16,7 @@ hotbar-items:
     name: "&dEdit Kit Layout &7(Right Click)"
     command: "kitlayout"
     lore:
-      - ""
-      - "&7&oClick to edit your kit layout."
-      - ""
+      - "&eClick to edit your kit layout."
   SHOP:
     enabled: false
     material: DIAMOND
@@ -29,9 +25,7 @@ hotbar-items:
     name: "&dShop &7(Right Click)"
     command: "shop"
     lore:
-      - ""
-      - "&7&oClick to open the shop."
-      - ""
+      - "&eClick to open the shop."
   STATS:
     enabled: true
     material: NETHER_STAR
@@ -40,9 +34,7 @@ hotbar-items:
     name: "&dStats &7(Right Click)"
     command: "stats"
     lore:
-      - ""
-      - "&7&oClick to view your stats."
-      - ""
+      - "&eClick to view your stats."
   SETTINGS:
     enabled: true
     material: SKULL_ITEM
@@ -51,6 +43,4 @@ hotbar-items:
     name: "&dSettings &7(Left Click)"
     command: "ffasettings"
     lore:
-      - ""
-      - "&7&oClick to open the settings menu."
-      - ""
+      - "&eClick to open the settings menu."

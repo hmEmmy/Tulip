@@ -2,7 +2,6 @@ package me.emmy.tulip.util;
 
 import lombok.experimental.UtilityClass;
 import me.emmy.tulip.Tulip;
-import me.emmy.tulip.config.ConfigHandler;
 import org.bukkit.ChatColor;
 
 import java.util.ArrayList;
@@ -61,9 +60,9 @@ public class CC {
                 "  Discord: &dhttps://discord.gg/eT4B65k5E4",
                 "  Description: &d" + Tulip.getInstance().getDescription().getDescription(),
                 "",
-                "  Database: &aConnected.",
-                "   &8(&7" + ConfigHandler.getInstance().getSettingsConfig().getString("mongo.uri") + " - " + Tulip.getInstance().getMongoService().getMongoDatabase().getName() + "&8)",
-                "",
+//                "  Database: &aConnected.",
+//                "   &8(&7" + ConfigHandler.getInstance().getSettingsConfig().getString("mongo.uri") + " - " + Tulip.getInstance().getMongoService().getMongoDatabase().getName() + "&8)",
+//                "",
                 "  Kits: &d" + Tulip.getInstance().getKitRepository().getKits().size(),
                 "  Arenas: &d" + Tulip.getInstance().getArenaRepository().getArenas().size(),
                 "  FFA Arenas: &d" + Tulip.getInstance().getFfaRepository().getMatches().size(),

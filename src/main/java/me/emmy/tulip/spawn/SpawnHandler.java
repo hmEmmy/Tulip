@@ -27,7 +27,7 @@ public class SpawnHandler {
         float yaw = (float) config.getDouble("spawn.yaw");
         float pitch = (float) config.getDouble("spawn.pitch");
 
-        location = new Location(Tulip.getInstance().getServer().getWorld(world), x, y, z, yaw, pitch);
+        this.location = new Location(Tulip.getInstance().getServer().getWorld(world), x, y, z, yaw, pitch);
     }
 
     public void setSpawn(Location location) {
@@ -41,6 +41,7 @@ public class SpawnHandler {
         config.set("spawn.pitch", location.getPitch());
 
         ConfigHandler.getInstance().saveConfig(ConfigHandler.getInstance().getConfigFile("settings.yml"), config);
+        this.location = location;
     }
 
     public void teleportToSpawn(Player player) {
