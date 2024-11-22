@@ -6,14 +6,20 @@ import me.emmy.tulip.arena.command.impl.*;
 import me.emmy.tulip.command.admin.GamemodeCommand;
 import me.emmy.tulip.command.admin.ReloadCommand;
 import me.emmy.tulip.command.global.TulipCommand;
+import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.ffa.command.admin.FFACommand;
 import me.emmy.tulip.ffa.command.admin.impl.*;
+import me.emmy.tulip.ffa.command.player.JoinCommand;
 import me.emmy.tulip.ffa.command.player.LeaveCommand;
 import me.emmy.tulip.ffa.command.player.PlayCommand;
 import me.emmy.tulip.hotbar.command.HotbarItemsCommand;
 import me.emmy.tulip.hotbar.command.RemoveHotbarItemsCommand;
 import me.emmy.tulip.kit.command.KitCommand;
 import me.emmy.tulip.kit.command.impl.*;
+import me.emmy.tulip.profile.coins.command.CoinsCommand;
+import me.emmy.tulip.profile.coins.command.impl.CoinsDonateCommand;
+import me.emmy.tulip.profile.coins.command.impl.CoinsRequestCommand;
+import me.emmy.tulip.profile.coins.command.impl.CoinsSetCommand;
 import me.emmy.tulip.profile.kitlayout.command.KitLayoutCommand;
 import me.emmy.tulip.profile.settings.command.SettingsCommand;
 import me.emmy.tulip.profile.settings.command.toggle.ToggleScoreboardCommand;
@@ -47,6 +53,7 @@ public class CommandUtility {
         registerKitCommands();
         registerProfileCommands();
         registerOtherCommands();
+        registerCoinCommands();
     }
 
     /**
@@ -94,7 +101,9 @@ public class CommandUtility {
         new FFAListPlayersCommand();
         new FFASetMaxPlayersCommand();
 
-        //player
+        if (ConfigHandler.getInstance().getSettingsConfig().getBoolean("commands.ffa-join")) {
+            new JoinCommand();
+        }
         new LeaveCommand();
         new PlayCommand();
     }
@@ -150,5 +159,12 @@ public class CommandUtility {
         new ShopCommand();
         new SpawnCommand();
         new SetSpawnCommand();
+    }
+
+    private void registerCoinCommands() {
+        new CoinsCommand();
+        new CoinsSetCommand();
+        new CoinsRequestCommand();
+        new CoinsDonateCommand();
     }
 }

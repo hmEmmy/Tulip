@@ -3,6 +3,7 @@ package me.emmy.tulip.shop.command;
 import me.emmy.tulip.api.command.BaseCommand;
 import me.emmy.tulip.api.command.CommandArgs;
 import me.emmy.tulip.api.command.annotation.Command;
+import me.emmy.tulip.shop.menu.ShopMenu;
 import me.emmy.tulip.util.CC;
 import org.bukkit.entity.Player;
 
@@ -16,7 +17,6 @@ public class ShopCommand extends BaseCommand {
     @Override
     public void onCommand(CommandArgs command) {
         Player player = command.getPlayer();
-
-        player.sendMessage(CC.translate("&e&o&lCurrently in development!"));
+        new ShopMenu().openMenu(player);
     }
 }

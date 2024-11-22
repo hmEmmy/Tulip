@@ -1,1 +1,20 @@
 title: "&e&l{player}'s Stats"
+player-stats:
+  - ""
+  - "&e&l● &eKills: &d{kills}"
+  - "&e&l● &eDeaths: &d{deaths}"
+  - ""
+  - "&e&l● &eHighest Killstreak: &d{ks}"
+  - ""
+
+kit-stats:
+  material: "NETHER_STAR"
+  title: "&d&lGlobal Stats"
+  data: 0
+  lore:
+    - ""
+    - "&e&l● &eTotal Kills: &d{kills}"
+    - "&e&l● &eTotal Deaths: &d{deaths}"
+    - ""
+    - "&e&l● &eKill/Death Ratio: &d{kdr}"
+    - ""

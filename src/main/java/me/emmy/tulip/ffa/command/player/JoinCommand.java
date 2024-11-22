@@ -1,4 +1,4 @@
-/*package me.emmy.tulip.ffa.command.player;
+package me.emmy.tulip.ffa.command.player;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.ffa.FFARepository;
@@ -49,4 +49,4 @@ public class JoinCommand extends BaseCommand {
                 .ifPresent(match -> match.join(player));
 
     }
-}*/
+}

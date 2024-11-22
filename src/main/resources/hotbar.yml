@@ -18,7 +18,7 @@ hotbar-items:
     lore:
       - "&eClick to edit your kit layout."
   SHOP:
-    enabled: false
+    enabled: true
     material: DIAMOND
     slot: 4
     durability: 0

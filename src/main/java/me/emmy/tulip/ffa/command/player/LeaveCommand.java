@@ -15,7 +15,7 @@ import org.bukkit.entity.Player;
  * @date 5/27/2024
  */
 public class LeaveCommand extends BaseCommand {
-    @Command(name = "leaveffa")
+    @Command(name = "leaveffa", aliases = "ffa.leave")
     @Override
     public void onCommand(CommandArgs command) {
         Player player = command.getPlayer();

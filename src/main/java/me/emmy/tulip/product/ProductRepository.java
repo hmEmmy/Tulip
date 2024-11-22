@@ -21,10 +21,10 @@ public class ProductRepository {
      * Load all products
      */
     public void loadProducts() {
-        products.add(new Product("Strength", "&cStrength I", "&eGives you strength 1", Material.POTION, 100, 0, EnumProductType.EFFECT));
-        products.add(new Product("Speed", "&bSpeed I", "&eGives you speed 1", Material.POTION, 100, 0, EnumProductType.EFFECT));
-        products.add(new Product("CoinBoosterTier1", "&eCoin Booster &d(Tier 1)", "&7Doubles your coins by one each time you kill a player", Material.GOLD_INGOT, 500, 0, EnumProductType.COIN_BOOSTER));
-        products.add(new Product("CoinBoosterTier2", "&eCoin Booster &d(Tier 2)", "&7Doubles your coins by two each time you kill a player", Material.GOLD_INGOT, 1000, 0, EnumProductType.COIN_BOOSTER));
+        this.products.add(new Product("CoinBoosterTier1", "&eCoin Booster &d(Tier 1)", "&7Doubles your coins by one each time you kill a player", Material.GOLD_NUGGET, 500, 0, EnumProductType.COIN_BOOSTER));
+        this.products.add(new Product("CoinBoosterTier2", "&eCoin Booster &d(Tier 2)", "&7Doubles your coins by two each time you kill a player", Material.GOLD_INGOT, 1000, 0, EnumProductType.COIN_BOOSTER));
+        this.products.add(new Product("Strength", "&cStrength I", "&eGives you strength 1", Material.POTION, 100, 8201, EnumProductType.EFFECT));
+        this.products.add(new Product("Speed", "&bSpeed I", "&eGives you speed 1", Material.POTION, 100, 8194, EnumProductType.EFFECT));
     }
 
     /**
@@ -34,7 +34,7 @@ public class ProductRepository {
      * @return the product
      */
     public Product getProduct(String name) {
-        for (Product product : products) {
+        for (Product product : this.products) {
             if (product.getName().equalsIgnoreCase(name)) {
                 return product;
             }

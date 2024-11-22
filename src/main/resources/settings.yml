@@ -9,3 +9,9 @@ spawn:
   z: 101.5
   yaw: 0.01586914
   pitch: 0.04726013
+
+listeners:
+  weather-change: false
+
+commands:
+  ffa-join: false

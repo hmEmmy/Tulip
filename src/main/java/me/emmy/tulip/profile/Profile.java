@@ -1,18 +1,19 @@
 package me.emmy.tulip.profile;
 
-import com.mongodb.client.MongoCollection;
 import lombok.Getter;
 import lombok.Setter;
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.ffa.AbstractFFAMatch;
+import me.emmy.tulip.product.Product;
 import me.emmy.tulip.profile.coins.ProfileCoins;
 import me.emmy.tulip.profile.enums.EnumProfileState;
 import me.emmy.tulip.profile.kitlayout.ProfileKitLayout;
 import me.emmy.tulip.profile.settings.ProfileSettings;
 import me.emmy.tulip.profile.stats.ProfileStats;
-import org.bson.Document;
 import org.bukkit.Bukkit;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -35,6 +36,7 @@ public class Profile {
     private ProfileSettings settings;
     private ProfileKitLayout kitLayout;
     private ProfileCoins coins;
+    private List<String> ownedProducts;
 
     /**
      * Constructor for the Profile class
@@ -48,7 +50,8 @@ public class Profile {
         this.stats = new ProfileStats();
         this.settings = new ProfileSettings();
         this.kitLayout = new ProfileKitLayout();
-        this.coins = new ProfileCoins(0);
+        this.coins = new ProfileCoins(100);
+        this.ownedProducts = new ArrayList<>();
     }
 
     /**

@@ -2,6 +2,7 @@ package me.emmy.tulip.spawn.listener;
 
 import me.emmy.tulip.Tulip;
 import me.emmy.tulip.api.menu.Menu;
+import me.emmy.tulip.config.ConfigHandler;
 import me.emmy.tulip.profile.enums.EnumProfileState;
 import me.emmy.tulip.profile.kitlayout.menu.KitLayoutEditorMenu;
 import org.bukkit.GameMode;
@@ -26,10 +27,11 @@ import org.bukkit.event.weather.WeatherChangeEvent;
  * @date 29/07/2024 - 00:11
  */
 public class SpawnListener implements Listener {
-
     @EventHandler
     private void onWeatherChange(WeatherChangeEvent event) {
-        event.setCancelled(true);
+        if (ConfigHandler.getInstance().getSettingsConfig().getBoolean("listeners.weather-change")) {
+            event.setCancelled(true);
+        }
     }
 
     @EventHandler
